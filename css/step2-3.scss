@@ -1,0 +1,666 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+$colors: (
+    bgc: #D8E2DC,
+    header: #FFFF,
+    card: #086788
+);
+
+@function color($color-name) {
+    @return map-get($colors, $color-name)
+};
+
+
+body {
+    margin: 0;
+    height: 100%;
+    font-family: 'Montserrat', sans-serif;
+    background-color: color(bgc);
+}
+
+header {
+    background: grey;
+    grid-area: header;
+    display: flex;
+    justify-content: space-between;
+    background-color: #FFFFFF;
+    //margin-bottom: 40%;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.603);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    z-index: 10;
+
+    .hide-mobile {
+        display: none;
+    }
+
+    .logo {
+        height: 30%;
+        width: 30%;
+        padding: .8em 1.2em;
+    }
+
+    .menu {
+        padding: .8em 1.9em;
+        width: 20%;
+        margin-left: 60%;
+    }
+
+    nav ul {
+        position: fixed;
+        width: 60%;
+        top: 0;
+        right: 0;
+        text-align: left;
+        background: white;
+        height: 100%;
+        z-index: 7;
+        padding-top: 3em;
+        list-style-type: none;
+    }
+    
+    nav ul li a {
+        color: black;
+        text-decoration: none;
+        display: block;
+        width: 100%;
+        padding: 1em 2em;
+        background-color: white;
+    }
+    
+    nav ul li a:hover {
+        background-color: rgb(65, 73, 78);
+    }
+    
+    .exit-btn {
+        margin-bottom: 1em;
+        margin-top: -1.3em;
+        text-align: right;
+        padding: 0 1.4em;
+    }
+    
+    .exit-btn img {
+        width: 15px;
+        cursor: pointer;
+    }
+}
+
+main {
+    .bg-card1 {
+        background: white;
+        width: 90%;
+        display: block;
+        margin: 0 auto;
+        margin-top: 30%;
+        //margin-bottom: 30%;
+        border: none;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        padding-bottom: 5px;
+
+        .contain1 {
+            padding-top: 7px;
+            padding-bottom: 7px;
+            padding-left: 15px;
+            padding-right: 15px;
+
+            h4 {
+                font-size: 20px;
+            }
+
+            p {
+                font-size: 12px;
+                font-weight: bold;
+            }
+
+            input[type=text] {
+                width: 95%;
+                height: 30px;
+                margin-top: -25px;
+                padding-left: 10px;
+                font-size: 15px;
+                margin-bottom: 5px;
+                border-color: 1px solid grey;
+                cursor: pointer;
+            }
+
+            .gender {
+                margin-top: -10px;
+                display: flex;
+                
+                input[type=radio] {
+                    margin-right: 5px;
+                    width: 17px;
+                    height: 17px;
+                    cursor: pointer;
+                }
+
+                label {
+                    font-size: 17px;
+                    margin-right: 10px;
+                    margin-top: 1px;
+                }
+            }
+
+            .address {
+                input[type=text] {
+                    margin-bottom: 20px;
+                }
+            }
+            
+        }
+    }
+
+    .bg-card2 {
+        background: white;
+        width: 90%;
+        display: block;
+        margin: 0 auto;
+        //margin-top: 30%;
+        //margin-bottom: 30%;
+        border: none;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        padding-bottom: 5px;
+
+        .contain2 {
+            padding-top: 7px;
+            padding-bottom: 20px;
+            padding-left: 15px;
+            padding-right: 15px;
+
+            h4 {
+                font-size: 20px;
+            }
+
+            p {
+                font-size: 12px;
+                font-weight: bold;
+            }
+
+            input[type=text] {
+                width: 95%;
+                height: 30px;
+                margin-top: -25px;
+                padding-left: 10px;
+                font-size: 15px;
+                margin-bottom: 5px;
+                border-color: 1px solid grey;
+                cursor: text;
+            }
+
+            select {
+                width: 99%;
+                height: 35px;
+                margin-top: -25px;
+                padding-left: 10px;
+                font-size: 15px;
+                font-weight: bold;
+                margin-bottom: 5px;
+                border-color: 1px solid grey;
+                cursor: pointer;
+            }
+        }
+    }
+
+    .bg-card3 {
+        background: white;
+        width: 90%;
+        display: block;
+        margin: 0 auto;
+        //margin-top: 30%;
+        //margin-bottom: 30%;
+        border: none;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        padding-bottom: 5px;
+
+        .contain3 {
+            padding-top: 7px;
+            padding-bottom: 20px;
+            padding-left: 15px;
+            padding-right: 15px;
+
+            h4 {
+                font-size: 20px;
+            }
+
+            p {
+                font-size: 12px;
+                font-weight: bold;
+            }
+
+            input[type=text] {
+                width: 95%;
+                height: 30px;
+                margin-top: -25px;
+                padding-left: 10px;
+                font-size: 15px;
+                margin-bottom: 5px;
+                border-color: 1px solid grey;
+                cursor: text;
+            }
+        }
+    }
+
+    .bg-card4 {
+        background: white;
+        width: 90%;
+        display: block;
+        margin: 0 auto;
+        //margin-top: 30%;
+        //margin-bottom: 30%;
+        border: none;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        padding-bottom: 5px;
+
+        .contain4 {
+            padding-top: 7px;
+            padding-bottom: 20px;
+            padding-left: 15px;
+            padding-right: 15px;
+
+            h4 {
+                font-size: 20px;
+            }
+
+            p {
+                font-size: 12px;
+                font-weight: bold;
+            }
+
+            select {
+                width: 99%;
+                height: 35px;
+                margin-top: -25px;
+                padding-left: 10px;
+                font-size: 15px;
+                font-weight: bold;
+                margin-bottom: 5px;
+                border-color: 1px solid grey;
+                cursor: pointer;
+            }
+        }
+    }
+
+    .submit {
+        display: block;
+        padding-top: 17px;
+        padding-bottom: 17px;
+        width: 81%;
+        border-radius: 50px;
+        border: none;
+        margin: 20px auto 70px auto;
+        background-color: #0999c9;
+        color: black;
+        font-size: 15px;
+        font-weight: bold;
+        text-decoration: none;
+        box-shadow: 0px 3px 19px -9px rgba(0,0,0,0.56);
+        text-align: center;
+        cursor: pointer;
+    }
+
+    .submit:hover {
+        cursor: pointer;
+    }
+}
+
+@media only screen and (min-width: 1024px) {
+    header {
+        .logo {
+            height: 20%;
+            width: 20%;
+            //padding: .8em 1.2em;
+            margin: 0;     
+        }
+
+        .show-desktop {
+            display: block;
+            margin: 0 auto 13% auto;
+        }
+    
+        .hide-desktop {
+            display: none;
+        }
+    
+        nav ul {
+            position: inherit;
+            width: auto;
+            background: none;
+            height: auto;
+            display: flex;
+            //padding-top: 0;
+            list-style-type: none;
+            padding-right: 60px;
+        }
+    
+        nav ul li {
+            float: left;
+            
+        }
+    
+        nav ul li a {
+            color: black;
+            background-color: inherit;
+            text-align: right;
+            padding: 1em 2em;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+    
+        nav ul li a:hover {
+            background-color: inherit;
+        }
+    }
+
+    main {
+        .bg-card1 {
+            //background: white;
+            width: 60%;
+            //display: block;
+            //margin: 0 auto;
+            margin-top: 15%;
+            //margin-bottom: 30%;
+            //border: none;
+            //border-radius: 15px;
+            //box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            //padding-bottom: 5px;
+    
+            .contain1 {
+                
+                padding-left: 65px;
+                padding-right: 0;
+                padding-bottom: 35px;
+                
+    
+                h4 {
+                    font-size: 30px;
+                }
+    
+                p {
+                    font-size: 20px;
+                    
+                }
+    
+                input[type=text] {
+                    width: 85%;
+                    height: 40px;
+                    font-size: 20px;
+                    margin-bottom: 15px;
+                    cursor: text;
+                }
+    
+                .gender {
+                    
+                    
+                    input[type=radio] {
+                        
+                        width: 20px;
+                        height: 20px;
+                    }
+    
+                    label {
+                        font-size: 20px;
+                        
+                    }
+                }
+    
+                .address {
+                    input[type=text] {
+                        margin-bottom: 30px;
+                    }
+                }
+                
+            }
+        }
+    
+        .bg-card2 {
+            
+            width: 60%;
+    
+            .contain2 {
+                padding-left: 65px;
+                padding-right: 0;
+                padding-bottom: 35px;
+    
+                h4 {
+                    font-size: 30px;
+                }
+    
+                p {
+                    font-size: 20px;
+                }
+    
+                input[type=text] {
+                    width: 85%;
+                    height: 40px;
+                    font-size: 20px;
+                    margin-bottom: 15px;
+                    cursor: text;
+                }
+    
+                select {
+                    width: 88%;
+                    height: 45px;
+                    font-size: 20px;
+                    font-weight: bold;
+                }
+            }
+        }
+    
+        .bg-card3 {
+            width: 60%;
+    
+            .contain3 {
+                padding-left: 65px;
+                padding-right: 0;
+                padding-bottom: 35px;
+    
+                h4 {
+                    font-size: 30px;
+                }
+    
+                p {
+                    font-size: 20px;
+                    font-weight: bold;
+                }
+    
+                input[type=text] {
+                    width: 85%;
+                    height: 40px;
+                    font-size: 20px;
+                    margin-bottom: 15px;
+                    cursor: text;
+                }
+            }
+        }
+    
+        .bg-card4 {
+            width: 60%;
+    
+            .contain4 {
+                padding-left: 65px;
+                padding-right: 0;
+                padding-bottom: 35px;
+    
+                h4 {
+                    font-size: 30px;
+                }
+    
+                p {
+                    font-size: 20px;
+                }
+    
+                select {
+                    width: 88%;
+                    height: 45px;
+                    font-size: 20px;
+                    font-weight: bold;
+                }
+            }
+        }
+
+        .submit {
+            padding-top: 20px;
+            padding-bottom: 20px;
+            width: 60%;
+            font-size: 20px;
+            cursor: pointer;
+        }
+    }
+}
+
+@media only screen and (min-width: 1600px) {
+    header {
+        .logo {
+            height: 15%;
+            width: 15%;
+            //padding: 2em 0 0 2em;
+            margin: 0;     
+        }
+    }
+
+    main {
+        .bg-card1 {
+            //background: white;
+            width: 45%;
+            //display: block;
+            //margin: 0 auto;
+            margin-top: 9%;
+            //margin-bottom: 30%;
+            //border: none;
+            //border-radius: 15px;
+            //box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            //padding-bottom: 5px;
+    
+            .contain1 {
+                
+                padding-left: 85px;
+                
+    
+                h4 {
+                    font-size: 35px;
+                }
+    
+                p {
+                    font-size: 22px;
+                    
+                }
+    
+                input[type=text] {
+                    width: 85%;
+                    height: 45px;
+                    font-size: 22px;
+                }
+    
+                .gender {
+                    input[type=radio] {
+                        
+                        width: 25px;
+                        height: 25px;
+                    }
+    
+                    label {
+                        font-size: 22px;
+                        
+                    }
+                }
+    
+                .address {
+                    input[type=text] {
+                        margin-bottom: 35px;
+                    }
+                }
+                
+            }
+        }
+    
+        .bg-card2 {
+            
+            width: 45%;
+    
+            .contain2 {
+                padding-left: 85px;
+                padding-bottom: 45px;
+    
+                h4 {
+                    font-size: 35px;
+                }
+    
+                p {
+                    font-size: 22px;
+                }
+    
+                input[type=text] {
+                    width: 85%;
+                    height: 45px;
+                    font-size: 22px;
+                }
+    
+                select {
+                    width: 88%;
+                    height: 50px;
+                    font-size: 22px;
+                }
+            }
+        }
+    
+        .bg-card3 {
+            width: 45%;
+    
+            .contain3 {
+                padding-left: 85px;
+                padding-bottom: 45px;
+    
+                h4 {
+                    font-size: 35px;
+                }
+    
+                p {
+                    font-size: 22px;
+                }
+    
+                input[type=text] {
+                    width: 85%;
+                    height: 45px;
+                    font-size: 22px;
+                }
+            }
+        }
+    
+        .bg-card4 {
+            width: 45%;
+    
+            .contain4 {
+                padding-left: 85px;
+                padding-bottom: 45px;
+    
+                h4 {
+                    font-size: 35px;
+                }
+    
+                p {
+                    font-size: 22px;
+                }
+    
+                select {
+                    width: 88%;
+                    height: 50px;
+                    font-size: 22px;
+                }
+            }
+        }
+
+        .submit {
+            padding-top: 20px;
+            padding-bottom: 20px;
+            width: 45%;
+            font-size: 20px;
+        }
+    }
+}

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landing page</title>
+    <link rel="stylesheet" href="/css/landing.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <img src="/images/anees_logo.png" alt="anees logo" class="logo">
+
+            <nav>
+                <a href="#" class="hide-desktop">
+                    <img src="/images/menu.png" alt="toggle menu button" class="menu" id="menu">
+                </a>
+
+                <ul class="show-desktop hide-mobile" id="nav">
+                    <li id="exit" class="exit-btn hide-desktop">
+                        <img src="/images/exit.png" alt="toggle exit button">
+                    </li>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Activity</a></li>
+                    <li><a href="#">Profile</a></li>
+                    <li><a href="#">Notification</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <div class="hero-image">
+            <div class="hero-text">
+                <h1>Live Better through Anees!</h1>
+                <p>Anees is a platform that caters to Persons with Disability that will boost your productivity.</p>
+                <button id="signupHel">Sign up as Helper</button>
+                <button id="signupReq">Sign up as Requester</button>
+            </div>
+        </div>
+
+        <div class="HowItWorks">
+            <h2>How it works</h2>
+            <div class="card">
+                <ul>
+                    <li>
+                        <a href="#">
+                            <span></span>
+                            <strong>Request</strong>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span></span>
+                            <strong>Start Session</strong>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="faq">
+            <h2>FAQs</h2>
+            <div class="card">
+                <ul>
+                    <li>
+                        <a href="#">
+                            <span></span>
+                            <strong>Question 1</strong>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span></span>
+                            <strong>Question 2</strong>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span></span>
+                            <strong>Question 3</strong>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span></span>
+                            <strong>Question 4</strong>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <footer>
+            <a href="#">
+                <img src="/images/anees_logo.png" class="logo" alt="logo">
+            </a>
+            <p class="address">Melrose Place, 90210<br>USA</p>
+            <ul class="footer-links">
+                <li><a href="#">Terms of Service</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+            </ul>
+        </footer>
+    </div>
+
+    <script>
+    
+        var menu = document.getElementById('menu');
+        var nav = document.getElementById('nav');
+        var exit = document.getElementById('exit');
+
+        document.getElementById('signupHel').onclick = function () {
+            location.href = 'sign-up.html';
+        };
+
+        document.getElementById('signupReq').onclick = function () {
+            window.location = 'sign-up.html';
+        };
+
+        menu.addEventListener('click', function(e) {
+            nav.classList.toggle('hide-mobile');
+            e.preventDefault();
+        });
+
+        exit.addEventListener('click', function(e) {
+            nav.classList.add('hide-mobile');
+            e.preventDefault();
+        });
+
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anees</title>
+    <link rel="stylesheet" href="/css/homepage.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <img src="/images/anees_logo.png" alt="anees logo" class="logo">
+
+            <nav>
+                <a href="#" class="hide-desktop">
+                    <img src="/images/menu.png" alt="toggle menu button" class="menu" id="menu">
+                </a>
+
+                <ul class="show-desktop hide-mobile" id="nav">
+                    <li id="exit" class="exit-btn hide-desktop">
+                        <img src="/images/exit.png" alt="toggle exit button">
+                    </li>
+                    <li><a href="/index.html">Home</a></li>
+                    <li><a href="#">Activity</a></li>
+                    <li><a href="/pages/profile.html">Profile</a></li>
+                    <li><a href="#">Notification</a></li>
+                </ul>
+            </nav>
+        </header>
+    </div>
+    
+    <div class="container">
+        <div class="text-display">
+            <h1>Your Personal Helper</h1>
+            <p>How may we assist you?</p>
+        </div>
+    </div>
+
+    <!--the id for a-tag is to identify which button they press-->
+    <div class="container">
+        <div class="card">
+            <ul>
+                <li>
+                    <a href="/pages/booking-form.html" id="guide" data-job-type="Guider/Accompanier" onclick="whichBtn(this)">
+                        <img src="/images/guiding.png" alt="guider/accompanier icon">
+                        <p>Guider/Accompanier</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="/pages/booking-form.html" id="clean" data-job-type="Cleaner" onclick="whichBtn(this)">
+                        <img src="/images/cleaning.png" alt="cleaner icon">
+                        <p>Cleaner</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="/pages/booking-form.html" id="dress" data-job-type="Dressing Helper" onclick="whichBtn(this)">
+                        <img src="/images/dressing.png" alt="dressing helper icon">
+                        <p>Dressing Helper</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="/pages/booking-form.html" id="food" data-job-type="Food Preparer" onclick="whichBtn(this)">
+                        <img src="/images/food.png" alt="food preparer icon">
+                        <p>Food Preparer</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="/pages/booking-form.html" id="shop" data-job-type="Shopper" onclick="whichBtn(this)">
+                        <img src="/images/shopping.png" alt="shopper icon">
+                        <p>Shopper</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="/pages/booking-form.html" id="more" data-job-type="More" onclick="whichBtn(this)">
+                        <img src="/images/more.png" alt="more task icon">
+                        <p>More</p>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="container">
+        <footer>
+            <a href="/index.html">
+                <img src="/images/anees_logo.png" class="logo" alt="logo">
+            </a>
+            <p class="address">Melrose Place, 90210<br>USA</p>
+            <ul class="footer-links">
+                <li><a href="#">Terms of Service</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+            </ul>
+        </footer>
+    </div>
+
+    <script>
+    
+        var menu = document.getElementById('menu');
+        var nav = document.getElementById('nav');
+        var exit = document.getElementById('exit');
+
+        menu.addEventListener('click', function(e) {
+            nav.classList.toggle('hide-mobile');
+            e.preventDefault();
+        });
+
+        exit.addEventListener('click', function(e) {
+            nav.classList.add('hide-mobile');
+            e.preventDefault();
+        });
+
+    </script>
+
+    <script>
+
+        function whichBtn(job) {
+            //send data booking form page
+            var jobType = job.getAttribute('data-job-type');
+            sessionStorage.thisJob = jobType;
+
+        }
+
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forgot Password</title>
+    <link rel="stylesheet" href="/css/forgotPass.css">
+</head>
+<body>
+    <div class="container">
+
+        <header>
+            <img src="/images/anees_logo.png" alt="anees logo" class="logo">
+
+            <nav>
+                <a href="#" class="hide-desktop">
+                    <img src="/images/menu.png" alt="toggle menu button" class="menu" id="menu">
+                </a>
+                <ul class="show-desktop hide-mobile" id="nav">
+                    <li id="exit" class="exit-btn hide-desktop">
+                        <img src="/images/exit.png" alt="toggle exit button">
+                    </li>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Activity</a></li>
+                    <li><a href="#">Profile</a></li>
+                    <li><a href="#">Notification</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <form action="#">
+                <h1>Forgot your password?</h1>
+                <p>Enter your email and we will send you a link to reset your password.</p>
+
+                <label for="resetPsw"><b>Email Address</b></label>
+                <input type="text" placeholder="Enter Email" name="resetPsw" required>
+                <button type="submit">Reset password</button>
+                <a href="#">Cancel</a>
+            </form>
+        </main>
+
+        <footer>
+            <a href="#">
+                <img src="/images/anees_logo.png" class="logo" alt="logo">
+            </a>
+            <p class="address">Melrose Place, 90210<br>USA</p>
+            <ul class="footer-links">
+                <li><a href="#">Terms of Service</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+            </ul>
+        </footer>
+
+    </div>
+
+    <script>
+    
+        var menu = document.getElementById('menu');
+        var nav = document.getElementById('nav');
+        var exit = document.getElementById('exit');
+
+        menu.addEventListener('click', function(e) {
+            nav.classList.toggle('hide-mobile');
+            e.preventDefault();
+        });
+
+        exit.addEventListener('click', function(e) {
+            nav.classList.add('hide-mobile');
+            e.preventDefault();
+        });
+
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,297 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap");
+body {
+  margin: 0;
+  height: 100%;
+  font-family: 'Montserrat', sans-serif;
+  background-color: #D8E2DC;
+}
+
+.container {
+  text-align: center;
+}
+
+header {
+  background: grey;
+  grid-area: header;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  background-color: #FFFFFF;
+  -webkit-box-shadow: 0 10px 30px rgba(0, 0, 0, 0.603);
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.603);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 10;
+}
+
+header .hide-mobile {
+  display: none;
+}
+
+header .logo {
+  height: 30%;
+  width: 30%;
+  padding: .8em 1.2em;
+}
+
+header .menu {
+  padding: .8em 1.9em;
+  width: 20%;
+  margin-left: 60%;
+}
+
+header nav ul {
+  position: fixed;
+  width: 60%;
+  top: 0;
+  right: 0;
+  text-align: left;
+  background: white;
+  height: 100%;
+  z-index: 7;
+  padding-top: 3em;
+  list-style-type: none;
+}
+
+header nav ul li a {
+  color: black;
+  text-decoration: none;
+  display: block;
+  width: 100%;
+  padding: 1em 2em;
+  background-color: white;
+}
+
+header nav ul li a:hover {
+  background-color: #41494e;
+}
+
+header .exit-btn {
+  margin-bottom: 1em;
+  margin-top: -1.3em;
+  text-align: right;
+  padding: 0 1.4em;
+}
+
+header .exit-btn img {
+  width: 15px;
+  cursor: pointer;
+}
+
+main .bg-card {
+  background: white;
+  width: 90%;
+  display: block;
+  margin: 0 auto;
+  margin-top: 30%;
+  border-radius: 15px;
+  -webkit-box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  padding-bottom: 5px;
+}
+
+main .bg-card h1 {
+  text-align: center;
+  font-size: 25px;
+  padding: 20px 20px 10px 20px;
+}
+
+main .bg-card .receipt {
+  background: #dddcdc;
+  width: 85%;
+  display: block;
+  margin: 0 auto;
+  border-radius: 15px;
+  -webkit-box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  padding: 10px 5px 0px 5px;
+}
+
+main .bg-card .receipt h2 {
+  font-size: 15px;
+  margin-left: 15px;
+}
+
+main .bg-card .receipt p {
+  font-size: 15px;
+  margin-left: 15px;
+  margin-top: -10px;
+}
+
+main .bg-card .receipt .total {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+main .bg-card .receipt .total h2 {
+  font-size: 20px;
+}
+
+main .bg-card .receipt .total p {
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 15px;
+  margin-right: 15px;
+}
+
+main .bg-card .receipt hr {
+  border: 1px solid rgba(0, 0, 0, 0.13);
+  width: 90%;
+}
+
+main .bg-card .makepayment {
+  display: block;
+  padding-top: 17px;
+  padding-bottom: 17px;
+  width: 90%;
+  border-radius: 50px;
+  border: none;
+  margin: 30px auto 20px auto;
+  background-color: #59d45d;
+  color: black;
+  font-size: 15px;
+  font-weight: bold;
+  text-decoration: none;
+  -webkit-box-shadow: 0px 3px 19px -9px rgba(0, 0, 0, 0.56);
+          box-shadow: 0px 3px 19px -9px rgba(0, 0, 0, 0.56);
+  text-align: center;
+}
+
+main .bg-card .report {
+  display: block;
+  padding-top: 17px;
+  padding-bottom: 17px;
+  width: 90%;
+  border-radius: 50px;
+  border: none;
+  margin: 0 auto 50px auto;
+  background-color: #f44336;
+  color: black;
+  font-size: 15px;
+  font-weight: bold;
+  text-decoration: none;
+  -webkit-box-shadow: 0px 3px 19px -9px rgba(0, 0, 0, 0.56);
+          box-shadow: 0px 3px 19px -9px rgba(0, 0, 0, 0.56);
+  text-align: center;
+}
+
+@media only screen and (min-width: 1024px) {
+  header .logo {
+    height: 20%;
+    width: 20%;
+    margin: 0;
+  }
+  header .show-desktop {
+    display: block;
+    margin: 0 auto 13% auto;
+  }
+  header .hide-desktop {
+    display: none;
+  }
+  header nav ul {
+    position: inherit;
+    width: auto;
+    background: none;
+    height: auto;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    list-style-type: none;
+    padding-right: 60px;
+  }
+  header nav ul li {
+    float: left;
+  }
+  header nav ul li a {
+    color: black;
+    background-color: inherit;
+    text-align: right;
+    padding: 1em 2em;
+    font-weight: bold;
+    font-size: 1.2em;
+  }
+  header nav ul li a:hover {
+    background-color: inherit;
+  }
+  main .bg-card {
+    width: 60%;
+    margin-top: 13%;
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+  main .bg-card h1 {
+    font-size: 35px;
+    padding: 1px 20px 1px 20px;
+  }
+  main .bg-card .receipt {
+    width: 75%;
+    padding: 20px 7px 5px 7px;
+  }
+  main .bg-card .receipt h2 {
+    font-size: 20px;
+    margin-left: 30px;
+  }
+  main .bg-card .receipt p {
+    font-size: 20px;
+    margin-left: 30px;
+  }
+  main .bg-card .receipt .total h2 {
+    font-size: 30px;
+  }
+  main .bg-card .receipt .total p {
+    font-size: 30px;
+    margin-top: 25px;
+    margin-right: 27px;
+  }
+  main .bg-card .makepayment {
+    display: block;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    width: 60%;
+    font-size: 20px;
+  }
+  main .bg-card .report {
+    display: block;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    width: 60%;
+    font-size: 20px;
+  }
+}
+
+@media only screen and (min-width: 1600px) {
+  header .logo {
+    height: 15%;
+    width: 15%;
+    margin: 0;
+  }
+  main .bg-card {
+    width: 50%;
+    margin-top: 9%;
+  }
+  main .bg-card .makepayment {
+    display: block;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    width: 50%;
+    font-size: 20px;
+  }
+  main .bg-card .report {
+    display: block;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    width: 50%;
+    font-size: 20px;
+  }
+}
+/*# sourceMappingURL=receipt.css.map */

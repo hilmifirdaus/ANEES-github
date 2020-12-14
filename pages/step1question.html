@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STEP 1 - QUESTIONNAIRE PAGE</title>
+    <link rel="stylesheet" href="/css/step1question.css">
+</head>
+<body>
+    <div class="container">
+    
+        <header>
+            <img src="/images/anees_logo.png" alt="anees logo" class="logo">
+
+            <nav>
+                <a href="#" class="hide-desktop">
+                    <img src="/images/menu.png" alt="toggle menu button" class="menu" id="menu">
+                </a>
+                <ul class="show-desktop hide-mobile" id="nav">
+                    <li id="exit" class="exit-btn hide-desktop">
+                        <img src="/images/exit.png" alt="toggle exit button">
+                    </li>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Activity</a></li>
+                    <li><a href="#">Profile</a></li>
+                    <li><a href="#">Notification</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <div class="bg-card">
+                <div class="questionnaire">
+                    <div class="steps">
+                        <h1>STEP 1</h1>
+                        <p>Please answer these questions. If you passed, it will direct you to STEP 2.</p>
+                    </div>
+                    <hr>
+                    
+                    <form action="#">
+                        <p>1. Question 1</p>
+                        <input type="radio" id="answer1" name="answer" value="answer1">
+                        <label for="answer1">Answer 1</label>
+                        <br>
+                        <input type="radio" id="answer2" name="answer" value="answer2">
+                        <label for="answer2">Answer 2</label>
+                        <br>
+                        <input type="radio" id="answer3" name="answer" value="answer3">
+                        <label for="answer3">Answer 3</label>
+                        <br>
+                        <input type="radio" id="answer4" name="answer" value="answer4">
+                        <label for="answer4">Answer 4</label>
+
+                        <p>2. Question 2</p>
+                        <input type="radio" id="answer5" name="answer" value="answer5">
+                        <label for="answer5">Answer 5</label>
+                        <br>
+                        <input type="radio" id="answer6" name="answer" value="answer6">
+                        <label for="answer6">Answer 6</label>
+                        <br>
+                        <input type="radio" id="answer7" name="answer" value="answer7">
+                        <label for="answer7">Answer 7</label>
+                        <br>
+                        <input type="radio" id="answer8" name="answer" value="answer8">
+                        <label for="answer8">Answer 8</label>
+
+                        <p>3. Question 3</p>
+                        <input type="radio" id="answer9" name="answer" value="answer9">
+                        <label for="answer9">Answer 9</label>
+                        <br>
+                        <input type="radio" id="answer10" name="answer" value="answer10">
+                        <label for="answer10">Answer 10</label>
+                        <br>
+                        <input type="radio" id="answer11" name="answer" value="answer11">
+                        <label for="answer11">Answer 11</label>
+                        <br>
+                        <input type="radio" id="answer12" name="answer" value="answer12">
+                        <label for="answer12">Answer 12</label>
+
+                        <a href="#" class="submit">Submit</a>
+                    </form>
+
+                </div>
+                
+            </div>
+        </main>
+    </div>
+
+    <script>
+    
+        var menu = document.getElementById('menu');
+        var nav = document.getElementById('nav');
+        var exit = document.getElementById('exit');
+
+        menu.addEventListener('click', function(e) {
+            nav.classList.toggle('hide-mobile');
+            e.preventDefault();
+        });
+
+        exit.addEventListener('click', function(e) {
+            nav.classList.add('hide-mobile');
+            e.preventDefault();
+        });
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Step2.2 - Choose Training Session</title>
+    <link rel="stylesheet" href="/css/step2-1.css">
+</head>
+<body>
+    <div class="container">
+
+        <header>
+            <img src="/images/anees_logo.png" alt="anees logo" class="logo">
+
+            <nav>
+                <a href="#" class="hide-desktop">
+                    <img src="/images/menu.png" alt="toggle menu button" class="menu" id="menu">
+                </a>
+                <ul class="show-desktop hide-mobile" id="nav">
+                    <li id="exit" class="exit-btn hide-desktop">
+                        <img src="/images/exit.png" alt="toggle exit button">
+                    </li>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Activity</a></li>
+                    <li><a href="#">Profile</a></li>
+                    <li><a href="#">Notification</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <div class="bg-card">
+                <div class="questionnaire">
+
+                    <div class="steps">
+                        <h1>STEP 2-2</h1>
+                        <p>Please choose your prefered training session. After pressing "Submit", it will direct you to another page.</p>
+                    </div>
+
+                    <hr>
+
+                    <form action="#">
+                        <h2>Choose your prefered training session.</h2>
+                        <select name="trainingsession" id="trainingsession">
+                            <option value="28July">Monday, 28th July. 10.00am</option>
+                            <option value="1Aug">Wednesday, 1st August. 10.00am</option>
+                        </select>
+                        
+                        <div class="tnc">
+                            <input type="checkbox" id="terms" name="terms" value="accept">
+                            <label for="terms"> I understand that I will have to go through the online training session to get certified.</label>
+                        </div>
+                        <br>
+                        <!--<a href="#" class="submit" id="submit">Submit</a>-->
+                        <button type="button" class="submit">Submit</button>
+                    </form>
+                    
+                </div>
+                
+            </div>
+        </main>
+
+    </div>
+    <script>
+    
+        var menu = document.getElementById('menu');
+        var nav = document.getElementById('nav');
+        var exit = document.getElementById('exit');
+
+        menu.addEventListener('click', function(e) {
+            nav.classList.toggle('hide-mobile');
+            e.preventDefault();
+        });
+
+        exit.addEventListener('click', function(e) {
+            nav.classList.add('hide-mobile');
+            e.preventDefault();
+        });
+
+    </script>
+</body>
+</html>

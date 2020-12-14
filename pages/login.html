@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anees</title>
+    <link rel="stylesheet" href="/css/login.css">
+    <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-auth.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <img src="/images/anees_logo.png" alt="anees logo" class="logo">
+
+            <nav>
+                <a href="#" class="hide-desktop">
+                    <img src="/images/menu.png" alt="toggle menu button" class="menu" id="menu">
+                </a>
+
+                <ul class="show-desktop hide-mobile" id="nav">
+                    <li id="exit" class="exit-btn hide-desktop">
+                        <img src="/images/exit.png" alt="toggle exit button">
+                    </li>
+                    <li><a href="/index.html">Home</a></li>
+                </ul>
+            </nav>
+        </header>
+    </div>
+
+    <div class="content">
+        <div class="container">
+            <label for="eml"><b>EMAIL</b></label>
+            <input type="email" name="eml" id="eml" required>
+
+            <label for="psw"><b>PASSWORD</b></label>
+            <input type="password" name="psw" id="psw" required>
+
+            <button type="submit" onclick="login()" id="btnLogin">SIGN IN</button>
+
+            <span class="psw"><a href="/pages/forgotPass.html">Forgot password?</a></span>
+        </div>
+    </div>
+    
+    <div class="container">
+        <footer>
+            <a href="/index.html">
+                <img src="/images/anees_logo.png" class="logo" alt="logo">
+            </a>
+            <p class="address">Melrose Place, 90210<br>USA</p>
+            <ul class="footer-links">
+                <li><a href="#">Terms of Service</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+            </ul>
+        </footer>
+    </div>
+
+    <script>
+    
+        var menu = document.getElementById('menu');
+        var nav = document.getElementById('nav');
+        var exit = document.getElementById('exit');
+
+        menu.addEventListener('click', function(e) {
+            nav.classList.toggle('hide-mobile');
+            e.preventDefault();
+        });
+
+        exit.addEventListener('click', function(e) {
+            nav.classList.add('hide-mobile');
+            e.preventDefault();
+        });
+
+    </script>
+    
+    <script src="/js/auth.js"></script>  
+    
+
+</body>
+</html>

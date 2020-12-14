@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anees</title>
+    <link rel="stylesheet" href="/css/booking-form.css">
+    <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-firestore.js"></script>
+</head>
+
+<body>
+
+    <div class="container">
+        <header>
+            <img src="/images/anees_logo.png" alt="anees_logo" class="logo">
+            <nav>
+                <a href="#" class="hide-desktop">
+                <img src="/images/menu.png" alt="toggle menu button" class="menu" id="menu">
+                </a>
+                <ul class="show-desktop hide-mobile" id="nav">
+                    <li id="exit" class="exit-btn hide-desktop">
+                        <img src="/images/exit.png" alt="toggle exit button">
+                    </li>
+                    <li><a href="/pages/homepage.html">Home</a></li>
+                    <li><a href="#">Activity</a></li>
+                    <li><a href="/pages/profile.html">Profile</a></li>
+                    <li><a href="#">Notification</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <form action="#">
+                <div class="bg-card1">
+                    <div class="contain1">
+                        <h4>Job Details</h4>
+
+                        <p>Job Type</p>
+                        <input type="text" id="jobType" name="jobType" placeholder="specify jobs">
+
+                        <br>
+
+                        <p>What will the Helper be doing?</p>
+                        <input type="text" id="jobDetails" name="jobDetails" placeholder="e.g. Help me to cross the road">
+
+                        <br>
+
+                        <p>Location</p>
+                        <input type="text" id="location" name="location" placeholder="the location that you want to meet up">
+
+                        <br>
+
+                        <p>Person in charge</p>
+                        <input type="text" id="personincharge" name="personincharge" placeholder="e.g. Hilmi (0192562005)">
+
+                        <br>
+
+                        <p>Additional perks</p>
+                        <input type="text" id="addPerks" name="addPerks" placeholder="e.g. gift vouchers">
+
+                        <br>
+
+                        <p>Emergency contact</p>
+                        <input type="text" id="emergencyContact" name="emergencyContact" placeholder="e.g. Hilmi (0192562005)">
+
+                        <br>
+
+                        <p>When do you need the Helper to assist?</p>
+                        <div class="when">
+                            <p>Date</p>
+                            <input type="date" id="jobDate" name="when">
+                            <br>
+                            <p>Start time</p>
+                            <input type="time" id="startJob" name="when">
+                            <br>
+                            <p>End time</p>
+                            <input type="time" id="endJob" name="when">
+                        </div>
+                        
+                    </div>
+                </div>
+                
+                <br>
+
+                <div class="bg-card2">
+                    <div class="contain2">
+
+                        <h4>Helper Requirements</h4>
+
+                        <p>Skills required</p>
+                        <input type="text" id="skills" name="skills" placeholder="Please state the skills required">
+
+                        <br>
+
+                        <p>Gender preference</p>
+                        <div class="gender">
+                            <input type="radio" id="male" name="gender" value="male">
+                            <label for="male">Male</label>
+                            <br>
+                            <input type="radio" id="female" name="gender" value="female">
+                            <label for="female">Female</label>
+                            <br>
+                            <input type="radio" id="anyone" name="gender" value="anyone">
+                            <label for="anyone">Anyone</label>
+                        </div>
+
+                        <p>Age preference</p>
+                        <div class="age">
+                            <input type="radio" id="teen" name="age" value="17-25">
+                            <label for="teen">17 - 25</label>
+                            <br>
+                            <input type="radio" id="youngAdult" name="age" value="26-35">
+                            <label for="youngAdult">26 - 35</label>
+                            <br>
+                            <input type="radio" id="adult" name="age" value="36-45">
+                            <label for="adult">36 - 45</label>
+                            <br>
+                            <input type="radio" id="anyAge" name="age" value="any age">
+                            <label for="anyAge">Any age</label>
+                        </div>
+                    </div>
+                </div>
+
+                <br>
+
+                <button type="button" class="submit" id="submit" onclick="submitBooking()">Submit</button>
+
+            </form>
+        </main>
+    </div>
+
+    
+
+    
+
+    <script>
+        var menu = document.getElementById('menu');
+        var nav = document.getElementById('nav');
+        var exit = document.getElementById('exit');
+        
+        menu.addEventListener('click', function(e) {
+            nav.classList.toggle('hide-mobile');
+            e.preventDefault();
+        });
+
+        exit.addEventListener('click', function(e) {
+            nav.classList.add('hide-mobile');
+            e.preventDefault();
+        });
+    </script>
+
+    <script>
+        //get which job type user press and display in text box
+        document.getElementById('jobType').value = sessionStorage.thisJob;
+    </script>
+
+    <script>
+        function changeradio() {
+            var specificAge = document.getElementById('specificAge');
+            specificAge.value = document.getElementById('inputspecificAge').value;
+        }
+    </script>
+
+    <script src="/js/booking.js"></script>
+</body>
+</html>

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STEP 2.3 - Personal Details</title>
+    <link rel="stylesheet" href="/css/step2-3.css">
+</head>
+<body>
+    <div class="container">
+
+        <header>
+            <img src="/images/anees_logo.png" alt="anees logo" class="logo">
+
+            <nav>
+                <a href="#" class="hide-desktop">
+                    <img src="/images/menu.png" alt="toggle menu button" class="menu" id="menu">
+                </a>
+                <ul class="show-desktop hide-mobile" id="nav">
+                    <li id="exit" class="exit-btn hide-desktop">
+                        <img src="/images/exit.png" alt="toggle exit button">
+                    </li>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Activity</a></li>
+                    <li><a href="#">Profile</a></li>
+                    <li><a href="#">Notification</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <form action="#">
+                <div class="bg-card1">
+                    <div class="contain1">
+                        <h4>Personal Details</h4>
+                        
+                        <p>Fullname (same as IC/Passport)</p>
+                        <input type="text" id="fullname" name="fullname" placeholder="Your Fullname">
+
+                        <br>
+
+                        <p>Gender</p>
+                        <div class="gender">
+                            <input type="radio" id="male" name="gender" value="male">
+                            <label for="male">Male</label>
+                            <br>
+                            <input type="radio" id="female" name="gender" value="female">
+                            <label for="female">Female</label>
+                            <br>
+                            <input type="radio" id="other" name="gender" value="other">
+                            <label for="other">Other</label>
+                        </div>
+
+                        <br>
+
+                        <p>Date of Birth</p>
+                        <input type="text" id="dob" name="dob" placeholder="E.g. 26/09/1997">
+
+                        <br>
+
+                        <p>Nationality</p>
+                        <input type="text" id="nation" name="name" placeholder="Malaysia">
+
+                        <br>
+
+                        <p>Malaysian Identity Card (IC) or Passport number</p>
+                        <input type="text" id="nric" name="nric" placeholder="NRIC">
+
+                        <br>
+
+                        <p>Occupation</p>
+                        <input type="text" id="occupation" name="occupation" placeholder="E.g. Student/Lawyer/Teacher...">
+
+                        <br>
+
+                        <p>Home Address</p>
+                        <div class="address">
+                            <input type="text" id="housenum" name="housenum" placeholder="Building Name / House Name / Number">
+                            <br>
+                            <input type="text" id="street" name="street" placeholder="Street / Road / Jalan / Taman">
+                            <br>
+                            <input type="text" id="city" name="city" placeholder="City / State / Country">
+                            <br>
+                            <input type="text" id="postcode" name="postcode" placeholder="Postcode">    
+                        </div>
+                        
+                    </div>
+                </div>
+
+                <br>
+
+                <div class="bg-card2">
+                    <div class="contain2">
+                        <h4>Bank Details</h4>
+                        
+                        <p>Account Holder Name</p>
+                        <input type="text" id="holdername" name="holdername" placeholder="Holder Name">
+
+                        <br>
+
+                        <p>NRIC</p>
+                        <input type="text" id="nric2" name="nric2" placeholder="NRIC">
+
+                        <br>
+
+                        <p>Bank Name</p>
+                        <select name="bankname" id="bankname">
+                            <option value="maybank">Maybank</option>
+                            <option value="cimb">CIMB</option>
+                            <option value="muamalat">Bank Muamalat</option>
+                            <option value="rhb">RHB</option>
+                            <option value="hongleong">Hong Leong Bank</option>
+                            <option value="ambank">Ambank</option>
+                            <option value="affin">Affin Bank Berhad</option>
+                            <option value="hsbc">HSBC Bank</option>
+                            <option value="bankislam">Bank Islam Malaysia</option>
+                        </select>
+
+                        <br>
+
+                        <p>Bank Account Number</p>
+                        <input type="text" id="accnum" name="accnum" placeholder="Bank Account Number">
+                        
+                    </div>
+                </div>
+
+                <br>
+
+                <div class="bg-card3">
+                    <div class="contain3">
+                        <h4>Emergency Contact Details</h4>
+
+                        <p>Emergency Contact Name</p>
+                        <input type="text" id="emergencyname" name="emergencyname" placeholder="Contact Person Name">
+
+                        <br>
+
+                        <p>Emergency Contact Number</p>
+                        <input type="text" id="emergencynumber" name="emergencynumber" placeholder="Mobile Number">
+
+                        <br>
+
+                        <p>Relationship</p>
+                        <input type="text" id="relationship" name="relationship" placeholder="E.g. Parent / Guardian / Friend">
+
+                    </div>
+                </div>
+
+                <br>
+
+                <div class="bg-card4">
+                    <div class="contain4">
+                        <h4>Anees Helper Details</h4>
+
+                        <p>Mode of Transportation</p>
+                        <select name="transportmode" id="transportmode">
+                            <option value="motorcycle">Motorcycle</option>
+                            <option value="car">Car</option>
+                        </select>
+
+                    </div>
+                </div>
+
+                <br>
+
+                <button type="button" class="submit">Submit</button>
+
+            </form>
+            
+        </main>
+    </div>
+
+    <script>
+        var menu = document.getElementById('menu');
+        var nav = document.getElementById('nav');
+        var exit = document.getElementById('exit');
+
+        menu.addEventListener('click', function(e) {
+            nav.classList.toggle('hide-mobile');
+            e.preventDefault();
+        });
+
+        exit.addEventListener('click', function(e) {
+            nav.classList.add('hide-mobile');
+            e.preventDefault();
+        });
+    </script>
+</body>
+</html>
