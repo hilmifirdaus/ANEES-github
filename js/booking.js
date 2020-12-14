@@ -77,7 +77,7 @@ var shopJob = document.getElementById('Shopper');
 db.collection("bookJobs").get().then(function(querySnapshot) {
     querySnapshot.forEach(function(doc) {
         
-        allJob.innerHTML += "<div class='list-jobs'><h3>" + doc.data().jobRequested + "</h3><p>Job Details: <br>" + 
+        allJob.innerHTML += "<div class='list-jobs' onclick='openJobDetails()'><h3>" + doc.data().jobRequested + "</h3><p>Job Details: <br>" + 
         doc.data().jobDetails + "</p><p>Requester: <br>" + doc.data().userEmail + "</p></div>";
 
     });
@@ -86,7 +86,7 @@ db.collection("bookJobs").get().then(function(querySnapshot) {
 db.collection("bookJobs").where("jobRequested", "==", "Guider/Accompanier").get().then(function(querySnapshot) {
     querySnapshot.forEach(function(doc) {
         
-        guiderJob.innerHTML += "<div class='list-jobs'><h3>" + doc.data().jobRequested + "</h3><p>Job Details: <br>" + 
+        guiderJob.innerHTML += "<div class='list-jobs' onclick='openJobDetails()'><h3>" + doc.data().jobRequested + "</h3><p>Job Details: <br>" + 
         doc.data().jobDetails + "</p><p>Requester: <br>" + doc.data().userEmail + "</p></div>";
 
     });
@@ -95,7 +95,7 @@ db.collection("bookJobs").where("jobRequested", "==", "Guider/Accompanier").get(
 db.collection("bookJobs").where("jobRequested", "==", "Cleaner").get().then(function(querySnapshot) {
     querySnapshot.forEach(function(doc) {
         
-        cleanerJob.innerHTML += "<div class='list-jobs'><h3>" + doc.data().jobRequested + "</h3><p>Job Details: <br>" + 
+        cleanerJob.innerHTML += "<div class='list-jobs' onclick='openJobDetails()'><h3>" + doc.data().jobRequested + "</h3><p>Job Details: <br>" + 
         doc.data().jobDetails + "</p><p>Requester: <br>" + doc.data().userEmail + "</p></div>";
 
     });
@@ -104,7 +104,7 @@ db.collection("bookJobs").where("jobRequested", "==", "Cleaner").get().then(func
 db.collection("bookJobs").where("jobRequested", "==", "Dressing Helper").get().then(function(querySnapshot) {
     querySnapshot.forEach(function(doc) {
         
-        dressJob.innerHTML += "<div class='list-jobs'><h3>" + doc.data().jobRequested + "</h3><p>Job Details: <br>" + 
+        dressJob.innerHTML += "<div class='list-jobs' onclick='openJobDetails()'><h3>" + doc.data().jobRequested + "</h3><p>Job Details: <br>" + 
         doc.data().jobDetails + "</p><p>Requester: <br>" + doc.data().userEmail + "</p></div>";
 
     });
@@ -113,7 +113,7 @@ db.collection("bookJobs").where("jobRequested", "==", "Dressing Helper").get().t
 db.collection("bookJobs").where("jobRequested", "==", "Food Preparer").get().then(function(querySnapshot) {
     querySnapshot.forEach(function(doc) {
         
-        foodJob.innerHTML += "<div class='list-jobs'><h3>" + doc.data().jobRequested + "</h3><p>Job Details: <br>" + 
+        foodJob.innerHTML += "<div class='list-jobs' onclick='openJobDetails()'><h3>" + doc.data().jobRequested + "</h3><p>Job Details: <br>" + 
         doc.data().jobDetails + "</p><p>Requester: <br>" + doc.data().userEmail + "</p></div>";
 
     });
@@ -122,8 +122,12 @@ db.collection("bookJobs").where("jobRequested", "==", "Food Preparer").get().the
 db.collection("bookJobs").where("jobRequested", "==", "Shopper").get().then(function(querySnapshot) {
     querySnapshot.forEach(function(doc) {
         
-        shopJob.innerHTML += "<div class='list-jobs'><h3>" + doc.data().jobRequested + "</h3><p>Job Details: <br>" + 
+        shopJob.innerHTML += "<div class='list-jobs' onclick='openJobDetails()'><h3>" + doc.data().jobRequested + "</h3><p>Job Details: <br>" + 
         doc.data().jobDetails + "</p><p>Requester: <br>" + doc.data().userEmail + "</p></div>";
 
     });
 });
+
+function openJobDetails() {
+    window.location = '/pages/jobDetail.html';
+}
