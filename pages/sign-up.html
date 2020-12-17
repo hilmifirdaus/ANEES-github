@@ -3,54 +3,106 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anees</title>
+    <title>Anees Requester Sign Up</title>
     <link rel="stylesheet" href="/css/sign-up.css">
     <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-analytics.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-firestore.js"></script>
 </head>
 
 <body>
-    <div class="container">
-        <header>
-            <img src="/images/anees_logo.png" alt="anees_logo" class="logo">
-            <nav>
-                <a href="#" class="hide-desktop">
+    
+    <header>
+        <img src="/images/anees_logo.png" alt="anees_logo" class="logo">
+
+        <nav>
+            <a href="#" class="hide-desktop">
                 <img src="/images/menu.png" alt="toggle menu button" class="menu" id="menu">
-                </a>
-                <ul class="show-desktop hide-mobile" id="nav">
-                    <li id="exit" class="exit-btn hide-desktop">
-                        <img src="/images/exit.png" alt="toggle exit button">
-                    </li>
-                    <li><a href="/index.html">Home</a></li>
-                    <li><a href="/pages/login.html">Sign In</a></li>
-                </ul>
-            </nav>
-        </header>
-    </div>
+            </a>
 
-   <div class="content">
-        <div class="column">
-        <div class="container">
-            <label for="nme"><b>NAME</b></label>
-            <input type="name" name="nme" id="nme" required>
+            <ul class="show-desktop hide-mobile" id="nav">
+                <li id="exit" class="exit-btn hide-desktop">
+                    <img src="/images/exit.png" alt="toggle exit button">
+                </li>
+                <li><a href="/index.html">Home</a></li>
+                <li><a href="#">Activity</a></li>
+                <li><a href="/pages/profile.html">Profile</a></li>
+                <li><a href="#">Notification</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <form action="#">
+            <div class="bg-card">
+                <div class="contain">
+                    <h4>Sign Up</h4>
+    
+                    <p>Full Name</p>
+                    <input type="text" id="nme" name="nme" placeholder="same as in your I.C.">
+    
+                    <br>
+    
+                    <p>Email</p>
+                    <input type="email" id="eml" name="eml" placeholder="E.g. hilmi.firdaus@gmail.com">
+    
+                    <br>
+    
+                    <p>Password</p>
+                    <input type="password" id="psw" name="psw">
+    
+                    <br>
+    
+                    <p>Contact Number</p>
+                    <input type="tel" id="contact" name="contact" placeholder="E.g. 0192562005">
 
-            <label for="eml"><b>EMAIL</b></label>
-            <input type="email" name="eml" id="eml" required>
+                    <br>
+    
+                    <p>Disability (if any)</p>
+                    <input type="text" id="disability" name="disability" placeholder="Please specify your disability, if any">
+    
+                    <br>
+    
+                    <p>Date of Birth</p>
+                    <input type="date" id="birthday" name="birthday">
+    
+                    <br>
+    
+                    <p>Gender</p>
+                    <div class="gender">
+                        <input type="radio" id="male" name="gender" value="male">
+                        <label for="male">Male</label>
+                        <br>
+                        <input type="radio" id="female" name="gender" value="female">
+                        <label for="female">Female</label>
+                        <br>
+                        <input type="radio" id="other" name="gender" value="other">
+                        <label for="other">Other</label>
+                    </div>
 
-            <label for="psw"><b>PASSWORD</b></label>
-            <input type="password" name="psw" id="psw" required>
-            
-            <label for="pn"><b>PHONE NO</b></label>
-            <input type="phoneno" name="pn" id="pn" required>
+                    <br>
 
-            <span class="psw">By creating account, you accept our <a href="#"> Terms of Service</a></span>
-                
-            <button type="submit" onclick="signup()" id="btnSignup">SIGN UP</button>
-
+                    <p>Do you want to be a Helper or a Requester?</p>
+                    <div class="type">
+                        <input type="radio" id="Helper" name="userType" value="Helper">
+                        <label for="Helper">Helper</label>
+                        <br>
+                        <input type="radio" id="Requester" name="userType" value="Requester">
+                        <label for="Requester">Requester</label>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
+
+            <br>
+
+            <button type="button" class="signup" id="signup" onclick="signUp()">Sign Up</button>
+
+        </form>
+        
+    </main>
+
+   
     
     <div class="container">
         <footer>
@@ -83,43 +135,6 @@
 
     <script src="/js/auth.js"></script> 
     
-<!-- Code injected by live-server -->
-<script>
-	// <![CDATA[  <-- For SVG support
-	if ('WebSocket' in window) {
-		(function () {
-			function refreshCSS() {
-				var sheets = [].slice.call(document.getElementsByTagName("link"));
-				var head = document.getElementsByTagName("head")[0];
-				for (var i = 0; i < sheets.length; ++i) {
-					var elem = sheets[i];
-					var parent = elem.parentElement || head;
-					parent.removeChild(elem);
-					var rel = elem.rel;
-					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
-						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
-						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
-					}
-					parent.appendChild(elem);
-				}
-			}
-			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
-			var address = protocol + window.location.host + window.location.pathname + '/ws';
-			var socket = new WebSocket(address);
-			socket.onmessage = function (msg) {
-				if (msg.data == 'reload') window.location.reload();
-				else if (msg.data == 'refreshcss') refreshCSS();
-			};
-			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
-				console.log('Live reload enabled.');
-				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
-			}
-		})();
-	}
-	else {
-		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
-	}
-	// ]]>
-</script>
+
 </body>
 </html>

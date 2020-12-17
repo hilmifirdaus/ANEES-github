@@ -146,6 +146,13 @@ main .bg-card2 .contain2 {
   padding-bottom: 20px;
 }
 
+main .bg-card2 .contain2 p {
+  text-align: center;
+  padding-left: 15px;
+  padding-right: 15px;
+  color: grey;
+}
+
 main .bg-card2 .contain2 .tabcontent {
   display: none;
   padding: 6px 12px;
@@ -161,5 +168,17 @@ main .bg-card2 .contain2 .tabcontent .list-jobs {
   -webkit-box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
           box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
   padding: 5px 7px 5px 7px;
+}
+
+main .bg-card2 .contain2 .tabcontent .list-jobs h3 {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+main .bg-card2 .contain2 .tabcontent .list-jobs p {
+  text-align: left;
+  color: black;
+  padding-left: 15px;
+  padding-right: 15px;
 }
 /*# sourceMappingURL=homepage-helper.css.map */

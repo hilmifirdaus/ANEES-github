@@ -19,49 +19,67 @@ const db = firebase.firestore();
 //add booking form to firebase
 function submitBooking() {
     var user = firebase.auth().currentUser;
+    
+        if (user) {
 
-    var uid = user.uid;
-    var email = user.email;
-    var jobType = document.getElementById('jobType').value;
-    var jobDetails = document.getElementById('jobDetails').value;
-    var location = document.getElementById('location').value;
-    var pic = document.getElementById('personincharge').value;
-    var perks = document.getElementById('addPerks').value;
-    var emergency = document.getElementById('emergencyContact').value;
-    var jobDate = document.getElementById('jobDate').value;
-    var startJob = document.getElementById('startJob').value;
-    var endJob = document.getElementById('endJob').value;
-    var skills = document.getElementById('skills').value;
-    var gender = document.querySelector('input[name="gender"]:checked').value;
-    var age = document.querySelector('input[name="age"]:checked').value;
-        
-    // Add a new document in collection "bookJobs"
-    // 'set()' will overwrite the existing data
-    // doc(uid) will only write data for the user, other user will have different document
-    db.collection("bookJobs").doc(uid).set({
-        userId: uid,
-        userEmail: email,
-        jobRequested: jobType,
-        jobDetails: jobDetails,
-        requesterLocation: location,
-        picOfRequester: pic,
-        additionalPerks: perks,
-        requesterEmergency: emergency,
-        jobDate: jobDate,
-        startTime: startJob,
-        endTime: endJob,
-        requestedSkills: skills,
-        helperGender: gender,
-        helperAge: age
-    })
-    .then(function() {
-        console.log("Document successfully written!");
-        alert("your application has been uplaoded successfully!");
-        window.location = '/pages/homepage.html';
-    })
-    .catch(function(error) {
-        console.error("Error writing document: ", error);
-    });
+            var uid = user.uid;
+            var email = user.email;
+            var jobType = document.getElementById('jobType').value;
+            var jobDetails = document.getElementById('jobDetails').value;
+            var location = document.getElementById('location').value;
+            var pic = document.getElementById('personincharge').value;
+            var perks = document.getElementById('addPerks').value;
+            var emergency = document.getElementById('emergencyContact').value;
+            var jobDate = document.getElementById('jobDate').value;
+            var startJob = document.getElementById('startJob').value;
+            var endJob = document.getElementById('endJob').value;
+            var skills = document.getElementById('skills').value;
+            var gender = document.querySelector('input[name="gender"]:checked').value;
+            var age = document.querySelector('input[name="age"]:checked').value;
+            var timestamp = firebase.firestore.FieldValue.serverTimestamp();
+            
+            //MUST WRITE SET INSIDE GET because doc.data() only works inside the .then() [because it is an async function]
+            db.collection('userProfile').doc(uid).get().then(function(doc) {
+                var userName = doc.data().userName;
+                // Add a new document in collection "bookJobs"
+                // 'set()' will overwrite the existing data
+                // doc(uid) will only write data for the user, other user will have different document
+                db.collection("bookJobs").doc(uid).set({
+                    userId: uid,
+                    userEmail: email,
+                    userName: userName,
+                    jobRequested: jobType,
+                    jobDetails: jobDetails,
+                    requesterLocation: location,
+                    picOfRequester: pic,
+                    additionalPerks: perks,
+                    requesterEmergency: emergency,
+                    jobDate: jobDate,
+                    startTime: startJob,
+                    endTime: endJob,
+                    requestedSkills: skills,
+                    helperGender: gender,
+                    helperAge: age,
+                    timeBooking: timestamp
+                })
+                .then(function() {
+                    console.log("Document successfully written!");
+                    alert("your application has been uplaoded successfully!");
+                    window.location = '/pages/homepage.html';
+                })
+                .catch(function(error) {
+                    console.error("Error writing document: ", error);
+                });
+            });
+            
+        }
+        else {
+            console.log("user is signed out");
+        }
+    
+    
+
+    
 
 }
 
