@@ -45,33 +45,51 @@ header .menu {
   margin-top: 35%;
 }
 
-footer {
-  width: 100%;
-  background: #3D444A;
-  color: #fff;
-  padding: 3em 0;
+main .card {
+  background-color: #FFFFFF;
+  padding: 25px;
+  margin: 12em auto auto auto;
+  width: 50%;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
-  margin-top: 20%;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
 }
 
-footer .logo {
-  height: 30%;
-  width: 30%;
-  padding: .8em 1.2em;
+main .card img {
+  border-radius: 50%;
+  width: 50%;
+  height: 50%;
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 
-footer .footer-links {
-  margin: auto;
+main .card .sos {
+  background-color: #ff2d2d;
+  color: wheat;
+  padding: 14px 20px;
+  margin: 10px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
 }
 
-footer .footer-links li {
-  display: inline-block;
+main .card button:hover {
+  opacity: 1;
 }
 
-footer .footer-links li a {
-  color: #9D9D9D;
-  font-size: .8em;
+main .rating {
+  font-size: 16px;
+  margin-right: 25px;
+}
+
+main .fa-star {
+  font-size: 16px;
+}
+
+main .checked {
+  color: orange;
 }
 
 nav ul {
@@ -186,52 +204,5 @@ nav ul li a:hover {
   .text-display p {
     font-size: 3em;
   }
-}
-
-.card {
-  background-color: #FFFFFF;
-  padding: 25px;
-  margin: 12em auto auto auto;
-  width: 50%;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
-  border-bottom-left-radius: 20px;
-  border-bottom-right-radius: 20px;
-}
-
-.card img {
-  border-radius: 50%;
-  width: 50%;
-  height: 50%;
-  -o-object-fit: contain;
-     object-fit: contain;
-}
-
-.card button {
-  background-color: #ff2d2d;
-  color: wheat;
-  padding: 14px 20px;
-  margin: 10px 0;
-  border: none;
-  cursor: pointer;
-  width: 100%;
-  opacity: 0.9;
-}
-
-.card button:hover {
-  opacity: 1;
-}
-
-.rating {
-  font-size: 16px;
-  margin-right: 25px;
-}
-
-.fa-star {
-  font-size: 16px;
-}
-
-.checked {
-  color: orange;
 }
 /*# sourceMappingURL=session.css.map */
