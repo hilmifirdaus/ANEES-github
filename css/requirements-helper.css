@@ -42,6 +42,7 @@ header .menu {
 }
 
 main .card {
+  background: white;
   width: 90%;
   display: block;
   margin: 0 auto;

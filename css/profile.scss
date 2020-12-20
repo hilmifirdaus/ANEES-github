@@ -52,36 +52,70 @@ header {
     margin-top: 35%;
 }
 
-footer {
-    width: 100%;
-    background: #3D444A;
-    color: #fff;
-    padding: 3em 0;
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
-    margin-top: 20%;
-
-    .logo {
-        height: 30%;
-        width: 30%;
-        padding: .8em 1.2em;
-    }
-
-    .footer-links {
-        margin: auto;
-
-        li {
-            display: inline-block;
-            
-
-            a {
-                color: #9D9D9D;
-                font-size: .8em;
-            }
-            
+main {
+        .card {
+        background: white;
+        width: 90%;
+        display: block;
+        margin: 0 auto;
+        margin-top: 30%;
+        border: none;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px #00000033;
+        padding-bottom: 25px;
         }
+
+        .profile {
+        border-radius: 50%; 
+        width: 22%; 
+        height: 22%;
+        display: block; 
+        margin-left: auto;
+        margin-right: auto;
+        padding: 20px;
+        }
+
+        h2  {
+        text-align: center;
+        }
+
+        .collapsible {
+        background-color: #777;
+        color: white;
+        cursor: pointer;
+        padding: 18px;
+        margin-left: 15px;
+        width: 93%;
+        border: none;
+        text-align: left;
+        outline: none;
+        font-size: 18px;
+        }
+    
+        .active, .collapsible:hover {
+        background-color: #555;
+        }
+    
+        .collapsible:after {
+        content: '\002B';
+        color: white;
+        font-weight: bold;
+        float: right;
+        margin-left: 5px;
+        }
+    
+        .active:after {
+        content: "\2212";
+        }
+    
+        .content {
+        padding: 0 18px;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.2s ease-out;
+        background-color: #f1f1f1;
+        } 
     }
-}
 
 nav ul {
     position: fixed;
@@ -215,62 +249,3 @@ nav ul li a:hover {
     }
 }
 
-.container-profile {
-    background-color: #FFFFFF;
-    padding: 25px;
-    margin: 12em auto auto auto;
-    width: 50%;
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
-    border-bottom-left-radius: 20px;
-    border-bottom-right-radius: 20px;
-
-}
-.profile {
-    border-radius: 50%; 
-    width: 22%; 
-    height: 22%;
-    display: block; 
-    margin-left: auto;
-    margin-right: auto;
-}
-
-h2  {
-    text-align: center;
-}
-
-.collapsible {
-    background-color: #777;
-    color: white;
-    cursor: pointer;
-    padding: 18px;
-    width: 100%;
-    border: none;
-    text-align: left;
-    outline: none;
-    font-size: 15px;
-  }
-  
-  .active, .collapsible:hover {
-    background-color: #555;
-  }
-  
-  .collapsible:after {
-    content: '\002B';
-    color: white;
-    font-weight: bold;
-    float: right;
-    margin-left: 5px;
-  }
-  
-  .active:after {
-    content: "\2212";
-  }
-  
-  .content {
-    padding: 0 18px;
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.2s ease-out;
-    background-color: #f1f1f1;
-  }
