@@ -54,14 +54,14 @@ header {
 
 main {
     .card {
-        background-color: #FFFFFF;
-        padding: 25px;
-        margin: 12em auto auto auto;
-        width: 50%;
-        border-top-left-radius: 20px;
-        border-top-right-radius: 20px;
-        border-bottom-left-radius: 20px;
-        border-bottom-right-radius: 20px;
+        background: white;
+        width: 90%;
+        display: block;
+        margin: 0 auto;
+        margin-top: 35%;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        padding-bottom: 5px;
 
     img {
         border-radius: 50%;
@@ -71,14 +71,20 @@ main {
     }
 
     .sos {
-        background-color: #ff2d2d;
-        color: wheat;
-        padding: 14px 20px;
-        margin: 10px 0;
+        display: block;
+        padding-top: 17px;
+        padding-bottom: 17px;
+        width: 90%;
+        border-radius: 50px;
         border: none;
-        cursor: pointer;
-        width: 100%;
-        opacity: 0.9;
+        margin: 40px auto 50px auto;
+        background-color: #f44336;
+        color: black;
+        font-size: 15px;
+        font-weight: bold;
+        text-decoration: none;
+        box-shadow: 0px 3px 19px -9px rgba(0,0,0,0.56);
+        text-align: center;
     }
 
     button:hover {
