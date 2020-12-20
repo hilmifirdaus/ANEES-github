@@ -222,7 +222,7 @@ main .submit {
   width: 81%;
   border-radius: 50px;
   border: none;
-  margin: 40px auto 70px auto;
+  margin: 10px auto 20px auto;
   background-color: #0999c9;
   color: black;
   font-size: 15px;
@@ -235,6 +235,25 @@ main .submit {
 }
 
 main .submit:hover {
+  cursor: pointer;
+}
+
+main .cancel {
+  display: block;
+  padding-top: 17px;
+  padding-bottom: 17px;
+  width: 81%;
+  border-radius: 50px;
+  border: none;
+  margin: 10px auto 20px auto;
+  background-color: #f44336;
+  color: black;
+  font-size: 15px;
+  font-weight: bold;
+  text-decoration: none;
+  -webkit-box-shadow: 0px 3px 19px -9px rgba(0, 0, 0, 0.56);
+          box-shadow: 0px 3px 19px -9px rgba(0, 0, 0, 0.56);
+  text-align: center;
   cursor: pointer;
 }
 
