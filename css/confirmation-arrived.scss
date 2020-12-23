@@ -52,34 +52,46 @@ header {
     margin-top: 35%;
 }
 
-footer {
-    width: 100%;
-    background: #3D444A;
-    color: #fff;
-    padding: 3em 0;
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
-    margin-top: 20%;
-
-    .logo {
-        height: 30%;
-        width: 30%;
-        padding: .8em 1.2em;
+main {
+    .card {
+        background: white;
+        width: 90%;
+        display: block;
+        margin: 0 auto;
+        margin-top: 25%;
+        border: none;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px #00000033;
+        padding-bottom: 5px;
     }
 
-    .footer-links {
-        margin: auto;
+    .contain {
+        padding-top: 7px;
+        padding-bottom: 7px;
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    
+    .button {
+        display: block;
+        padding-top: 17px;
+        padding-bottom: 17px;
+        width: 81%;
+        border-radius: 50px;
+        border: none;
+        margin: 40px auto 70px auto;
+        background-color: #0999c9;
+        color: black;
+        font-size: 15px;
+        font-weight: bold;
+        text-decoration: none;
+        box-shadow: 0px 3px 19px -9px rgba(0,0,0,0.56);
+        text-align: center;
+        cursor: pointer;
+    }
 
-        li {
-            display: inline-block;
-            
-
-            a {
-                color: #9D9D9D;
-                font-size: .8em;
-            }
-            
-        }
+    .login:hover {
+        cursor: pointer;
     }
 }
 
@@ -224,30 +236,3 @@ nav ul li a:hover {
         margin: 10em auto 5em auto;
     }
 }
-
-.text {
-    background-color: #FFFFFF;
-    padding: 50px;
-    margin: 18em auto 5em auto;
-    width: 50%;
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
-    border-bottom-left-radius: 20px;
-    border-bottom-right-radius: 20px;
-}
-
-button {
-    background-color: #3D4652;
-    color: white;
-    padding: 14px 20px;
-    margin: 10px 0;
-    border: none;
-    cursor: pointer;
-    width: 100%;
-    opacity: 0.9;
-    font-size: x-large;
-  }
-  
-  button:hover {
-    opacity: 1;
-  }

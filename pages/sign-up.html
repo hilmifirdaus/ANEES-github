@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anees Requester Sign Up</title>
+    <title>Sign Up | Anees</title>
     <link rel="stylesheet" href="/css/sign-up.css">
     <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-analytics.js"></script>
@@ -25,10 +25,7 @@
                 <li id="exit" class="exit-btn hide-desktop">
                     <img src="/images/exit.png" alt="toggle exit button">
                 </li>
-                <li><a href="/index.html">Home</a></li>
-                <li><a href="#">Activity</a></li>
-                <li><a href="/pages/profile.html">Profile</a></li>
-                <li><a href="#">Notification</a></li>
+                <li><a href="/pages/landing.html">Home</a></li>
             </ul>
         </nav>
     </header>
@@ -39,48 +36,19 @@
                 <div class="contain">
                     <h4>Sign Up</h4>
     
-                    <p>Full Name</p>
-                    <input type="text" id="nme" name="nme" placeholder="same as in your I.C.">
+                    <p>Name</p>
+                    <input type="text" id="nme" name="nme">
     
                     <br>
     
                     <p>Email</p>
-                    <input type="email" id="eml" name="eml" placeholder="E.g. hilmi.firdaus@gmail.com">
+                    <input type="email" id="eml" name="eml">
     
                     <br>
     
                     <p>Password</p>
                     <input type="password" id="psw" name="psw">
     
-                    <br>
-    
-                    <p>Contact Number</p>
-                    <input type="tel" id="contact" name="contact" placeholder="E.g. 0192562005">
-
-                    <br>
-    
-                    <p>Disability (if any)</p>
-                    <input type="text" id="disability" name="disability" placeholder="Please specify your disability, if any">
-    
-                    <br>
-    
-                    <p>Date of Birth</p>
-                    <input type="date" id="birthday" name="birthday">
-    
-                    <br>
-    
-                    <p>Gender</p>
-                    <div class="gender">
-                        <input type="radio" id="male" name="gender" value="male">
-                        <label for="male">Male</label>
-                        <br>
-                        <input type="radio" id="female" name="gender" value="female">
-                        <label for="female">Female</label>
-                        <br>
-                        <input type="radio" id="other" name="gender" value="other">
-                        <label for="other">Other</label>
-                    </div>
-
                     <br>
 
                     <p>Do you want to be a Helper or a Requester?</p>
@@ -91,29 +59,12 @@
                         <input type="radio" id="Requester" name="userType" value="Requester">
                         <label for="Requester">Requester</label>
                     </div>
-                </div>
-            </div>
-
-            <br>
 
             <button type="button" class="signup" id="signup" onclick="signUp()">Sign Up</button>
 
         </form>
         
     </main>
-
-   
-    
-    <div class="container">
-        <footer>
-            <a href="/index.html"> <img src="/images/anees_logo.png" class="logo" alt="logo"></a>
-            <p class="address">Gombak 53100<br>Selangor, MY</p>
-            <ul class="footer-links">
-                <li><a href="#">Terms of Service</a></li>
-                <li><a href="#">Privacy Policy</a></li>
-            </ul>
-        </footer>
-    </div>
     
     <script>
     

@@ -52,35 +52,58 @@ header {
     margin-top: 35%;
 }
 
-footer {
-    width: 100%;
-    background: #3D444A;
-    color: #fff;
-    padding: 3em 0;
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
-    margin-top: 20%;
+main {
+    .card {
+        background: white;
+        width: 90%;
+        display: block;
+        margin: 0 auto;
+        margin-top: 35%;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        padding-bottom: 5px;
 
-    .logo {
-        height: 30%;
-        width: 30%;
-        padding: .8em 1.2em;
+    img {
+        border-radius: 50%;
+        width: 50%;
+        height: 50%;
+        object-fit: contain;
     }
 
-    .footer-links {
-        margin: auto;
-
-        li {
-            display: inline-block;
-            
-
-            a {
-                color: #9D9D9D;
-                font-size: .8em;
-            }
-            
-        }
+    .sos {
+        display: block;
+        padding-top: 17px;
+        padding-bottom: 17px;
+        width: 90%;
+        border-radius: 50px;
+        border: none;
+        margin: 40px auto 50px auto;
+        background-color: #f44336;
+        color: black;
+        font-size: 15px;
+        font-weight: bold;
+        text-decoration: none;
+        box-shadow: 0px 3px 19px -9px rgba(0,0,0,0.56);
+        text-align: center;
     }
+
+    button:hover {
+        opacity:1;
+      }
+}    
+
+.rating {
+    font-size: 16px;
+    margin-right: 25px;
+}
+
+.fa-star{
+    font-size: 16px;
+}
+
+.checked {
+    color: orange;
+}
 }
 
 nav ul {
@@ -215,48 +238,3 @@ nav ul li a:hover {
     }
 }
 
-.card {
-    background-color: #FFFFFF;
-    padding: 25px;
-    margin: 12em auto auto auto;
-    width: 50%;
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
-    border-bottom-left-radius: 20px;
-    border-bottom-right-radius: 20px;
-
-    img {
-        border-radius: 50%;
-        width: 50%;
-        height: 50%;
-        object-fit: contain;
-    }
-
-    button {
-        background-color: #ff2d2d;
-        color: wheat;
-        padding: 14px 20px;
-        margin: 10px 0;
-        border: none;
-        cursor: pointer;
-        width: 100%;
-        opacity: 0.9;
-    }
-
-    button:hover {
-        opacity:1;
-      }
-}    
-
-.rating {
-    font-size: 16px;
-    margin-right: 25px;
-}
-
-.fa-star{
-    font-size: 16px;
-}
-
-.checked {
-    color: orange;
-}
