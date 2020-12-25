@@ -12,6 +12,7 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 firebase.analytics();
 
+const auth = firebase.auth();
 const db = firebase.firestore();
 
 function login() {
@@ -25,7 +26,7 @@ function login() {
         firebase.auth().onAuthStateChanged(function(user) {
             
             if (user) {
-
+                console.log(user)
                 var uid = user.uid;
                 db.collection('userProfile').doc(uid).get().then(function(doc) {
                     var userType = doc.data().userType;
@@ -62,10 +63,6 @@ function signUp() {
     var userName = document.getElementById("nme").value;
     var userEmail = document.getElementById("eml").value;
     var userPass = document.getElementById("psw").value;
-    var userPhone = document.getElementById("contact").value;
-    var userDisability = document.getElementById("disability").value;
-    var userDOB = document.getElementById("birthday").value;
-    var userGender = document.querySelector('input[name="gender"]:checked').value;
     var userType = document.querySelector('input[name="userType"]:checked').value;
     var timestamp = firebase.firestore.FieldValue.serverTimestamp();
 
@@ -81,10 +78,6 @@ function signUp() {
             firebase.firestore().collection("userProfile").doc(uid).set({
                 userName: userName,
                 userEmail: userEmail,
-                userPhone: userPhone,
-                userDisability: userDisability,
-                userDOB: userDOB,
-                userGender: userGender,
                 userType: userType,
                 timesignup: timestamp
             })
@@ -118,4 +111,5 @@ function signUp() {
         
         window.alert("Error :" + errorMessage);
     });
+
 }
