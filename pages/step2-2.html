@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Step 2.2 | Helper</title>
     <link rel="stylesheet" href="/css/step2-1.css">
+    <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-firestore.js"></script>
 </head>
 <body>
     <div class="container">
@@ -42,8 +46,8 @@
                     <form action="#">
                         <h2>Choose your prefered training session.</h2>
                         <select name="trainingsession" id="trainingsession">
-                            <option value="28July">Monday, 28th July. 10.00am</option>
-                            <option value="1Aug">Wednesday, 1st August. 10.00am</option>
+                            <option value="28July10am">Monday, 28th July. 10.00am</option>
+                            <option value="1Aug10am">Wednesday, 1st August. 10.00am</option>
                         </select>
                         
                         <div class="tnc">
@@ -52,14 +56,17 @@
                         </div>
                         <br>
                         <!--<a href="#" class="submit" id="submit">Submit</a>-->
-                        <button type="button" class="submit">Submit</button>
+                        <!--<a href="/pages/step2-3.html" class="next">Next</a>-->
+                        <!--<a href="/pages/step2-1.html" class="back">Back</a>-->
+                        <button type="button" class="next" id="next" onclick="checkStep2('2-2')">Next</button>
+                        <button type="button" class="back" id="back" onclick="checkStep2('back')">Back</button>
                     </form>
                     
                 </div>
                 
             </div>
-            <a href="/pages/step2-3.html" class="next">Next</a>
-            <a href="/pages/step2-1.html" class="back">Back</a>
+            
+            
         </main>
 
     </div>
@@ -80,5 +87,8 @@
         });
 
     </script>
+
+    <script src="/js/auth.js"></script>
+
 </body>
 </html>

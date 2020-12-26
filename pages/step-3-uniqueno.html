@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Unique Number | Helper</title>
     <link rel="stylesheet" href="/css/step-3-uniqueno.css">
+    <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-firestore.js"></script>
 </head>
 
 <body>
@@ -31,22 +35,35 @@
 
     <main>
         <div class="card">
-            <h1 style="text-align: center;">Enter the unique number:</h1>
+            <h1 style="text-align: center; padding: 40px 0 0 0;">Enter the unique number:</h1>
+
+            <br>
+            
+            <p id="uniquenum" style="text-align: center; font-size: large;"></p>
+
+            <br>
 
             <input type="number" id="uniqueno">
 
-            <p style="font-size: x-large; text-align: center;">
+            <br>
+
+            <p style="font-size: x-large; text-align: center; padding: 0 20px 0 20px;">
                 You may enter only after you have received your training certificate.
             </p>
             <h4 style="text-align: center;">Thank you.</h4>
 
-            <button type="button" class="submit" id="submit" onclick="submitBooking()">Submit</button>
+            <!--<button type="button" class="submit" id="submit" onclick="submitBooking()">Submit</button>-->
+            <!--<a href="/pages/homepage-helper.html" class="next">Next</a>-->
+            <!--<a href="/pages/step-3-guidelines.html" class="back">Back</a>-->
+            
+            <button type="button" class="next" id="next" onclick="checkStep3('3-3')">Next</button>
+            <button type="button" class="back" id="back" onclick="checkStep3('back')">Back</button>
         </div>
 
     </main>
 
-    <a href="/pages/homepage-helper.html" class="next">Next</a>
-    <a href="/pages/step-3-guidelines.html" class="back">Back</a>
+    
+    
     
     <script>
     
@@ -104,4 +121,13 @@
 	}
 	// ]]>
 </script>
+
+<script>
+    var x = document.getElementById("uniquenum");
+    x.innerHTML = Math.floor((Math.random() * 1000000) + 1);
+</script>
+
+<script src="/js/auth.js"></script>
+
 </body>
+</html>

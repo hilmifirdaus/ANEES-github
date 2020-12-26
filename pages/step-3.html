@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Step 3 | Helper</title>
     <link rel="stylesheet" href="/css/step-3.css">
+    <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-firestore.js"></script>
 </head>
 
 <body>
@@ -31,9 +35,9 @@
 
     <main>
         <div class="card">
-            <h1 style="text-align: center;">Final Step</h1>
-            <p style="font-size: x-large; text-align: center;">We will notify you in one (1) week
-                of your training session.
+            <h1 style="text-align: center; padding: 40px 0 0 0;">Final Step</h1>
+            <p style="font-size: x-large; text-align: center; padding: 20px 20px 20px 20px;">We will notify you in one (1) week
+                before your training session. <br><br>
                 Meanwhile, please read on the general guidelines as
                 you will have an assessment on your training session.
             </p>
@@ -42,8 +46,10 @@
 
     </main>
 
-    <a href="/pages/step-3-guidelines.html" class="next">Next</a>
-    <a href="/pages/step2-3.html" class="back">Back</a>
+    <!--<a href="/pages/step-3-guidelines.html" class="next">Next</a>-->
+    <!--<a href="/pages/step2-3.html" class="back">Back</a>-->
+    <button type="button" class="next" id="next" onclick="checkStep3('3-1')">Next</button>
+    <button type="button" class="back" id="back" onclick="checkStep3('back')">Back</button>
     
     <script>
     
@@ -101,4 +107,7 @@
 	}
 	// ]]>
 </script>
+
+<script src="/js/auth.js"></script>
+
 </body>

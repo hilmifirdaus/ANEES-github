@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Step 2.3 | Helper</title>
     <link rel="stylesheet" href="/css/step2-3.css">
+    <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-firestore.js"></script>
 </head>
 <body>
     <div class="container">
@@ -162,12 +166,16 @@
                 </div>
 
                 <br>
-
-                <button type="button" class="submit">Submit</button>
+                <!--<button type="button" class="submit">Submit</button>-->
+                <!--<a href="/pages/step-3.html" class="next">Next</a>-->
+                <!--<a href="/pages/step2-2.html" class="back">Back</a>-->
+                
+                <button type="button" class="next" id="next" onclick="checkStep2('2-3')">Next</button>
+                <button type="button" class="back" id="back" onclick="checkStep2('back')">Back</button>
 
             </form>
-            <a href="/pages/step-3.html" class="next">Next</a>
-            <a href="/pages/step2-2.html" class="back">Back</a>
+            
+            
         </main>
     </div>
 
@@ -186,5 +194,8 @@
             e.preventDefault();
         });
     </script>
+
+    <script src="/js/auth.js"></script>
+
 </body>
 </html>

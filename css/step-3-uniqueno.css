@@ -56,12 +56,13 @@ main .card {
 }
 
 main input[type=number] {
-  width: 95%;
+  display: block;
+  text-align: center;
+  width: 80%;
   height: 40px;
-  margin-top: -10px;
+  margin: -10px auto 7px auto;
   padding-left: 10px;
   font-size: 15px;
-  margin-bottom: 7px;
   border-color: 1px solid rgba(238, 236, 236, 0.493);
   cursor: pointer;
 }

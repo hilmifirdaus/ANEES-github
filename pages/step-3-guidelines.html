@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>General Guidelines | Helper</title>
     <link rel="stylesheet" href="/css/step-3-guidelines.css">
+    <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-firestore.js"></script>
 </head>
 
 <body>
@@ -31,7 +35,8 @@
     
     <main>
         <div class="card">
-                <h1 style="text-align: center;">General Guidelines</h1>
+
+            <h1 style="text-align: center; padding: 40px 0 0 0;">General Guidelines</h1>
             <div class="slideshow-container">
                 
                 <div class="mySlides">
@@ -52,17 +57,21 @@
                 <a class="prev" onclick="plusSlides(-1)">❮</a>
                 <a class="next" onclick="plusSlides(1)">❯</a>
                 
-                </div>
+            </div>
                 
-                <div class="dot-container">
-                  <span class="dot" onclick="currentSlide(1)"></span> 
-                  <span class="dot" onclick="currentSlide(2)"></span> 
-                  <span class="dot" onclick="currentSlide(3)"></span> 
-                </div>       
+            <div class="dot-container">
+                <span class="dot" onclick="currentSlide(1)"></span> 
+                <span class="dot" onclick="currentSlide(2)"></span> 
+                <span class="dot" onclick="currentSlide(3)"></span> 
+            </div>
+
+        </div>       
     </main>
 
-            <a href="/pages/step-3-uniqueno.html" class="fol">Next</a>            
-            <a href="/pages/step-3.html" class="back">Back</a>
+    <a class="fol" id="next" onclick="checkStep3('3-2')">Next</a>            
+    <a class="back" id="back" onclick="checkStep3('back')">Back</a>
+    <!--<button type="button" class="next" id="next" onclick="checkStep3('3-2')">Next</button>-->
+    <!--<button type="button" class="back" id="back" onclick="checkStep3('back')">Back</button>-->
 
     <script>
     
@@ -149,6 +158,9 @@
       slides[slideIndex-1].style.display = "block";  
       dots[slideIndex-1].className += " active";
     }
-    </script>
+</script>
         
+<script src="/js/auth.js"></script>
+
 </body>
+</html>
