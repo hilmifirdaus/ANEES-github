@@ -10,7 +10,7 @@
     <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-firestore.js"></script>
 </head>
-<body onload="disableSubmit()">
+<body>
     <div class="container">
 
         <header>
@@ -51,8 +51,8 @@
                         </select>
                         
                         <div class="tnc">
-                            <input type="checkbox" id="terms" name="terms" value="accept" onchange="activateButton(this)">
-                            <label for="terms"> I understand I will only be shown my Jobs in location that I have selected.</label>    
+                            <input type="checkbox" class="terms" id="terms" name="terms" value="accept">
+                            <label for="terms"> I understand I will mostly be shown my Jobs in location that I have selected. I understand my personal data are collected for the purpose of this project and for data processing purposes.</label>    
                         </div>
                         <br>
                         <!--<a href="#" class="submit" id="submit">Submit</a>-->
@@ -86,7 +86,7 @@
             e.preventDefault();
         });
 
-        function disableSubmit() {
+        /*function disableSubmit() {
             document.getElementById("submit").disable = true;
         }
 
@@ -97,7 +97,7 @@
             else {
                 document.getElementById("submit").disabled = true;
             }
-        }
+        }*/
 
     </script>
 

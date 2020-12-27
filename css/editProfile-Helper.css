@@ -107,10 +107,9 @@ main .bg-card1 .contain1 h4 {
 main .bg-card1 .contain1 p {
   font-size: 15px;
   font-weight: bold;
-  margin-top: 30px;
 }
 
-main .bg-card1 .contain1 input[type=text], main .bg-card1 .contain1 input[type=date] {
+main .bg-card1 .contain1 input[type=text] {
   width: 95%;
   height: 40px;
   margin-top: -25px;
@@ -171,7 +170,6 @@ main .bg-card2 .contain2 h4 {
 main .bg-card2 .contain2 p {
   font-size: 15px;
   font-weight: bold;
-  margin-top: 30px;
 }
 
 main .bg-card2 .contain2 input[type=text] {
@@ -223,7 +221,6 @@ main .bg-card3 .contain3 h4 {
 main .bg-card3 .contain3 p {
   font-size: 15px;
   font-weight: bold;
-  margin-top: 30px;
 }
 
 main .bg-card3 .contain3 input[type=text] {
@@ -263,7 +260,6 @@ main .bg-card4 .contain4 h4 {
 main .bg-card4 .contain4 p {
   font-size: 15px;
   font-weight: bold;
-  margin-top: 30px;
 }
 
 main .bg-card4 .contain4 select {
@@ -278,7 +274,7 @@ main .bg-card4 .contain4 select {
   cursor: pointer;
 }
 
-main .submit {
+main .updateProfile {
   display: block;
   padding-top: 17px;
   padding-bottom: 17px;
@@ -297,45 +293,8 @@ main .submit {
   cursor: pointer;
 }
 
-main .submit:hover {
+main .updateProfile:hover {
   cursor: pointer;
-}
-
-.next {
-  display: block;
-  padding-top: 17px;
-  padding-bottom: 17px;
-  width: 81%;
-  border-radius: 50px;
-  border: none;
-  margin: 30px auto 0 auto;
-  background-color: #59d45d;
-  color: black;
-  font-size: 15px;
-  font-weight: bold;
-  text-decoration: none;
-  -webkit-box-shadow: 0px 3px 19px -9px rgba(0, 0, 0, 0.56);
-          box-shadow: 0px 3px 19px -9px rgba(0, 0, 0, 0.56);
-  text-align: center;
-}
-
-.back {
-  display: block;
-  padding-top: 17px;
-  padding-bottom: 17px;
-  width: 81%;
-  border-radius: 50px;
-  border: none;
-  margin: 30px auto 30px auto;
-  border-style: solid;
-  border-color: #59d45d;
-  color: black;
-  font-size: 15px;
-  font-weight: bold;
-  text-decoration: none;
-  -webkit-box-shadow: 0px 3px 19px -9px rgba(0, 0, 0, 0.56);
-          box-shadow: 0px 3px 19px -9px rgba(0, 0, 0, 0.56);
-  text-align: center;
 }
 
 @media only screen and (min-width: 1024px) {
@@ -391,7 +350,7 @@ main .submit:hover {
   main .bg-card1 .contain1 p {
     font-size: 20px;
   }
-  main .bg-card1 .contain1 input[type=text], main .bg-card1 .contain1 input[type=date] {
+  main .bg-card1 .contain1 input[type=text] {
     width: 85%;
     height: 40px;
     font-size: 20px;
@@ -477,7 +436,7 @@ main .submit:hover {
     font-size: 20px;
     font-weight: bold;
   }
-  main .submit {
+  main .updateProfile {
     padding-top: 20px;
     padding-bottom: 20px;
     width: 60%;
@@ -505,7 +464,7 @@ main .submit:hover {
   main .bg-card1 .contain1 p {
     font-size: 22px;
   }
-  main .bg-card1 .contain1 input[type=text], main .bg-card1 .contain1 input[type=date] {
+  main .bg-card1 .contain1 input[type=text] {
     width: 85%;
     height: 45px;
     font-size: 22px;
@@ -579,11 +538,11 @@ main .submit:hover {
     height: 50px;
     font-size: 22px;
   }
-  main .submit {
+  main .updateProfile {
     padding-top: 20px;
     padding-bottom: 20px;
     width: 45%;
     font-size: 20px;
   }
 }
-/*# sourceMappingURL=step2-3.css.map */
+/*# sourceMappingURL=editProfile-Helper.css.map */

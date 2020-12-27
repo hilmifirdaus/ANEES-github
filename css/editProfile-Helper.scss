@@ -114,10 +114,9 @@ main {
             p {
                 font-size: 15px;
                 font-weight: bold;
-                margin-top: 30px;
             }
 
-            input[type=text], input[type=date] {
+            input[type=text] {
                 width: 95%;
                 height: 40px;
                 margin-top: -25px;
@@ -180,7 +179,6 @@ main {
             p {
                 font-size: 15px;
                 font-weight: bold;
-                margin-top: 30px;
             }
 
             input[type=text] {
@@ -233,7 +231,6 @@ main {
             p {
                 font-size: 15px;
                 font-weight: bold;
-                margin-top: 30px;
             }
 
             input[type=text] {
@@ -274,7 +271,6 @@ main {
             p {
                 font-size: 15px;
                 font-weight: bold;
-                margin-top: 30px;
             }
 
             select {
@@ -291,7 +287,7 @@ main {
         }
     }
 
-    .submit {
+    .updateProfile {
         display: block;
         padding-top: 17px;
         padding-bottom: 17px;
@@ -309,43 +305,9 @@ main {
         cursor: pointer;
     }
 
-    .submit:hover {
+    .updateProfile:hover {
         cursor: pointer;
     }
-}
-.next {
-    display: block;
-    padding-top: 17px;
-    padding-bottom: 17px;
-    width: 81%;
-    border-radius: 50px;
-    border: none;
-    margin: 30px auto 0 auto;
-    background-color: #59d45d;
-    color: black;
-    font-size: 15px;
-    font-weight: bold;
-    text-decoration: none;
-    box-shadow: 0px 3px 19px -9px rgba(0, 0, 0, 0.56);
-    text-align: center;
-}
-
-.back {
-    display: block;
-    padding-top: 17px;
-    padding-bottom: 17px;
-    width: 81%;
-    border-radius: 50px;
-    border: none;
-    margin: 30px auto 30px auto;
-    border-style: solid;
-    border-color: #59d45d;
-    color: black;
-    font-size: 15px;
-    font-weight: bold;
-    text-decoration: none;
-    box-shadow: 0px 3px 19px -9px rgba(0, 0, 0, 0.56);
-    text-align: center;
 }
 
 @media only screen and (min-width: 1024px) {
@@ -425,7 +387,7 @@ main {
                     
                 }
     
-                input[type=text], input[type=date] {
+                input[type=text] {
                     width: 85%;
                     height: 40px;
                     font-size: 20px;
@@ -543,7 +505,7 @@ main {
             }
         }
 
-        .submit {
+        .updateProfile {
             padding-top: 20px;
             padding-bottom: 20px;
             width: 60%;
@@ -590,7 +552,7 @@ main {
                     
                 }
     
-                input[type=text], input[type=date] {
+                input[type=text] {
                     width: 85%;
                     height: 45px;
                     font-size: 22px;
@@ -694,7 +656,7 @@ main {
             }
         }
 
-        .submit {
+        .updateProfile {
             padding-top: 20px;
             padding-bottom: 20px;
             width: 45%;

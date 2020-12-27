@@ -116,7 +116,7 @@ main {
                 font-weight: bold;
             }
 
-            input[type=text], input[type=email], input[type=password], input[type=tel] {
+            input[type=text], input[type=tel] {
                 width: 95%;
                 height: 40px;
                 margin-top: -10px;
@@ -124,7 +124,7 @@ main {
                 font-size: 15px;
                 margin-bottom: 7px;
                 border-color: 1px solid rgba(238, 236, 236, 0.493);
-                cursor: pointer;
+                cursor: text;
             }
 
             input[type=date] {
@@ -140,24 +140,7 @@ main {
 
             .gender {
                 margin-top: 0px;
-                display: flex;
-                
-                input[type=radio] {
-                    margin-right: 5px;
-                    width: 17px;
-                    height: 17px;
-                    cursor: pointer;
-                }
-
-                label {
-                    font-size: 17px;
-                    margin-right: 10px;
-                    margin-top: 1px;
-                }
-            }
-
-            .type {
-                margin-top: 0px;
+                margin-bottom: 20px;
                 display: flex;
                 
                 input[type=radio] {
@@ -176,7 +159,7 @@ main {
         }
     }
 
-    .signup {
+    .updateProfile {
         display: block;
         padding-top: 17px;
         padding-bottom: 17px;
@@ -250,7 +233,7 @@ main {
     main {
         .bg-card {
             width: 60%;
-            margin-top: 15%;
+            margin-top: 20%;
     
             .contain {
                 padding-left: 65px;
@@ -265,15 +248,18 @@ main {
                     font-size: 20px;
                 }
     
-                input[type=text], input[type=email], input[type=password], input[type=tel] {
+                input[type=text], input[type=tel] {
                     width: 85%;
-                    height: 40px;
                     font-size: 20px;
-                    margin-bottom: 15px;
-                    cursor: text;
                 }
     
-                .type {
+                input[type=date] {
+                    width: 85%;
+                    font-size: 20px;
+                    margin-bottom: 15px;
+                }
+    
+                .gender {
                     margin-top: 0px;
                     display: flex;
                     
@@ -289,12 +275,11 @@ main {
             }
         }
     
-        .signup {
+        .updateProfile {
             padding-top: 20px;
             padding-bottom: 20px;
             width: 60%;
             font-size: 20px;
-            cursor: pointer;
         }
     
         .signup:hover {
@@ -312,6 +297,7 @@ main {
             margin: 0;     
         }
     }
+
     main {
         .bg-card {
             width: 45%;
@@ -326,15 +312,22 @@ main {
     
                 p {
                     font-size: 22px;
+                    margin-top: 40px;
                 }
     
-                input[type=text], input[type=email], input[type=password], input[type=tel] {
+                input[type=text], input[type=tel] {
                     width: 85%;
                     height: 45px;
                     font-size: 22px;
                 }
     
-                .type {
+                input[type=date] {
+                    width: 85%;
+                    height: 45px;
+                    font-size: 22px;
+                }
+    
+                .gender {
                     margin-top: 0px;
                     display: flex;
                     
@@ -350,7 +343,7 @@ main {
             }
         }
     
-        .signup {
+        .updateProfile {
             padding-top: 20px;
             padding-bottom: 20px;
             width: 45%;
@@ -361,4 +354,6 @@ main {
             cursor: pointer;
         }
     }
+
+
 }

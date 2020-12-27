@@ -52,10 +52,17 @@ function login() {
                         
                     }
                     if (userType == 'Requester') {
-                        
-                        window.location = '/pages/homepage.html';
-                        console.log("succesfully sign in a Requester");
-                        alert("Welcome " + userName + "!");
+
+                        if ( !doc.data().profileUpdate || doc.data().profileUpdate == 'false') {
+                            window.location = '/pages/editProfile-Requester.html';
+                            console.log("have not setup profile");
+                        }
+                        else {
+                            window.location = '/pages/homepage.html';
+                            console.log("succesfully sign in a Requester");
+                            alert("Welcome " + userName + "!");
+                        }
+            
                     }
                 });
                 //user is signed in
@@ -100,12 +107,12 @@ function signUp() {
                 alert("your application has been uplaoded successfully!");
     
                 if (userType === "Helper") {
-                    //this should go to requirement page but for go to step 1
+                    //after sign up go to requirements and go through all the steps 
                     window.location = '/pages/requirements-helper.html';
                 }
                 if (userType === "Requester") {
-                    //if requester, go to requester homepage
-                    window.location = '/pages/homepage.html';
+                    //go to editProfile to fill profile details
+                    window.location = '/pages/editProfile-Requester.html';
                 }
                 
             })
@@ -134,31 +141,45 @@ function checkStep1() {
 
     var clickedNext = document.getElementById('next');
     var clickedBack = document.getElementById('back');
+    var q1ans = document.querySelector('input[name="answerq1"]:checked').value;
+    var q2ans = document.querySelector('input[name="answerq2"]:checked').value;
+    var q3ans = document.querySelector('input[name="answerq3"]:checked').value;
     //var step1, step2, step3;
-    var user = firebase.auth().currentUser;
+    //var user = firebase.auth().currentUser;
+    firebase.auth().onAuthStateChanged(function(user) {
+        if (user && clickedNext) {
 
-    if (user && clickedNext) {
-        var uid = user.uid;
-
-        firebase.firestore().collection("userProfile").doc(uid).set({
-            step1: "true",
-            step2: "false",
-            step3: "false"
-        }, { merge: true })
-        .then(function() {
-
-            console.log("Document successfully written!");
-            alert("your application has been uplaoded successfully!");
-            window.location = '/pages/step2-1.html';
+            if (q1ans == "rightanswer1" && q2ans == "rightanswer6" && q3ans == "rightanswer11") {
+                var uid = user.uid;
     
-        })
-        .catch(function(error) {
-            console.error("Error writing document: ", error);
-        });
-    }
-    else if (user && clickedBack) {
-        window.location = '/pages/how-it-works.html';
-    }
+                firebase.firestore().collection("userProfile").doc(uid).set({
+                    step1: "true",
+                    step2: "false",
+                    step3: "false"
+                }, { merge: true })
+                .then(function() {
+        
+                    console.log("Document successfully written!");
+                    alert("your application has been uplaoded successfully!");
+                    window.location = '/pages/step2-1.html';
+            
+                })
+                .catch(function(error) {
+                    console.error("Error writing document: ", error);
+                });
+            }
+            else {
+                alert("Wrong answer(s). Please try again.");
+                window.location = '/pages/step1question.html';
+            }
+            
+        }
+        else if (user && clickedBack) {
+            window.location = '/pages/how-it-works.html';
+        }
+    });
+
+    
 }
 
 //this for checking if user go throu step2
@@ -166,38 +187,123 @@ function checkStep2(whichStep) {
 
     var clickedNext = document.getElementById('next');
     var clickedBack = document.getElementById('back');
+    
     //var step1, step2, step3;
     var user = firebase.auth().currentUser;
 
     if (user && clickedNext && whichStep == '2-1') {
-        window.location = '/pages/step2-2.html';
+
+        var workLocation = document.getElementById('location').value;
+        var accepttnc = document.getElementById('terms').value;
+
+        if (accepttnc == 'accept') {
+
+            var uid = user.uid;
+            firebase.firestore().collection("userProfile").doc(uid).set({
+                workLocation: workLocation,
+                accepttnc: accepttnc
+            }, {merge: true})
+            .then(function() {
+    
+                console.log("Document successfully written!");
+                alert("your application has been uplaoded successfully!");
+                window.location = '/pages/step2-2.html';
+        
+            })
+            .catch(function(error) {
+                console.error("Error writing document: ", error);
+            });
+
+        }
+        else {
+
+            alert("please check the T&C to continue");
+            window.location = '/pages/step2-1.html';
+
+        }
+        
     }
     else if (user && clickedNext && whichStep == '2-2') {
-        var trainingdate = document.getElementById('trainingsession').value;
-        var uid = user.uid;
-        firebase.firestore().collection("userProfile").doc(uid).set({
-            training: trainingdate
-        }, {merge: true})
-        .then(function() {
 
-            console.log("Document successfully written!");
-            alert("your application has been uplaoded successfully!");
-            window.location = '/pages/step2-3.html';
+        var trainingdate = document.getElementById('trainingsession').value;
+        var accepttnc2 = document.getElementById("terms").value;
+
+        if (accepttnc2 == 'accept') {
+
+            var uid = user.uid;
+            firebase.firestore().collection("userProfile").doc(uid).set({
+                training: trainingdate,
+                accepttnc2: accepttnc2
+            }, {merge: true})
+            .then(function() {
     
-        })
-        .catch(function(error) {
-            console.error("Error writing document: ", error);
-        });
+                console.log("Document successfully written!");
+                alert("your application has been uplaoded successfully!");
+                window.location = '/pages/step2-3.html';
+        
+            })
+            .catch(function(error) {
+                console.error("Error writing document: ", error);
+            });
+
+        }
+        else {
+
+            alert("please check the T&C to continue");
+            window.location = '/pages/step2-2.html';
+
+        }
         
     }
     else if (user && clickedNext && whichStep == '2-3') {
-        var uid = user.uid;
 
-        firebase.firestore().collection("userProfile").doc(uid).update({
+        var uid = user.uid;
+        var userName = document.getElementById("fullname").value;
+        var userPhone = document.getElementById("contact").value;
+        var userGender = document.querySelector('input[name="gender"]:checked').value;
+        var userDisability = document.getElementById("disability").value;
+        var userDOB = document.getElementById("dob").value;
+        var userNational = document.getElementById("nation").value;
+        var userIC = document.getElementById("nric").value;
+        var userOccupation = document.getElementById("occupation").value;
+        var userHousenum = document.getElementById("housenum").value;
+        var userHousestreet = document.getElementById("street").value;
+        var userHousecity = document.getElementById("city").value;
+        var userHousepost = document.getElementById("postcode").value;
+        var userBankHolderName = document.getElementById("holdername").value;
+        var userBankName = document.getElementById("bankname").value;
+        var userBankNo = document.getElementById("accnum").value;
+        var picName = document.getElementById("emergencyname").value;
+        var picNumber = document.getElementById("emergencynumber").value;
+        var picRelationship = document.getElementById("relationship").value;
+        var userTransport = document.getElementById("transportmode").value;
+
+        firebase.firestore().collection("userProfile").doc(uid).set({
+
             step1: "true",
             step2: "true",
-            step3: "false"
-        })
+            step3: "false",
+            userName: userName,
+            userPhone: userPhone,
+            userGender: userGender,
+            userDisability: userDisability,
+            userDOB: userDOB,
+            userNational: userNational,
+            userIC: userIC,
+            userOccupation: userOccupation,
+            userHousenum: userHousenum,
+            userHousestreet: userHousestreet,
+            userHousecity: userHousecity,
+            userHousepost: userHousepost,
+            userBankHolderName: userBankHolderName,
+            userBankName: userBankName,
+            userBankNo: userBankNo,
+            picName: picName,
+            picNumber: picNumber,
+            picRelationship: picRelationship,
+            userTransport: userTransport
+
+        }, {merge: true})
         .then(function() {
 
             console.log("Document successfully written!");
@@ -206,11 +312,21 @@ function checkStep2(whichStep) {
     
         })
         .catch(function(error) {
+
             console.error("Error writing document: ", error);
+
         });
+
     }
     else if (user && clickedBack && whichStep == 'back') {
+
         window.history.back();
+
+    }
+    else {
+
+        window.location = '/pages/login.html';
+
     }
 }
 
@@ -223,15 +339,19 @@ function checkStep3(whichStep) {
     var user = firebase.auth().currentUser;
 
     if (user && clickedNext && whichStep == '3-1') {
+
         window.location = '/pages/step-3-guidelines.html';
+
     }
     else if (user && clickedNext && whichStep == '3-2') {
 
         var uid = user.uid;
 
-        firebase.firestore().collection("userProfile").doc(uid).update({
+        firebase.firestore().collection("userProfile").doc(uid).set({
+
             training: "done"
-        })
+
+        }, {merge: true})
         .then(function() {
 
             console.log("Document successfully written!");
@@ -240,7 +360,9 @@ function checkStep3(whichStep) {
     
         })
         .catch(function(error) {
+
             console.error("Error writing document: ", error);
+
         });
 
         
@@ -248,12 +370,16 @@ function checkStep3(whichStep) {
     else if (user && clickedNext && whichStep == '3-3') {
     
         var uid = user.uid;
+        var uniqueno = document.getElementById("uniqueno").value;
 
-        firebase.firestore().collection("userProfile").doc(uid).update({
+        firebase.firestore().collection("userProfile").doc(uid).set({
+
             step1: "true",
             step2: "true",
-            step3: "true"
-        })
+            step3: "true",
+            uniqueno: uniqueno
+
+        }, {merge: true})
         .then(function() {
 
             console.log("Document successfully written!");
@@ -262,10 +388,126 @@ function checkStep3(whichStep) {
     
         })
         .catch(function(error) {
+
             console.error("Error writing document: ", error);
+
         });
     }
     else if (user && clickedBack && whichStep == 'back') {
         window.history.back();
     }
+}
+
+//this is to check which user clicked the edit profile
+function checkwhichprofile() {
+    firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+            var uid = user.uid;
+
+            db.collection('userProfile').doc(uid).get().then(function(doc) {
+                var userType = doc.data().userType;
+
+                if (userType == 'Requester')  {
+                    window.location = '/pages/editProfile-Requester.html';
+                }
+                if (userType == 'Helper') {
+                    window.location = '/pages/editProfile-Helper.html';
+                }
+            });
+        }
+        else {
+            window.location = '/pages/login.html';
+        }
+    });
+}
+
+//this is for updating Profile
+function updateProfile() {
+
+    firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+
+            var uid = user.uid;
+
+            db.collection('userProfile').doc(uid).get().then(function(doc) {
+                var userType = doc.data().userType;
+        
+                if (userType == 'Helper') {
+                    var userName = document.getElementById("fullname").value;
+                    var userPhone = document.getElementById("contact").value;
+                    var userGender = document.querySelector('input[name="gender"]:checked').value;
+                    var userDOB = document.getElementById("dob").value;
+                    var userNational = document.getElementById("nation").value;
+                    var userOccupation = document.getElementById("occupation").value;
+                    var userBankHolderName = document.getElementById("holdername").value;
+                    var userBankName = document.getElementById("bankname").value;
+                    var userBankNo = document.getElementById("accnum").value;
+                    var picName = document.getElementById("emergencyname").value;
+                    var picNumber = document.getElementById("emergencynumber").value;
+                    var picRelationship = document.getElementById("relationship").value;
+                    var userTransport = document.getElementById("transportmode").value;
+                    var userDisability = document.getElementById("disability").value;
+
+                    firebase.firestore().collection("userProfile").doc(uid).set({
+                        userName: userName,
+                        userPhone: userPhone,
+                        picName: picName,
+                        picNumber: picNumber,
+                        picRelationship: picRelationship,
+                        userNational: userNational,
+                        userDisability: userDisability,
+                        userDOB: userDOB,
+                        userGender: userGender,
+                        profileUpdate: "true",
+                        userOccupation: userOccupation,
+                        userBankHolderName: userBankHolderName,
+                        userBankName: userBankName,
+                        userBankNo: userBankNo,
+                        userTransport: userTransport
+
+                    }, {merge:true})
+                    .then(function() {
+                        console.log("Document successfully written!");
+                        alert("You can check your updated profile in the Profile page!");
+                        window.location = '/pages/homepage.html';
+                    });
+
+                }
+                if (userType == 'Requester') {
+                    var userName = document.getElementById("nme").value;
+                    var userPhone = document.getElementById("contact").value;
+                    var picName = document.getElementById("picName").value;
+                    var picNumber = document.getElementById("picNumber").value;
+                    var picRelationship = document.getElementById("picRelationship").value;
+                    var userNational = document.getElementById("nation").value;
+                    var userDisability = document.getElementById("disability").value;
+                    var userDOB = document.getElementById("birthday").value;
+                    var userGender = document.querySelector('input[name="gender"]:checked').value;
+
+                    firebase.firestore().collection("userProfile").doc(uid).set({
+                        userName: userName,
+                        userPhone: userPhone,
+                        picName: picName,
+                        picNumber: picNumber,
+                        picRelationship: picRelationship,
+                        userNational: userNational,
+                        userDisability: userDisability,
+                        userDOB: userDOB,
+                        userGender: userGender,
+                        profileUpdate: "true" //if no update cannot go to homepage
+                    }, {merge:true})
+                    .then(function() {
+                        console.log("Document successfully written!");
+                        alert("You can check your updated profile in the Profile page!");
+                        window.location = '/pages/homepage.html';
+                    });
+
+                }
+            });
+        }
+        else {
+            window.location = '/pages/login.html';
+            console.log("oh no something's wrong");
+        }
+    });
 }

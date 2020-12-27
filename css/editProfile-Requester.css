@@ -109,7 +109,7 @@ main .bg-card .contain p {
   font-weight: bold;
 }
 
-main .bg-card .contain input[type=text], main .bg-card .contain input[type=email], main .bg-card .contain input[type=password], main .bg-card .contain input[type=tel] {
+main .bg-card .contain input[type=text], main .bg-card .contain input[type=tel] {
   width: 95%;
   height: 40px;
   margin-top: -10px;
@@ -117,7 +117,7 @@ main .bg-card .contain input[type=text], main .bg-card .contain input[type=email
   font-size: 15px;
   margin-bottom: 7px;
   border-color: 1px solid rgba(238, 236, 236, 0.493);
-  cursor: pointer;
+  cursor: text;
 }
 
 main .bg-card .contain input[type=date] {
@@ -133,6 +133,7 @@ main .bg-card .contain input[type=date] {
 
 main .bg-card .contain .gender {
   margin-top: 0px;
+  margin-bottom: 20px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -151,27 +152,7 @@ main .bg-card .contain .gender label {
   margin-top: 1px;
 }
 
-main .bg-card .contain .type {
-  margin-top: 0px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-}
-
-main .bg-card .contain .type input[type=radio] {
-  margin-right: 5px;
-  width: 17px;
-  height: 17px;
-  cursor: pointer;
-}
-
-main .bg-card .contain .type label {
-  font-size: 17px;
-  margin-right: 10px;
-  margin-top: 1px;
-}
-
-main .signup {
+main .updateProfile {
   display: block;
   padding-top: 17px;
   padding-bottom: 17px;
@@ -234,7 +215,7 @@ main .signup:hover {
   }
   main .bg-card {
     width: 60%;
-    margin-top: 15%;
+    margin-top: 20%;
   }
   main .bg-card .contain {
     padding-left: 65px;
@@ -247,32 +228,33 @@ main .signup:hover {
   main .bg-card .contain p {
     font-size: 20px;
   }
-  main .bg-card .contain input[type=text], main .bg-card .contain input[type=email], main .bg-card .contain input[type=password], main .bg-card .contain input[type=tel] {
+  main .bg-card .contain input[type=text], main .bg-card .contain input[type=tel] {
     width: 85%;
-    height: 40px;
+    font-size: 20px;
+  }
+  main .bg-card .contain input[type=date] {
+    width: 85%;
     font-size: 20px;
     margin-bottom: 15px;
-    cursor: text;
   }
-  main .bg-card .contain .type {
+  main .bg-card .contain .gender {
     margin-top: 0px;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
   }
-  main .bg-card .contain .type input[type=radio] {
+  main .bg-card .contain .gender input[type=radio] {
     width: 20px;
     height: 20px;
   }
-  main .bg-card .contain .type label {
+  main .bg-card .contain .gender label {
     font-size: 20px;
   }
-  main .signup {
+  main .updateProfile {
     padding-top: 20px;
     padding-bottom: 20px;
     width: 60%;
     font-size: 20px;
-    cursor: pointer;
   }
   main .signup:hover {
     cursor: pointer;
@@ -297,26 +279,32 @@ main .signup:hover {
   }
   main .bg-card .contain p {
     font-size: 22px;
+    margin-top: 40px;
   }
-  main .bg-card .contain input[type=text], main .bg-card .contain input[type=email], main .bg-card .contain input[type=password], main .bg-card .contain input[type=tel] {
+  main .bg-card .contain input[type=text], main .bg-card .contain input[type=tel] {
     width: 85%;
     height: 45px;
     font-size: 22px;
   }
-  main .bg-card .contain .type {
+  main .bg-card .contain input[type=date] {
+    width: 85%;
+    height: 45px;
+    font-size: 22px;
+  }
+  main .bg-card .contain .gender {
     margin-top: 0px;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
   }
-  main .bg-card .contain .type input[type=radio] {
+  main .bg-card .contain .gender input[type=radio] {
     width: 25px;
     height: 25px;
   }
-  main .bg-card .contain .type label {
+  main .bg-card .contain .gender label {
     font-size: 22px;
   }
-  main .signup {
+  main .updateProfile {
     padding-top: 20px;
     padding-bottom: 20px;
     width: 45%;
@@ -326,4 +314,4 @@ main .signup:hover {
     cursor: pointer;
   }
 }
-/*# sourceMappingURL=sign-up.css.map */
+/*# sourceMappingURL=editProfile-Requester.css.map */

@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile | Anees</title>
     <link rel="stylesheet" href="/css/profile.css">
+    <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-firestore.js"></script>
 </head>
 
 <body>
@@ -26,33 +30,36 @@
                 </ul>
             </nav>
         </header>
-    </div>
-    <main>
-        <div class="card">
-            <div class="container-profile">
-                <img src="/images/profile-image.png" alt="profile-image" class="profile">
-                <h2>Hazirah Haris</h2>
-                <p style="text-align: center;">
-                    <a href="#" class="editprofile"> <strong>Edit Profile</strong></a>
-                </p>
+    
+        <main>
+            <div class="card">
+                <div class="container-profile">
+                    <img src="/images/profile-image.png" alt="profile-image" class="profile">
+                    <h2>Hazirah Haris</h2>
+                    <p style="text-align: center;">
+                        <a class="editprofile" onclick="checkwhichprofile()"> <strong>Edit Profile</strong></a>
+                    </p>
+                    
+                    <hr style="width: 100%; text-align: center; margin-left: 0;">
                 
-                <hr style="width: 100%; text-align: center; margin-left: 0;">
-            
-                <button type="button" class="collapsible">Test</button>
+                    <button type="button" class="collapsible">Account Details</button>
                     <div class="content">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis provident dicta eos totam quisquam animi voluptatum? Dolorum adipisci deserunt atque corrupti itaque iure, excepturi alias perspiciatis, sint quaerat, beatae cum.</p>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis provident dicta eos totam quisquam animi voluptatum? Dolorum adipisci deserunt atque corrupti itaque iure, excepturi alias perspiciatis, sint quaerat, beatae cum.</p>
                     </div>
-                <button type="button" class="collapsible">Test</button>
-                <div class="content">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis provident dicta eos totam quisquam animi voluptatum? Dolorum adipisci deserunt atque corrupti itaque iure, excepturi alias perspiciatis, sint quaerat, beatae cum.</p>
-                </div>
 
-                <button type="button" class="collapsible">Test</button>
-                <div class="content">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis provident dicta eos totam quisquam animi voluptatum? Dolorum adipisci deserunt atque corrupti itaque iure, excepturi alias perspiciatis, sint quaerat, beatae cum.</p>
+                    <button type="button" class="collapsible">Personal Details</button>
+                    <div class="content">
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis provident dicta eos totam quisquam animi voluptatum? Dolorum adipisci deserunt atque corrupti itaque iure, excepturi alias perspiciatis, sint quaerat, beatae cum.</p>
+                    </div>
+
+                    <button type="button" class="collapsible">Others</button>
+                    <div class="content">
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis provident dicta eos totam quisquam animi voluptatum? Dolorum adipisci deserunt atque corrupti itaque iure, excepturi alias perspiciatis, sint quaerat, beatae cum.</p>
+                    </div>
+
+                </div>
             </div>
-        </div>
-    </main>
+        </main>
       
     </div>
 
@@ -75,7 +82,7 @@
     </script>
     
 <!-- Code injected by live-server -->
-<script type="text/javascript">
+<script>
 	// <![CDATA[  <-- For SVG support
 	if ('WebSocket' in window) {
 		(function () {
@@ -129,5 +136,8 @@ for (i = 0; i < coll.length; i++) {
   });
 }
 </script>
+
+<script src="/js/auth.js"></script>
+
 </body>
 </html>

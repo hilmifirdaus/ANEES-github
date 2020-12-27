@@ -18,8 +18,8 @@ const db = firebase.firestore();
 
 //add booking form to firebase
 function submitBooking() {
-    var user = firebase.auth().currentUser;
-    
+    firebase.auth().onAuthStateChanged(function(user) {
+
         if (user) {
 
             var uid = user.uid;
@@ -74,13 +74,10 @@ function submitBooking() {
             
         }
         else {
+            window.location = '/pages/login.html';
             console.log("user is signed out");
         }
-    
-    
-
-    
-
+    });
 }
 
 

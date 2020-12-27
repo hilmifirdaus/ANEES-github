@@ -3,14 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Step 2.3 | Helper</title>
-    <link rel="stylesheet" href="/css/step2-3.css">
+    <title>Edit Helper Profile | Anees</title>
+    <link rel="stylesheet" href="/css/editProfile-Helper.css">
     <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-analytics.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-firestore.js"></script>
 </head>
+
 <body>
+
     <div class="container">
 
         <header>
@@ -36,19 +38,15 @@
             <form action="#">
                 <div class="bg-card1">
                     <div class="contain1">
-                        <h1 style="text-align: center;">STEP 2-3</h1>
-                        
-                        <hr>
-
                         <h4>Personal Details</h4>
                         
                         <p>Fullname (same as IC/Passport)</p>
                         <input type="text" id="fullname" name="fullname" placeholder="Your Fullname">
 
                         <br>
-
+    
                         <p>Contact Number</p>
-                        <input type="text" id="contact" name="contact" placeholder="E.g. 0192562005">
+                        <input type="tel" id="contact" name="contact" placeholder="E.g. 0192562005">
 
                         <br>
 
@@ -72,7 +70,7 @@
                         <br>
 
                         <p>Date of Birth</p>
-                        <input type="date" id="dob" name="dob">
+                        <input type="text" id="dob" name="dob" placeholder="E.g. 26/09/1997">
 
                         <br>
 
@@ -81,26 +79,8 @@
 
                         <br>
 
-                        <p>Malaysian Identity Card (IC) or Passport number</p>
-                        <input type="text" id="nric" name="nric" placeholder="NRIC">
-
-                        <br>
-
                         <p>Occupation</p>
                         <input type="text" id="occupation" name="occupation" placeholder="E.g. Student/Lawyer/Teacher...">
-
-                        <br>
-
-                        <p>Home Address</p>
-                        <div class="address">
-                            <input type="text" id="housenum" name="housenum" placeholder="Building Name / House Name / Number">
-                            <br>
-                            <input type="text" id="street" name="street" placeholder="Street / Road / Jalan / Taman">
-                            <br>
-                            <input type="text" id="city" name="city" placeholder="City / State / Country">
-                            <br>
-                            <input type="text" id="postcode" name="postcode" placeholder="Postcode">    
-                        </div>
                         
                     </div>
                 </div>
@@ -182,8 +162,7 @@
                 <!--<a href="/pages/step-3.html" class="next">Next</a>-->
                 <!--<a href="/pages/step2-2.html" class="back">Back</a>-->
                 
-                <button type="button" class="next" id="next" onclick="checkStep2('2-3')">Next</button>
-                <button type="button" class="back" id="back" onclick="checkStep2('back')">Back</button>
+                <button type="button" class="updateProfile" id="updateProfile2" onclick="updateProfile()">Update</button>
 
             </form>
             
@@ -208,6 +187,6 @@
     </script>
 
     <script src="/js/auth.js"></script>
-
+    
 </body>
 </html>
