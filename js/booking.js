@@ -41,13 +41,40 @@ function submitBooking() {
             //MUST WRITE SET INSIDE GET because doc.data() only works inside the .then() [because it is an async function]
             db.collection('userProfile').doc(uid).get().then(function(doc) {
                 var userName = doc.data().userName;
+                var userPhone = doc.data().userPhone;
                 // Add a new document in collection "bookJobs"
                 // 'set()' will overwrite the existing data
                 // doc(uid) will only write data for the user, other user will have different document
-                db.collection("bookJobs").doc(uid).set({
+                // if jobActive is Yes, then keep in the collection. if no keep in other collection called jobHistory
+
+                //set price
+                var jobtype = jobType.toLowerCase();
+                //var job1 = jobtype.match(/guide/g);
+
+                if (jobtype.match(/guide/g) || jobtype.match(/accompan/g)) {
+                    var jobPrice = 15.00;
+                }
+                if (jobtype.match(/clean/g)) {
+                    var jobPrice = 20.00;
+                }
+                if (jobtype.match(/dress/g)) {
+                    var jobPrice = 12.00;
+                }
+                if (jobtype.match(/food/g)) {
+                    var jobPrice = 25.00;
+                }
+                if (jobtype.match(/shop/g)) {
+                    var jobPrice = 15.00;
+                }
+                else {
+                    var jobPrice = 10.00;
+                }
+
+                db.collection("bookJobs").doc().set({
                     userId: uid,
                     userEmail: email,
                     userName: userName,
+                    userPhone: userPhone,
                     jobRequested: jobType,
                     jobDetails: jobDetails,
                     requesterLocation: location,
@@ -60,7 +87,9 @@ function submitBooking() {
                     requestedSkills: skills,
                     helperGender: gender,
                     helperAge: age,
-                    timeBooking: timestamp
+                    timeBooking: timestamp,
+                    jobActive: "Yes",
+                    jobPrice: jobPrice
                 })
                 .then(function() {
                     console.log("Document successfully written!");
@@ -82,6 +111,8 @@ function submitBooking() {
 
 
 //this part is for displaying jobs in helper homepage
+//onSnapshot listens to realtime changes in your firestore
+//Since you are trying to pass a string object, you need to escape your string in the onclick function call
 var allJob = document.getElementById('All');
 var guiderJob = document.getElementById('Guider');
 var cleanerJob = document.getElementById('Cleaner');
@@ -89,60 +120,156 @@ var dressJob = document.getElementById('Dressing');
 var foodJob = document.getElementById('Food');
 var shopJob = document.getElementById('Shopper');
 
-db.collection("bookJobs").get().then(function(querySnapshot) {
-    querySnapshot.forEach(function(doc) {
-        
-        allJob.innerHTML += "<div class='list-jobs' onclick='openJobDetails()'><h3>" + doc.data().jobRequested + "</h3><p>Job Details: <br>" + 
-        doc.data().jobDetails + "</p><p>Requester: <br>" + doc.data().userEmail + "</p></div>";
-
+if (allJob) {
+    db.collection("bookJobs").onSnapshot(function(querySnapshot) {
+        querySnapshot.forEach(function(doc) {
+            
+            //since 1 requester can book many jobs, it is best to get the document id this way 
+            //instead of using userid
+            //can check in submitBooking, when submitting, the doc will be randomize. not using userID
+            var requesteruid = doc.id;
+            allJob.innerHTML += "<div class='list-jobs' onclick='openJobDetails(\""+requesteruid+"\")'><h3>" + doc.data().jobRequested + "</h3><h5>Job Details: </h5><p>" + 
+            doc.data().jobDetails + "</p><h5>Requester: </h5><p>" + doc.data().userName + "</p><h5>Job Start on: </h5><p>" + doc.data().jobDate + ", at " + doc.data().startTime + "</p></div>";
+    
+        });
     });
-});
-
-db.collection("bookJobs").where("jobRequested", "==", "Guider/Accompanier").get().then(function(querySnapshot) {
-    querySnapshot.forEach(function(doc) {
-        
-        guiderJob.innerHTML += "<div class='list-jobs' onclick='openJobDetails()'><h3>" + doc.data().jobRequested + "</h3><p>Job Details: <br>" + 
-        doc.data().jobDetails + "</p><p>Requester: <br>" + doc.data().userEmail + "</p></div>";
-
-    });
-});
-
-db.collection("bookJobs").where("jobRequested", "==", "Cleaner").get().then(function(querySnapshot) {
-    querySnapshot.forEach(function(doc) {
-        
-        cleanerJob.innerHTML += "<div class='list-jobs' onclick='openJobDetails()'><h3>" + doc.data().jobRequested + "</h3><p>Job Details: <br>" + 
-        doc.data().jobDetails + "</p><p>Requester: <br>" + doc.data().userEmail + "</p></div>";
-
-    });
-});
-
-db.collection("bookJobs").where("jobRequested", "==", "Dressing Helper").get().then(function(querySnapshot) {
-    querySnapshot.forEach(function(doc) {
-        
-        dressJob.innerHTML += "<div class='list-jobs' onclick='openJobDetails()'><h3>" + doc.data().jobRequested + "</h3><p>Job Details: <br>" + 
-        doc.data().jobDetails + "</p><p>Requester: <br>" + doc.data().userEmail + "</p></div>";
-
-    });
-});
-
-db.collection("bookJobs").where("jobRequested", "==", "Food Preparer").get().then(function(querySnapshot) {
-    querySnapshot.forEach(function(doc) {
-        
-        foodJob.innerHTML += "<div class='list-jobs' onclick='openJobDetails()'><h3>" + doc.data().jobRequested + "</h3><p>Job Details: <br>" + 
-        doc.data().jobDetails + "</p><p>Requester: <br>" + doc.data().userEmail + "</p></div>";
-
-    });
-});
-
-db.collection("bookJobs").where("jobRequested", "==", "Shopper").get().then(function(querySnapshot) {
-    querySnapshot.forEach(function(doc) {
-        
-        shopJob.innerHTML += "<div class='list-jobs' onclick='openJobDetails()'><h3>" + doc.data().jobRequested + "</h3><p>Job Details: <br>" + 
-        doc.data().jobDetails + "</p><p>Requester: <br>" + doc.data().userEmail + "</p></div>";
-
-    });
-});
-
-function openJobDetails() {
-    window.location = '/pages/jobDetail.html';
 }
+if (guiderJob) {
+    db.collection("bookJobs").where("jobRequested", "==", "Guider/Accompanier").onSnapshot(function(querySnapshot) {
+        querySnapshot.forEach(function(doc) {
+            
+            var requesteruid = doc.id;
+            guiderJob.innerHTML += "<div class='list-jobs' onclick='openJobDetails(\""+requesteruid+"\")'><h3>" + doc.data().jobRequested + "</h3><h5>Job Details: </h5><p>" + 
+            doc.data().jobDetails + "</p><h5>Requester: </h5><p>" + doc.data().userName + "</p><h5>Job Start on: </h5><p>" + doc.data().jobDate + ", at " + doc.data().startTime + "</p></div>";
+    
+        });
+    });
+}
+if (cleanerJob) {
+    db.collection("bookJobs").where("jobRequested", "==", "Cleaner").onSnapshot(function(querySnapshot) {
+        querySnapshot.forEach(function(doc) {
+            
+            var requesteruid = doc.id;
+            cleanerJob.innerHTML += "<div class='list-jobs' onclick='openJobDetails(\""+requesteruid+"\")'><h3>" + doc.data().jobRequested + "</h3><h5>Job Details: </h5><p>" + 
+            doc.data().jobDetails + "</p><h5>Requester: </h5><p>" + doc.data().userName + "</p><h5>Job Start on: </h5><p>" + doc.data().jobDate + ", at " + doc.data().startTime + "</p></div>";
+    
+        });
+    });
+}
+if (dressJob) {
+    db.collection("bookJobs").where("jobRequested", "==", "Dressing Helper").onSnapshot(function(querySnapshot) {
+        querySnapshot.forEach(function(doc) {
+            
+            var requesteruid = doc.id;
+            dressJob.innerHTML += "<div class='list-jobs' onclick='openJobDetails(\""+requesteruid+"\")'><h3>" + doc.data().jobRequested + "</h3><h5>Job Details: </h5><p>" + 
+            doc.data().jobDetails + "</p><h5>Requester: </h5><p>" + doc.data().userName + "</p><h5>Job Start on: </h5><p>" + doc.data().jobDate + ", at " + doc.data().startTime + "</p></div>";
+    
+        });
+    });
+}
+if (foodJob) {
+    db.collection("bookJobs").where("jobRequested", "==", "Food Preparer").onSnapshot(function(querySnapshot) {
+        querySnapshot.forEach(function(doc) {
+            
+            var requesteruid = doc.id;
+            foodJob.innerHTML += "<div class='list-jobs' onclick='openJobDetails(\""+requesteruid+"\")'><h3>" + doc.data().jobRequested + "</h3><h5>Job Details: </h5><p>" + 
+            doc.data().jobDetails + "</p><h5>Requester: </h5><p>" + doc.data().userName + "</p><h5>Job Start on: </h5><p>" + doc.data().jobDate + ", at " + doc.data().startTime + "</p></div>";
+    
+        });
+    });
+}
+if (shopJob) {
+    db.collection("bookJobs").where("jobRequested", "==", "Shopper").onSnapshot(function(querySnapshot) {
+        querySnapshot.forEach(function(doc) {
+            
+            var requesteruid = doc.id;
+            shopJob.innerHTML += "<div class='list-jobs' onclick='openJobDetails(\""+requesteruid+"\")'><h3>" + doc.data().jobRequested + "</h3><h5>Job Details: </h5><p>" + 
+            doc.data().jobDetails + "</p><h5>Requester: </h5><p>" + doc.data().userName + "</p><h5>Job Start on: </h5><p>" + doc.data().jobDate + ", at " + doc.data().startTime + "</p></div>";
+    
+        });
+    });
+}
+
+
+
+
+
+
+function openJobDetails(uid) {
+
+    var requesteruid = uid;
+        db.collection("bookJobs").doc(requesteruid).get().then(function(doc) {
+
+        var userId = doc.data().userId;
+        var userEmail = doc.data().userEmail;
+        var userName = doc.data().userName;
+        //var userPhone = doc.data().userPhone;
+        var jobRequested = doc.data().jobRequested;
+        var jobDetails = doc.data().jobDetails;
+        var requesterLocation = doc.data().requesterLocation;
+        //var picOfRequester = doc.data().picOfRequester;
+        var additionalPerks = doc.data().additionalPerks;
+        //var requesterEmergency = doc.data().requesterEmergency;
+        var jobDate = doc.data().jobDate;
+        var startTime = doc.data().startTime;
+        var endTime = doc.data().endTime;
+        var requestedSkills = doc.data().requestedSkills;
+        var helperGender = doc.data().helperGender;
+        var helperAge = doc.data().helperAge;
+        var timeBooking = doc.data().timeBooking.toDate();
+        var jobPrice = doc.data().jobPrice;
+
+        var m = moment(timeBooking);
+        var mFormatted1 = m.format("MMMM Do YYYY || h:mm:ss");
+        
+        sessionStorage.setItem("userId", userId);
+        sessionStorage.setItem("userEmail", userEmail);
+        sessionStorage.setItem("userName", userName);
+        //sessionStorage.setItem("userPhone", userPhone);
+        sessionStorage.setItem("jobRequested", jobRequested);
+        sessionStorage.setItem("jobDetails", jobDetails);
+        sessionStorage.setItem("requesterLocation", requesterLocation);
+        //sessionStorage.setItem("picOfRequester", picOfRequester);
+        sessionStorage.setItem("additionalPerks", additionalPerks);
+        //sessionStorage.setItem("requesterEmergency", requesterEmergency);
+        sessionStorage.setItem("jobDate", jobDate);
+        sessionStorage.setItem("startTime", startTime);
+        sessionStorage.setItem("endTime", endTime);
+        sessionStorage.setItem("requestedSkills", requestedSkills);
+        sessionStorage.setItem("helperGender", helperGender);
+        sessionStorage.setItem("helperAge", helperAge);
+        sessionStorage.setItem("timeBooking", mFormatted1);
+        sessionStorage.setItem("jobPrice", jobPrice);
+
+        window.location = '/pages/jobDetail.html';
+        alert(userName);
+        //window.location = '/pages/jobDetail.html';
+    });
+
+    
+
+    
+    //document.getElementsByClassName("jobtype").innerHTML = jobRequested;
+}
+
+function displayJobDetails() {
+
+    //document.getElementsByClassName("jobtype").innerHTML += sessionStorage.getItem("jobRequested");
+    document.getElementById("jobtype").innerHTML += sessionStorage.getItem("jobRequested");
+    document.getElementById("price").innerHTML += "RM " + sessionStorage.getItem("jobPrice");
+    document.getElementById("reqbooktime").innerHTML += sessionStorage.getItem("timeBooking");
+    document.getElementById("reqname").innerHTML += sessionStorage.getItem("userName");
+    document.getElementById("reqdetail").innerHTML += sessionStorage.getItem("jobDetails");
+    document.getElementById("reqskill").innerHTML += sessionStorage.getItem("requestedSkills");
+    document.getElementById("reqgender").innerHTML += sessionStorage.getItem("helperGender");
+    document.getElementById("reqage").innerHTML += sessionStorage.getItem("helperAge");
+    document.getElementById("reqdate").innerHTML += sessionStorage.getItem("jobDate");
+    document.getElementById("reqstarttime").innerHTML += "Start = " + sessionStorage.getItem("startTime");
+    document.getElementById("reqendtime").innerHTML += "End = " + sessionStorage.getItem("endTime");
+    document.getElementById("reqperks").innerHTML += sessionStorage.getItem("additionalPerks");
+    document.getElementById("reqdestination").innerHTML += sessionStorage.getItem("requesterLocation");
+    document.getElementById("reqemail").innerHTML += sessionStorage.getItem("userEmail");
+
+    console.log(sessionStorage.getItem("jobRequested"));
+}
+

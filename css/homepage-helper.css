@@ -175,6 +175,12 @@ main .bg-card2 .contain2 .tabcontent .list-jobs h3 {
   padding-right: 15px;
 }
 
+main .bg-card2 .contain2 .tabcontent .list-jobs h5 {
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-bottom: -3%;
+}
+
 main .bg-card2 .contain2 .tabcontent .list-jobs p {
   text-align: left;
   color: black;
