@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Activity | Anees</title>
+    <link rel="stylesheet" href="/css/activity.css">
+</head>
+<body>
+    
+<header>
+    <img src="/images/anees_logo.png" alt="anees logo" class="logo">
+
+    <nav>
+        <a href="#" class="hide-desktop">
+            <img src="/images/menu.png" alt="toggle menu button" class="menu" id="menu">
+        </a>
+
+        <ul class="show-desktop hide-mobile" id="nav">
+            <li id="exit" class="exit-btn hide-desktop">
+                <img src="/images/exit.png" alt="toggle exit button">
+            </li>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Activity</a></li>
+            <li><a href="/pages/profile.html">Profile</a></li>
+            <li><a href="#">Notification</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <div class="bg-card1">
+        <div class="contain1">
+            <div class="tab">
+                <!--<button class="tablinks" onclick="openTabs(event, 'All')" id="defaultOpen">All</button>-->
+                <button class="tablinks" onclick="openTabs(event, 'jobHistory')">Job History</button>
+                <button class="tablinks" onclick="openTabs(event, 'ongoingJob')">Ongoing Job</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-card2">
+        
+        <div class="contain2">
+            <p style="text-align: center;">*click/tap the cards to see its details.</p>
+            <div id="jobHistory" class="tabcontent">
+                
+
+                <span class="psw" style="margin-left: 3%;"><a href="/pages/sessionHelperReceipt.html"> <b>Job Ended</b></a></span>
+
+                <hr>
+                    
+                <div class="jobDescription">
+                    <h3>Job Type</h3>
+                    <p>Cleaning</p>
+                    <h3>Details</h3>
+                    <p>Help clean my house and garden</p>
+                </div>
+
+            </div>
+              
+            <div id="ongoingJob" class="tabcontent">
+
+                <span class="psw" style="margin-left: 3%;"><a href="/pages/sessionHelper.html"> <b>Ongoing Job</b></a></span>
+
+                <hr>
+                    
+                <div class="jobDescription">
+                    <h3>Job Type</h3>
+                    <p>Cleaning</p>
+                    <h3>Details</h3>
+                    <p>Help clean my house and garden</p>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</main>
+
+<script>
+    var menu = document.getElementById('menu');
+    var nav = document.getElementById('nav');
+    var exit = document.getElementById('exit');
+    
+    menu.addEventListener('click', function(e) {
+        nav.classList.toggle('hide-mobile');
+        e.preventDefault();
+    });
+
+    exit.addEventListener('click', function(e) {
+        nav.classList.add('hide-mobile');
+        e.preventDefault();
+    });
+</script>
+
+<script>
+
+    function openTabs(evt, jobName) {
+
+        var i, tabcontent, tablinks;
+
+        // Get all elements with class="tabcontent" and hide them
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+
+        // Get all elements with class="tablinks" and remove the class "active"
+        tablinks = document.getElementsByClassName("tablinks");
+
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+
+        // Show the current tab, and add an "active" class to the button that opened the tab
+        document.getElementById(jobName).style.display = "block";
+        evt.currentTarget.className += " active";
+    }
+
+    // Get the element with id="defaultOpen" and click on it
+    document.getElementById("defaultOpen").click();
+
+</script>
+
+</body>
+</html>
