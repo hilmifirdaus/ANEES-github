@@ -118,7 +118,7 @@ main .bg-card .container .jobandpayment .jobtype {
 main .bg-card .container .jobandpayment .price {
   display: inline-block;
   vertical-align: middle;
-  margin-left: 25%;
+  text-align: justify;
   font-size: 20px;
   font-weight: normal;
 }

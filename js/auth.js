@@ -100,7 +100,8 @@ function signUp() {
                 userName: userName,
                 userEmail: userEmail,
                 userType: userType,
-                timesignup: timestamp
+                timesignup: timestamp,
+                userId: uid
             })
             .then(function() {
                 console.log("Document successfully written!");

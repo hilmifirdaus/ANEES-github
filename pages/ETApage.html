@@ -5,12 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Anees</title>
     <link rel="stylesheet" href="/css/ETApage.css">
+    <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-firestore.js"></script>
     <!--
         <script src="/js/ETApage.js"></script>
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCxQMBhQHPJaJg6DrWxLpD6cu-pNGsS1zI&callback=initETA&libraries=&v=weekly" defer></script>
     -->
 </head>
-<body>
+<body onload="tracking();">
     <div class="container">
 
         <header>
@@ -61,6 +65,8 @@
         });
 
     </script>
+
+    <script src="/js/booking.js"></script>
     
 </body>
 </html>

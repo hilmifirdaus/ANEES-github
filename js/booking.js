@@ -42,6 +42,7 @@ function submitBooking() {
             db.collection('userProfile').doc(uid).get().then(function(doc) {
                 var userName = doc.data().userName;
                 var userPhone = doc.data().userPhone;
+                var userDisability = doc.data().userDisability;
                 // Add a new document in collection "bookJobs"
                 // 'set()' will overwrite the existing data
                 // doc(uid) will only write data for the user, other user will have different document
@@ -75,6 +76,7 @@ function submitBooking() {
                     userEmail: email,
                     userName: userName,
                     userPhone: userPhone,
+                    userDisability: userDisability,
                     jobRequested: jobType,
                     jobDetails: jobDetails,
                     requesterLocation: location,
@@ -121,7 +123,7 @@ var foodJob = document.getElementById('Food');
 var shopJob = document.getElementById('Shopper');
 
 if (allJob) {
-    db.collection("bookJobs").onSnapshot(function(querySnapshot) {
+    db.collection("bookJobs").where("jobActive", "==", "Yes").onSnapshot(function(querySnapshot) {
         querySnapshot.forEach(function(doc) {
             
             //since 1 requester can book many jobs, it is best to get the document id this way 
@@ -135,7 +137,7 @@ if (allJob) {
     });
 }
 if (guiderJob) {
-    db.collection("bookJobs").where("jobRequested", "==", "Guider/Accompanier").onSnapshot(function(querySnapshot) {
+    db.collection("bookJobs").where("jobActive", "==", "Yes").where("jobRequested", "==", "Guider/Accompanier").onSnapshot(function(querySnapshot) {
         querySnapshot.forEach(function(doc) {
             
             var requesteruid = doc.id;
@@ -146,7 +148,7 @@ if (guiderJob) {
     });
 }
 if (cleanerJob) {
-    db.collection("bookJobs").where("jobRequested", "==", "Cleaner").onSnapshot(function(querySnapshot) {
+    db.collection("bookJobs").where("jobActive", "==", "Yes").where("jobRequested", "==", "Cleaner").onSnapshot(function(querySnapshot) {
         querySnapshot.forEach(function(doc) {
             
             var requesteruid = doc.id;
@@ -157,7 +159,7 @@ if (cleanerJob) {
     });
 }
 if (dressJob) {
-    db.collection("bookJobs").where("jobRequested", "==", "Dressing Helper").onSnapshot(function(querySnapshot) {
+    db.collection("bookJobs").where("jobActive", "==", "Yes").where("jobRequested", "==", "Dressing Helper").onSnapshot(function(querySnapshot) {
         querySnapshot.forEach(function(doc) {
             
             var requesteruid = doc.id;
@@ -168,7 +170,7 @@ if (dressJob) {
     });
 }
 if (foodJob) {
-    db.collection("bookJobs").where("jobRequested", "==", "Food Preparer").onSnapshot(function(querySnapshot) {
+    db.collection("bookJobs").where("jobActive", "==", "Yes").where("jobRequested", "==", "Food Preparer").onSnapshot(function(querySnapshot) {
         querySnapshot.forEach(function(doc) {
             
             var requesteruid = doc.id;
@@ -179,7 +181,7 @@ if (foodJob) {
     });
 }
 if (shopJob) {
-    db.collection("bookJobs").where("jobRequested", "==", "Shopper").onSnapshot(function(querySnapshot) {
+    db.collection("bookJobs").where("jobActive", "==", "Yes").where("jobRequested", "==", "Shopper").onSnapshot(function(querySnapshot) {
         querySnapshot.forEach(function(doc) {
             
             var requesteruid = doc.id;
@@ -197,19 +199,19 @@ if (shopJob) {
 
 function openJobDetails(uid) {
 
-    var requesteruid = uid;
-        db.collection("bookJobs").doc(requesteruid).get().then(function(doc) {
+    var docuid = uid; //this is actually for the document id that was pass from above, NOT THE REQUESTER. im too lazy to change
+    db.collection("bookJobs").doc(docuid).onSnapshot(function(doc) {
 
         var userId = doc.data().userId;
         var userEmail = doc.data().userEmail;
         var userName = doc.data().userName;
-        //var userPhone = doc.data().userPhone;
+        var userPhone = doc.data().userPhone;
         var jobRequested = doc.data().jobRequested;
         var jobDetails = doc.data().jobDetails;
         var requesterLocation = doc.data().requesterLocation;
-        //var picOfRequester = doc.data().picOfRequester;
+        var picOfRequester = doc.data().picOfRequester;
         var additionalPerks = doc.data().additionalPerks;
-        //var requesterEmergency = doc.data().requesterEmergency;
+        var requesterEmergency = doc.data().requesterEmergency;
         var jobDate = doc.data().jobDate;
         var startTime = doc.data().startTime;
         var endTime = doc.data().endTime;
@@ -218,58 +220,329 @@ function openJobDetails(uid) {
         var helperAge = doc.data().helperAge;
         var timeBooking = doc.data().timeBooking.toDate();
         var jobPrice = doc.data().jobPrice;
+        var docID = doc.id;
 
-        var m = moment(timeBooking);
-        var mFormatted1 = m.format("MMMM Do YYYY || h:mm:ss");
+        //var m = moment(timeBooking);
+        //var mFormatted1 = m.format("Do MMMM YYYY || h:mm a");
         
-        sessionStorage.setItem("userId", userId);
-        sessionStorage.setItem("userEmail", userEmail);
-        sessionStorage.setItem("userName", userName);
-        //sessionStorage.setItem("userPhone", userPhone);
-        sessionStorage.setItem("jobRequested", jobRequested);
-        sessionStorage.setItem("jobDetails", jobDetails);
-        sessionStorage.setItem("requesterLocation", requesterLocation);
-        //sessionStorage.setItem("picOfRequester", picOfRequester);
-        sessionStorage.setItem("additionalPerks", additionalPerks);
-        //sessionStorage.setItem("requesterEmergency", requesterEmergency);
-        sessionStorage.setItem("jobDate", jobDate);
-        sessionStorage.setItem("startTime", startTime);
-        sessionStorage.setItem("endTime", endTime);
-        sessionStorage.setItem("requestedSkills", requestedSkills);
-        sessionStorage.setItem("helperGender", helperGender);
-        sessionStorage.setItem("helperAge", helperAge);
-        sessionStorage.setItem("timeBooking", mFormatted1);
-        sessionStorage.setItem("jobPrice", jobPrice);
+        localStorage.setItem("requesteruid", docuid);
+        localStorage.setItem("userId", userId);
+        localStorage.setItem("userEmail", userEmail);
+        localStorage.setItem("userName", userName);
+        localStorage.setItem("userPhone", userPhone);
+        localStorage.setItem("jobRequested", jobRequested);
+        localStorage.setItem("jobDetails", jobDetails);
+        localStorage.setItem("requesterLocation", requesterLocation);
+        localStorage.setItem("picOfRequester", picOfRequester);
+        localStorage.setItem("additionalPerks", additionalPerks);
+        localStorage.setItem("requesterEmergency", requesterEmergency);
+        localStorage.setItem("jobDate", jobDate);
+        localStorage.setItem("startTime", startTime);
+        localStorage.setItem("endTime", endTime);
+        localStorage.setItem("requestedSkills", requestedSkills);
+        localStorage.setItem("helperGender", helperGender);
+        localStorage.setItem("helperAge", helperAge);
+        localStorage.setItem("timeBooking", timeBooking);
+        localStorage.setItem("jobPrice", jobPrice);
+        localStorage.setItem("docID", docID);
 
         window.location = '/pages/jobDetail.html';
         alert(userName);
         //window.location = '/pages/jobDetail.html';
+    }, function(error) {
+        window.location = '/pages/homepage-helper.html';
     });
-
-    
-
-    
     //document.getElementsByClassName("jobtype").innerHTML = jobRequested;
 }
 
 function displayJobDetails() {
 
-    //document.getElementsByClassName("jobtype").innerHTML += sessionStorage.getItem("jobRequested");
-    document.getElementById("jobtype").innerHTML += sessionStorage.getItem("jobRequested");
-    document.getElementById("price").innerHTML += "RM " + sessionStorage.getItem("jobPrice");
-    document.getElementById("reqbooktime").innerHTML += sessionStorage.getItem("timeBooking");
-    document.getElementById("reqname").innerHTML += sessionStorage.getItem("userName");
-    document.getElementById("reqdetail").innerHTML += sessionStorage.getItem("jobDetails");
-    document.getElementById("reqskill").innerHTML += sessionStorage.getItem("requestedSkills");
-    document.getElementById("reqgender").innerHTML += sessionStorage.getItem("helperGender");
-    document.getElementById("reqage").innerHTML += sessionStorage.getItem("helperAge");
-    document.getElementById("reqdate").innerHTML += sessionStorage.getItem("jobDate");
-    document.getElementById("reqstarttime").innerHTML += "Start = " + sessionStorage.getItem("startTime");
-    document.getElementById("reqendtime").innerHTML += "End = " + sessionStorage.getItem("endTime");
-    document.getElementById("reqperks").innerHTML += sessionStorage.getItem("additionalPerks");
-    document.getElementById("reqdestination").innerHTML += sessionStorage.getItem("requesterLocation");
-    document.getElementById("reqemail").innerHTML += sessionStorage.getItem("userEmail");
+    //document.getElementsByClassName("jobtype").innerHTML += localStorage.getItem("jobRequested");
+    document.getElementById("jobtype").innerHTML += localStorage.getItem("jobRequested");
+    document.getElementById("price").innerHTML += "RM " + localStorage.getItem("jobPrice");
+    document.getElementById("reqbooktime").innerHTML += localStorage.getItem("timeBooking");
+    document.getElementById("reqname").innerHTML += localStorage.getItem("userName");
+    document.getElementById("reqdetail").innerHTML += localStorage.getItem("jobDetails");
+    document.getElementById("reqskill").innerHTML += localStorage.getItem("requestedSkills");
+    document.getElementById("reqgender").innerHTML += localStorage.getItem("helperGender");
+    document.getElementById("reqage").innerHTML += localStorage.getItem("helperAge");
+    document.getElementById("reqdate").innerHTML += localStorage.getItem("jobDate");
+    document.getElementById("reqstarttime").innerHTML += "Start = " + localStorage.getItem("startTime");
+    document.getElementById("reqendtime").innerHTML += "End = " + localStorage.getItem("endTime");
+    document.getElementById("reqperks").innerHTML += localStorage.getItem("additionalPerks");
+    document.getElementById("reqdestination").innerHTML += localStorage.getItem("requesterLocation");
+    document.getElementById("reqnumber").innerHTML += localStorage.getItem("userPhone");
+    document.getElementById("reqemail").innerHTML += localStorage.getItem("userEmail");
 
-    console.log(sessionStorage.getItem("jobRequested"));
+
+    console.log(localStorage.getItem("jobRequested"));
+}
+
+function gotoETA() {
+
+    //when helper claim job, change field jobActice to "No" so it wont be displayed in homepage helper
+    //then go to helperETApage
+    var docID = localStorage.getItem("docID");
+
+    firebase.firestore().collection("bookJobs").doc(docID).set({
+
+        jobActive: "No",
+        HelperOTW: "true"
+
+    }, {merge: true})
+    .then(function() {
+
+        window.location = '/pages/helperETApage.html';
+
+    })
+    .catch(function(error) {
+
+        console.error("Error writing document: ", error);
+
+    });
+
+    /*var user = firebase.auth().currentUser;
+    var uid = user.uid;
+    firebase.firestore().collection("activeJobs").where("helperId", "==", uid).onSnapshot(function(querySnapshot) {
+        querySnapshot.forEach(function(doc) {
+            var helperOTW = doc.data().helperOTW;
+            var docid = doc.id;
+
+            firebase.firestore().collection("activeJobs").doc(docid).set( {
+                helperOTW: "true"      //false when helper press arrived and requester confirm
+            }, {merge: true})
+            .then(function(doc) {
+                window.location = '/pages/helperETApage.html';
+            });
+        });
+        
+    });*/
+}
+
+function jobClaimed() {
+
+    document.getElementById("reqAddress").innerHTML = localStorage.getItem("requesterLocation");
+    document.getElementById("reqName").innerHTML = localStorage.getItem("userName");
+    document.getElementById("reqContact").innerHTML = localStorage.getItem("userPhone");
+
+    //var user = firebase.auth().currentUser;
+    firebase.auth().onAuthStateChanged(function(user) {
+
+        if (user) {
+
+            var uid = user.uid;
+            console.log(uid);
+
+            firebase.firestore().collection('activeJobs').where("helperID", "==", uid).onSnapshot(function(querySnapshot) {
+
+                querySnapshot.forEach(function(doc) {
+                    var Confirm = doc.data().HelperConfirmHere;
+        
+                    if (Confirm == "Yes") {
+                        window.location = '/pages/sessionHelper.html';
+                    }
+                    if (Confirm == "No") {
+                        console.log("test");
+                    }
+                });
+                
+            });
+
+        }
+
+    });
+    
+
+}
+
+function ETAwhichBtn() {
+    
+    if (document.getElementById("helperarrived")) {
+
+        var docID = localStorage.getItem("docID");
+
+        firebase.firestore().collection("bookJobs").doc(docID).get().then(function(doc) {
+
+            var requesterID = doc.data().userId;
+            var requesterEmail = doc.data().userEmail;
+            var requesterName = doc.data().userName;
+            var requesterPhone = doc.data().userPhone;
+            var requesterDisability = doc.data().userDisability;
+            var jobRequested = doc.data().jobRequested;
+            var jobDetails = doc.data().jobDetails;
+            var requesterLocation = doc.data().requesterLocation;
+            var picOfRequester = doc.data().picOfRequester;
+            var additionalPerks = doc.data().additionalPerks;
+            var requesterEmergency = doc.data().requesterEmergency;
+            var jobDate = doc.data().jobDate;
+            var startTime = doc.data().startTime;
+            var endTime = doc.data().endTime;
+            var requestedSkills = doc.data().requestedSkills;
+            var helperGender = doc.data().helperGender;
+            var helperAge = doc.data().helperAge;
+            var timeBooking = doc.data().timeBooking.toDate();
+            var jobPrice = doc.data().jobPrice;
+
+            //var m = moment(timeBooking);
+            //var mFormatted1 = m.format("Do MMMM YYYY || h:mm a");
+
+            var user = firebase.auth().currentUser;
+
+            if (user) {
+
+                // User is signed in.
+                var uid = user.uid;
+                firebase.firestore().collection('userProfile').doc(uid).get().then(function(doc) {
+                    
+                    var helperID = doc.data().userId;
+                    var helperName = doc.data().userName;
+                    var helperPhone = doc.data().userPhone;
+                    var helperEmail = doc.data().userEmail;
+                    var helperDisability = doc.data().userDisability;
+                    var helperTransport = doc.data().userTransport;
+                    var docID = doc.id;
+
+                    firebase.firestore().collection('activeJobs').doc(docID).set({
+                        requesterID: requesterID,
+                        helperID: helperID,
+                        requesterName: requesterName,
+                        helperName: helperName,
+                        requesterEmail: requesterEmail,
+                        helperEmail: helperEmail,
+                        requesterPhone: requesterPhone,
+                        helperPhone: helperPhone,
+                        requesterDisability: requesterDisability,
+                        helperDisability: helperDisability,
+                        helperTransport: helperTransport,
+                        requesterLocation: requesterLocation,
+                        requesterEmergency: requesterEmergency,
+                        picOfRequester: picOfRequester,
+                        jobRequested: jobRequested,
+                        jobDetails: jobDetails,
+                        additionalPerks: additionalPerks,
+                        jobDate: jobDate,
+                        startTime: startTime,
+                        endTime: endTime,
+                        requestedSkills: requestedSkills,
+                        prefGender: helperGender,
+                        prefAge: helperAge,
+                        jobBookedOn: timeBooking,
+                        jobPrice: jobPrice,
+                        HelperArrived: "Yes",
+                        HelperConfirmHere: "No" 
+
+                    }, {merge: true})
+                    .then(function() {
+
+                        firebase.firestore().collection('activeJobs').where("helperID", "==", uid).onSnapshot(function(querySnapshot) {
+
+                            querySnapshot.forEach(function(doc) {
+                                var Confirm = doc.data().HelperConfirmHere;
+
+                                if (Confirm == "Yes") {
+                                    window.location = '/pages/sessionHelper.html';
+                                }
+                                
+                            });
+                            
+                        });
+                    });
+
+                });
+            } else {
+                // No user is signed in.
+                window.location = '/pages/login.html';
+            }
+
+        });
+    }
+}
+
+function gotosessionifhave() {
+
+    firebase.auth().onAuthStateChanged(function(user) {
+
+        if (user) {
+
+            var uid = user.uid;
+
+            firebase.firestore().collection("bookJobs").where("userId", "==", uid).onSnapshot(function(querySnapshot) {
+
+                querySnapshot.forEach(function(doc) {
+                    var HelperOTW = doc.data().HelperOTW;
+
+                    if (HelperOTW == "true") {
+                        window.location = '/pages/ETApage.html';
+                    }
+                });
+            });
+
+            
+
+        }
+
+    });
+
+}
+
+function tracking() {
+    var user = firebase.auth().currentUser;
+
+        if (user) {
+
+            var uid = user.uid;
+
+            db.collection("activeJobs").where("requesterID", "==", uid).onSnapshot(function(querySnapshot) {
+
+                querySnapshot.forEach(function(doc) {
+
+                    var HelperArrived = doc.data().HelperArrived;
+                    var docID = doc.id;
+                    console.log("test");
+
+                    if (HelperArrived == "Yes") {
+
+                        window.location = '/pages/confirmation-arrived.html';
+                        
+                    }
+
+                });
+
+            });
+
+        }
+    
+}
+
+function confirmhelperarrived() {
+    var user = firebase.auth().currentUser;
+    if (user) {
+
+        var uid = user.uid;
+        db.collection("activeJobs").where("HelperArrived", "==", "Yes").where("requesterID", "==", uid).onSnapshot(function(querySnapshot) {
+            querySnapshot.forEach(function(doc) {
+                    
+                var docid = doc.id;
+
+                db.collection("activeJobs").doc(docid).set({
+
+                    HelperConfirmHere: "Yes"
+
+                }, {merge: true})
+                .then(function() {
+
+                    console.log("variable helperOTW updated");
+                    window.location = '/pages/session.html';
+                
+                })
+                .catch(function(error) {
+
+                    console.error("Error writing document: ", error);
+
+                });
+            
+            });
+        });
+    }
 }
 

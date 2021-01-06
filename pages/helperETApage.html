@@ -5,8 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Helper | Anees</title>
     <link rel="stylesheet" href="/css/helperETApage.css">
+    <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-firestore.js"></script>
 </head>
-<body>
+<body onload="jobClaimed();">
     <div class="container">
         <header>
             <img src="/images/anees_logo.png" alt="anees logo" class="logo">
@@ -33,21 +37,21 @@
                     <h3>On-the-Way</h3>
                     <hr>
                     <h4>Location</h4>
-                    <p id="reqAddress">1, Jalan Bukit Indah 2/4, Taman Bukit Indah, 68000, Ampang, Selangor</p>
+                    <p id="reqAddress"></p>
                     <div class="copyText">
                         <button class="copyText" onclick="copyElementText('reqAddress')">Copy Address</button>
                     </div>
                     
                     <h4>ETA</h4>
-                    <p>10 minutes</p>
+                    <p>10 minutes (WIP)</p>
                     <h4>Requester</h4>
-                    <p>Muhammad Hilmi Firdaus bin Mohd. Fuad</p>
+                    <p id="reqName"></p>
                     <h4>Contact</h4>
-                    <p>019-2562005</p>
+                    <p id="reqContact"></p>
                     <br>
-                    <button type="button" class="arrived">Arrived</button>
-                    <button type="button" class="chat">Chat</button>
-                    <button type="button" class="cancel">Cancel</button>
+                    <button type="button" class="arrived" id="helperarrived" onclick="ETAwhichBtn()">Arrived</button>
+                    <button type="button" class="chat" id="helperchat" onclick="ETAwhichBtn()">Chat</button>
+                    <button type="button" class="cancel" id="helpercancel" onclick="ETAwhichBtn()">Cancel</button>
                 </div>
             </div>
         </main>
@@ -79,6 +83,8 @@
             document.body.removeChild(elem);
         }
     </script>
+
+    <script src="/js/booking.js"></script>
 
 </body>
 </html>
