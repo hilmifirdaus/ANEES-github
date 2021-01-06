@@ -1,0 +1,206 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap");
+body, html {
+  margin: 0;
+  height: 100%;
+  font-family: 'Montserrat', sans-serif;
+  background-color: #D8E2DC;
+}
+
+header {
+  background: grey;
+  grid-area: header;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  background-color: #FFFFFF;
+  -webkit-box-shadow: 0 10px 30px rgba(0, 0, 0, 0.603);
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.603);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 10;
+}
+
+header .hide-mobile {
+  display: none;
+}
+
+header .logo {
+  height: 30%;
+  width: 30%;
+  padding: .8em 1.2em;
+}
+
+header .menu {
+  padding: .8em 1.9em;
+  width: 20%;
+  margin-left: 60%;
+}
+
+header nav ul {
+  position: fixed;
+  width: 60%;
+  top: 0;
+  right: 0;
+  text-align: left;
+  background: white;
+  height: 100%;
+  z-index: 7;
+  padding-top: 3em;
+  list-style-type: none;
+}
+
+header nav ul li a {
+  color: black;
+  text-decoration: none;
+  display: block;
+  width: 100%;
+  padding: 1em 2em;
+  background-color: white;
+}
+
+header nav ul li a:hover {
+  background-color: #41494e;
+}
+
+header .exit-btn {
+  margin-bottom: 1em;
+  margin-top: -1.3em;
+  text-align: right;
+  padding: 0 1.4em;
+}
+
+header .exit-btn img {
+  width: 15px;
+  cursor: pointer;
+}
+
+main .bg-card1 {
+  background: white;
+  width: 90%;
+  display: block;
+  margin: 0 auto;
+  margin-top: 30%;
+  border: none;
+  border-radius: 15px;
+  -webkit-box-shadow: 0 10px 30px #00000033;
+          box-shadow: 0 10px 30px #00000033;
+  padding-bottom: 5px;
+}
+
+main .bg-card1 .contain1 {
+  padding-top: 7px;
+  padding-bottom: 7px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+main .bg-card1 .contain1 .tab {
+  overflow: hidden;
+  background-color: white;
+}
+
+main .bg-card1 .contain1 .tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 25px;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+  font-size: 17px;
+}
+
+main .bg-card1 .contain1 .tab button:hover {
+  background-color: #ddd;
+  border-radius: 15px;
+}
+
+main .bg-card1 .contain1 .tab button.active {
+  background-color: #ccc;
+  border-radius: 15px;
+  font-weight: bold;
+}
+
+main .bg-card2 {
+  background: white;
+  width: 90%;
+  display: block;
+  margin: 0 auto;
+  margin-top: 15px;
+  border: none;
+  border-radius: 15px;
+  -webkit-box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  padding-bottom: 5px;
+}
+
+main .bg-card2 .contain2 {
+  padding-top: 7px;
+  padding-bottom: 20px;
+}
+
+main .bg-card2 .contain2 p {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+main .bg-card2 .contain2 .tabcontent {
+  display: none;
+  padding: 6px 12px;
+}
+
+main .bg-card2 .contain2 .tabcontent .list-jobs {
+  background: white;
+  width: 90%;
+  display: block;
+  margin: 10px auto;
+  border: none;
+  border-radius: 15px;
+  -webkit-box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  padding: 5px 7px 5px 7px;
+}
+
+main .bg-card2 .contain2 .tabcontent .list-jobs h3 {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+main .bg-card2 .contain2 .tabcontent .list-jobs h5 {
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-bottom: -3%;
+}
+
+main .bg-card2 .contain2 .tabcontent .list-jobs p {
+  text-align: left;
+  color: black;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+main .bg-card2 .contain2 .jobDescription h3 {
+  margin-left: 3%;
+  margin-top: 30px;
+  font-size: 17px;
+}
+
+main .bg-card2 .contain2 .jobDescription p {
+  margin-top: -13px;
+  margin-left: -1%;
+  margin-bottom: 15px;
+  font-size: 17px;
+}
+
+main .bg-card2 .contain2 hr {
+  border: 1px solid grey;
+  width: 94%;
+}
+/*# sourceMappingURL=activity.css.map */
