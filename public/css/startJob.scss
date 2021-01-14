@@ -1,0 +1,150 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+$colors: (
+    bgc: #D8E2DC,
+    header: #FFFF,
+    card: #086788
+);
+
+@function color($color-name) {
+    @return map-get($colors, $color-name)
+};
+
+
+body {
+    margin: 0;
+    height: 100%;
+    font-family: 'Montserrat', sans-serif;
+    background-color: color(bgc);
+}
+
+header {
+    background: grey;
+    grid-area: header;
+    display: flex;
+    justify-content: space-between;
+    background-color: #FFFFFF;
+    //margin-bottom: 40%;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.603);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    z-index: 10;
+
+    .hide-mobile {
+        display: none;
+    }
+
+    .logo {
+        height: 30%;
+        width: 30%;
+        padding: .8em 1.2em;
+    }
+
+    .menu {
+        padding: .8em 1.9em;
+        width: 20%;
+        margin-left: 60%;
+    }
+
+    nav ul {
+        position: fixed;
+        width: 60%;
+        top: 0;
+        right: 0;
+        text-align: left;
+        background: white;
+        height: 100%;
+        z-index: 7;
+        padding-top: 3em;
+        list-style-type: none;
+    }
+    
+    nav ul li a {
+        color: black;
+        text-decoration: none;
+        display: block;
+        width: 100%;
+        padding: 1em 2em;
+        background-color: white;
+    }
+    
+    nav ul li a:hover {
+        background-color: rgb(65, 73, 78);
+    }
+    
+    .exit-btn {
+        margin-bottom: 1em;
+        margin-top: -1.3em;
+        text-align: right;
+        padding: 0 1.4em;
+    }
+    
+    .exit-btn img {
+        width: 15px;
+        cursor: pointer;
+    }
+}
+
+main {
+    .card {
+        background: white;
+        width: 90%;
+        display: block;
+        margin: 0 auto;
+        margin-top: 30%;
+        //margin-bottom: 30%;
+        border: none;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        padding-bottom: 5px;
+
+        .contain {
+            padding-top: 7px;
+            padding-bottom: 17px;
+            padding-left: 17px;
+            padding-right: 17px;
+
+            h1 {
+                text-align: center;
+                font-size: 25px;
+                margin-top: 30px;
+            }
+
+            h3 {
+                text-align: center;
+            }
+
+            #datetojob {
+                margin-top: 35px;
+            }
+
+            button {
+                display: block;
+                padding-top: 17px;
+                padding-bottom: 17px;
+                width: 81%;
+                border-radius: 50px;
+                border: none;
+                margin: 10px auto 20px auto;
+                color: black;
+                font-size: 17px;
+                font-weight: bold;
+                text-decoration: none;
+                box-shadow: 0px 3px 19px -9px rgba(0,0,0,0.56);
+                text-align: center;
+                cursor: pointer;
+            }
+
+            #close {
+                background-color: #b4aeae;
+            }
+
+            #start {
+                background-color: #0999c9;
+            }
+        }
+    }
+}

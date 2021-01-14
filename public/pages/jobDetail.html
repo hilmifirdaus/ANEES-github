@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Detail | Helper</title>
+    <link rel="stylesheet" href="/css/jobDetail.css">
+    <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-firestore.js"></script>
+</head>
+<body onload="displayJobDetails();">
+    <div class="container">
+
+        <header>
+            <img src="/images/anees_logo.png" alt="anees logo" class="logo">
+
+            <nav>
+                <a href="#" class="hide-desktop">
+                    <img src="/images/menu.png" alt="toggle menu button" class="menu" id="menu">
+                </a>
+                <ul class="show-desktop hide-mobile" id="nav">
+                    <li id="exit" class="exit-btn hide-desktop">
+                        <img src="/images/exit.png" alt="toggle exit button">
+                    </li>
+                    <li><a href="/pages/homepage-helper.html">Home</a></li>
+                    <li><a href="#">Activity</a></li>
+                    <li><a href="/pages/profile.html">Profile</a></li>
+                    <li><a href="#">Notification</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <div class="bg-card">
+                <div class="container">
+                    <!--get data from firebase. this is just template-->
+                    
+                    <div id="jobDetail">
+                        <div class="jobandpayment">
+                            <a href="#" onclick="window.history.back()"><img src="/images/left-arrow.png" alt="go back"></a>
+                            <h4 id="jobtype" class="jobtype"></h4>
+                            <h4 id="price" class="price"></h4>
+                        </div>
+    
+                        <hr>
+                        <p id="reqbooktime" style="font-size: 12px; margin-top: 5%; float: right;"></p>
+                        
+                        <br>
+    
+                        <h4>Requester</h4>
+                        <p id="reqname"></p>
+                        
+                        <h4>Details</h4>
+                        <p id="reqdetail"></p>
+
+                        <h4>Must Have Skills</h4>
+                        <p id="reqskill"></p>
+
+                        <h4>Preferred Gender</h4>
+                        <p id="reqgender"></p>
+
+                        <h4>Preferred Age</h4>
+                        <p id="reqage"></p>
+                        
+                        <h4>Date</h4>
+                        <p id="reqdate"></p>
+
+                        <h4>Job Duration</h4>
+                        <p id="reqstarttime"></p>
+                        <p id="reqendtime"></p>
+
+                        <h4>Additional Perks</h4>
+                        <p id="reqperks"></p>
+                        
+                        <h4>Destination</h4>
+                        <p id="reqdestination"></p>
+                        
+                        <h4>Contact</h4>
+                        <p id="reqnumber"></p>
+                        <p id="reqemail"></p>
+    
+                        <hr>
+                        
+                        <button type="button" class="claim" onclick="checkjobtime()">Claim</button>
+                    </div>
+                    
+                    
+                </div>
+            </div>
+        </main>
+
+    </div>
+
+    <script>
+        var menu = document.getElementById('menu');
+        var nav = document.getElementById('nav');
+        var exit = document.getElementById('exit');
+
+        menu.addEventListener('click', function(e) {
+            nav.classList.toggle('hide-mobile');
+            e.preventDefault();
+        });
+
+        exit.addEventListener('click', function(e) {
+            nav.classList.add('hide-mobile');
+            e.preventDefault();
+        });
+    </script>
+
+    <script src="/js/booking.js"></script>
+    
+</body>
+</html>

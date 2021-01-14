@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anees | Start Job</title>
+    <link rel="stylesheet" href="/css/startJob.css">
+    <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-firestore.js"></script>
+</head>
+<body onload="getdatejob();">
+    <div id="container">
+        <header>
+            <img src="/images/anees_logo.png" alt="anees_logo" class="logo">
+            <nav>
+                <a href="#" class="hide-desktop">
+                <img src="/images/menu.png" alt="toggle menu button" class="menu" id="menu">
+                </a>
+                <ul class="show-desktop hide-mobile" id="nav">
+                    <li id="exit" class="exit-btn hide-desktop">
+                        <img src="/images/exit.png" alt="toggle exit button">
+                    </li>
+                    <li><a href="/pages/homepage.html">Home</a></li>
+                    <li><a href="#">Activity</a></li>
+                    <li><a href="/pages/profile.html">Profile</a></li>
+                    <li><a href="#">Notification</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <form action="#">
+                <div id="card" class="card">
+                    <div id="contain" class="contain">
+                        <h1>You have succesfully claimed this job!</h1>
+                        <br>
+                        <h3 id="daystojob"></h3>
+                        
+                        <h3 id="datetojob"></h3>
+                        <br>
+                        <div id="startjobcanceljob">
+                            <button onclick="gotoactivity()" id="close">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </main>
+    </div>
+
+    <script>
+    
+        var menu = document.getElementById('menu');
+        var nav = document.getElementById('nav');
+        var exit = document.getElementById('exit');
+        
+        menu.addEventListener('click', function(e) {
+            nav.classList.toggle('hide-mobile');
+            e.preventDefault();
+        });
+
+        exit.addEventListener('click', function(e) {
+            nav.classList.add('hide-mobile');
+            e.preventDefault();
+        });
+        
+    </script>
+    
+    <script>
+        function gotoactivity() {
+            window.location = '/pages/activity.html';
+        }
+    </script>
+
+    <script src="/js/booking.js"></script>
+</body>
+</html>

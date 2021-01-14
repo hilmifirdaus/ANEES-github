@@ -1,0 +1,407 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+$colors: (
+    bgc: #D8E2DC,
+    header: #FFFF,
+    card: #086788
+);
+
+@function color($color-name) {
+    @return map-get($colors, $color-name)
+};
+
+
+body {
+    margin: 0;
+    height: 100%;
+    font-family: 'Montserrat', sans-serif;
+    background-color: color(bgc);
+}
+
+.container {
+    text-align: center;
+}
+
+header {
+    background: grey;
+    grid-area: header;
+    display: flex;
+    justify-content: space-between;
+    background-color: #FFFFFF;
+    //margin-bottom: 40%;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.603);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    z-index: 10;
+
+    .hide-mobile {
+        display: none;
+    }
+
+    .logo {
+        height: 30%;
+        width: 30%;
+        padding: .8em 1.2em;
+    }
+
+    .menu {
+        padding: .8em 1.9em;
+        width: 20%;
+        margin-left: 60%;
+    }
+
+    nav ul {
+        position: fixed;
+        width: 60%;
+        top: 0;
+        right: 0;
+        text-align: left;
+        background: white;
+        height: 100%;
+        z-index: 7;
+        padding-top: 3em;
+        list-style-type: none;
+    }
+    
+    nav ul li a {
+        color: black;
+        text-decoration: none;
+        display: block;
+        width: 100%;
+        padding: 1em 2em;
+        background-color: white;
+    }
+    
+    nav ul li a:hover {
+        background-color: rgb(65, 73, 78);
+    }
+    
+    .exit-btn {
+        margin-bottom: 1em;
+        margin-top: -1.3em;
+        text-align: right;
+        padding: 0 1.4em;
+    }
+    
+    .exit-btn img {
+        width: 15px;
+        cursor: pointer;
+    }
+}
+
+main {
+    .bg-card {
+        background: white;
+        width: 85%;
+        display: block;
+        margin: 0 auto;
+        margin-top: 35%;
+        border: none;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        padding-bottom: 5px;
+
+        h1 {
+            font-size: 25px;
+            padding: 40px 20px 0px 20px;
+            color: rgb(82, 80, 80);
+        }
+
+        h3 {
+            font-size: 30px;
+            padding: 10px 20px 0px 20px;
+        }
+
+        img {
+            height: 100%;
+            width: 80%;
+            display: block;
+            margin: 0 auto 50px auto;
+        }
+
+        
+        .chat {
+            display: block;
+            padding-top: 17px;
+            padding-bottom: 17px;
+            width: 81%;
+            border-radius: 50px;
+            border: none;
+            margin: 0 auto 20px auto;
+            background-color: #0999c9;
+            color: black;
+            font-size: 15px;
+            font-weight: bold;
+            text-decoration: none;
+            box-shadow: 0px 3px 19px -9px rgba(0,0,0,0.56);
+        }
+
+        .cancel {
+            display: block;
+            padding-top: 17px;
+            padding-bottom: 17px;
+            width: 81%;
+            border-radius: 50px;
+            border: none;
+            margin: 0 auto 50px auto;
+            background-color: #f44336;
+            color: black;
+            font-size: 15px;
+            font-weight: bold;
+            text-decoration: none;
+            box-shadow: 0px 3px 19px -9px rgba(0,0,0,0.56);
+        }
+        
+    }
+}
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+  
+/* Modal Content */
+.modal-content {
+    position: relative;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 0;
+    border: 1px solid #888;
+    width: 80%;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s
+}
+  
+/* Add Animation */
+@-webkit-keyframes animatetop {
+    from {top:-300px; opacity:0} 
+    to {top:0; opacity:1}
+}
+  
+@keyframes animatetop {
+    from {top:-300px; opacity:0}
+    to {top:0; opacity:1}
+}
+  
+/* The Close Button */
+.close {
+    color: white;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+  
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+  
+.modal-header {
+    padding: 2px 16px;
+    background-color:  #525050;
+    color: white;
+}
+  
+.modal-body {padding: 2px 16px;}
+  
+.modal-footer {
+    padding: 2px 16px;
+    background-color: #525050;
+    color: white;
+}
+ul {
+    list-style-type: none;
+}
+  
+li {
+    //border: none;
+    border-radius: 10px;
+    //box-shadow: 0 10px 30px rgba(146, 146, 146, 0.2);
+    padding: 5px;
+    width: fit-content;
+    margin-left: -40px;
+    margin-top: 5px;
+    background-color: rgb(230, 230, 230);
+}
+  
+.sender {
+    margin-left: 60px;
+}
+
+input[type=text] {
+    width: 65%;
+    height: 40px;
+    margin-top: 10px;
+    padding-left: 10px;
+    font-size: 15px;
+    margin-bottom: 7px;
+    border-color: 1px solid rgba(238, 236, 236, 0.493);
+    cursor: pointer;
+}
+
+input[type=submit] {
+    width: 20%;
+    height: 40px;
+    font-size: 15;
+}
+
+@media only screen and (min-width: 1024px) {
+    header {
+        .logo {
+            height: 20%;
+            width: 20%;
+            //padding: .8em 1.2em;
+            margin: 0;     
+        }
+
+        .show-desktop {
+            display: block;
+            margin: 0 auto 13% auto;
+        }
+    
+        .hide-desktop {
+            display: none;
+        }
+    
+        nav ul {
+            position: inherit;
+            width: auto;
+            background: none;
+            height: auto;
+            display: flex;
+            //padding-top: 0;
+            list-style-type: none;
+            padding-right: 60px;
+        }
+    
+        nav ul li {
+            float: left;
+            
+        }
+    
+        nav ul li a {
+            color: black;
+            background-color: inherit;
+            text-align: right;
+            padding: 1em 2em;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+    
+        nav ul li a:hover {
+            background-color: inherit;
+        }
+    }
+
+    main {
+        .bg-card {
+            width: 70%;
+            margin-top: 17%;
+            margin-bottom: 17%;
+            border-radius: 15px;
+            padding-bottom: 5px;
+    
+            h1 {
+                font-size: 40px;
+                padding: 50px 30px 0px 30px;
+                
+            }
+    
+            h3 {
+                font-size: 35px;
+                padding: 10px 20px 0px 20px;
+            }
+    
+            img {
+                height: 60%;
+                width: 60%;
+                display: block;
+                margin: 0 auto 10px auto;
+            }
+    
+            
+            .chat {
+                padding-top: 20px;
+                padding-bottom: 20px;
+                width: 70%;
+            }
+    
+            .cancel {
+                padding-top: 20px;
+                padding-bottom: 20px;
+                width: 70%;
+            }
+            
+        }
+    }
+}
+
+@media only screen and (min-width: 1600px) {
+    header {
+        .logo {
+            height: 15%;
+            width: 15%;
+            //padding: 2em 0 0 2em;
+            margin: 0;     
+        }
+    }
+
+    main {
+        .bg-card {
+            width: 50%;
+            margin-top: 9%;
+            margin-bottom: 17%;
+            border-radius: 15px;
+            padding-bottom: 5px;
+    
+            h1 {
+                font-size: 40px;
+                padding: 50px 30px 0px 30px;
+                
+            }
+    
+            h3 {
+                font-size: 35px;
+                padding: 10px 20px 0px 20px;
+            }
+    
+            img {
+                height: 50%;
+                width: 50%;
+                display: block;
+                margin: -20px auto 10px auto;
+                z-index: -1;
+            }
+    
+            
+            .chat {
+                font-size: 20px;
+                width: 50%;
+            }
+    
+            .cancel {
+                font-size: 20px;
+                width: 50%;
+            }
+            
+        }
+    }
+}

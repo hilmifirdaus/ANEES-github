@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Helper | Anees</title>
+    <link rel="stylesheet" href="/css/helperETApage.css">
+    <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-firestore.js"></script>
+</head>
+<body onload="jobClaimed();">
+    <div class="container">
+        <header>
+            <img src="/images/anees_logo.png" alt="anees logo" class="logo">
+
+            <nav>
+                <a href="#" class="hide-desktop">
+                    <img src="/images/menu.png" alt="toggle menu button" class="menu" id="menu">
+                </a>
+                <ul class="show-desktop hide-mobile" id="nav">
+                    <li id="exit" class="exit-btn hide-desktop">
+                        <img src="/images/exit.png" alt="toggle exit button">
+                    </li>
+                    <li><a href="/pages/homepage-helper.html">Home</a></li>
+                    <li><a href="#">Activity</a></li>
+                    <li><a href="/pages/profile.html">Profile</a></li>
+                    <li><a href="#">Notification</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <div class="bg-card">
+                <div class="container">
+                    <h3>On-the-Way</h3>
+                    <hr>
+                    <h4>Location</h4>
+                    <p id="reqAddress"></p>
+                    <div class="copyText">
+                        <button class="copyText" onclick="copyElementText('reqAddress')">Copy Address</button>
+                    </div>
+                    
+                    <h4>ETA</h4>
+                    <p>10 minutes (WIP)</p>
+                    <h4>Requester</h4>
+                    <p id="reqName"></p>
+                    <h4>Contact</h4>
+                    <p id="reqContact"></p>
+                    <br>
+                    <button type="button" class="arrived" id="helperarrived" onclick="ETAwhichBtn()">Arrived</button>
+                    <button type="button" class="chat" id="helperchat">Chat</button>
+                    <!--<button type="button" class="cancel" id="helpercancel" onclick="ETAwhichBtn()">Cancel</button>-->
+                </div>
+            </div>
+        </main>
+        
+        <!-- Chat pop-up -->
+        <div id="myModal" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content" id="model-box">
+
+                <div class="modal-header">
+                    <span class="close">&times;</span>
+                    <h3 id="username"></h3>
+                </div>
+
+                <div class="modal-body">
+                    <ul id="messages"></ul>
+                </div>
+
+                <div class="modal-footer">
+                    <form onsubmit="return sendMessage();">
+                        <input type="text" id="message" placeholder="Enter message" autocomplete="off">
+                        <input type="submit" id="myBtn">
+                    </form>
+                </div>
+
+            </div>
+          
+        </div>
+
+    </div>
+
+    <script>
+        var menu = document.getElementById('menu');
+        var nav = document.getElementById('nav');
+        var exit = document.getElementById('exit');
+        //var copyText = document.getElementById('reqAddress');
+
+        menu.addEventListener('click', function(e) {
+            nav.classList.toggle('hide-mobile');
+            e.preventDefault();
+        });
+
+        exit.addEventListener('click', function(e) {
+            nav.classList.add('hide-mobile');
+            e.preventDefault();
+        });
+
+        function copyElementText(id) {
+            var text = document.getElementById(id).innerText;
+            var elem = document.createElement("textarea");
+            document.body.appendChild(elem);
+            elem.value = text;
+            elem.select();
+            document.execCommand("copy");
+            document.body.removeChild(elem);
+        }
+    </script>
+
+    <script>
+        // Get the modal
+        var modal = document.getElementById("myModal");
+        
+        // Get the button that opens the modal
+        var btn = document.getElementById("helperchat");
+        
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+        
+        // When the user clicks the button, open the modal 
+        btn.onclick = function() {
+            modal.style.display = "block";
+        }
+        
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+        
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+
+
+    <script src="/js/booking.js"></script>
+
+</body>
+</html>
