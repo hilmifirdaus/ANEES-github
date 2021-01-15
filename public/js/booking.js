@@ -37,6 +37,8 @@ function submitBooking() {
             var gender = document.querySelector('input[name="gender"]:checked').value;
             var age = document.querySelector('input[name="age"]:checked').value;
             var timestamp = firebase.firestore.FieldValue.serverTimestamp();
+
+            
             
             //MUST WRITE SET INSIDE GET because doc.data() only works inside the .then() [because it is an async function]
             db.collection('userProfile').doc(uid).get().then(function(doc) {
@@ -95,7 +97,7 @@ function submitBooking() {
                 })
                 .then(function() {
                     console.log("Document successfully written!");
-                    alert("your application has been uplaoded successfully!");
+                    //alert("your application has been uplaoded successfully!");
                     window.location = '/pages/homepage.html';
                 })
                 .catch(function(error) {
@@ -123,6 +125,7 @@ var cleanerJob = document.getElementById('Cleaner');
 var dressJob = document.getElementById('Dressing');
 var foodJob = document.getElementById('Food');
 var shopJob = document.getElementById('Shopper');
+
 
 if (allJob) {
     db.collection("bookJobs").where("jobActive", "==", "Yes").onSnapshot(function(querySnapshot) {
@@ -343,7 +346,7 @@ function openJobDetails(uid) {
         localStorage.setItem("docID", docID);
 
         window.location = '/pages/jobDetail.html';
-        alert(userName);
+        //alert(userName);
         //window.location = '/pages/jobDetail.html';
     }, function(error) {
         window.location = '/pages/homepage-helper.html';
@@ -356,16 +359,16 @@ function displayJobDetails() {
 
     //document.getElementsByClassName("jobtype").innerHTML += localStorage.getItem("jobRequested");
     document.getElementById("jobtype").innerHTML += localStorage.getItem("jobRequested");
-    document.getElementById("price").innerHTML += "RM " + localStorage.getItem("jobPrice");
-    document.getElementById("reqbooktime").innerHTML += "Submitted on " + localStorage.getItem("dateBooking") + ", " + localStorage.getItem("timeBooking");
+    document.getElementById("price").innerHTML += "RM " + localStorage.getItem("jobPrice") + ".00";
+    document.getElementById("reqbooktime").innerHTML += localStorage.getItem("dateBooking") + ", " + localStorage.getItem("timeBooking");
     document.getElementById("reqname").innerHTML += localStorage.getItem("userName");
     document.getElementById("reqdetail").innerHTML += localStorage.getItem("jobDetails");
     document.getElementById("reqskill").innerHTML += localStorage.getItem("requestedSkills");
     document.getElementById("reqgender").innerHTML += localStorage.getItem("helperGender");
     document.getElementById("reqage").innerHTML += localStorage.getItem("helperAge");
     document.getElementById("reqdate").innerHTML += localStorage.getItem("jobDate");
-    document.getElementById("reqstarttime").innerHTML += "Start: " + localStorage.getItem("startTime");
-    document.getElementById("reqendtime").innerHTML += "End = " + localStorage.getItem("endTime");
+    document.getElementById("reqstarttime").innerHTML += localStorage.getItem("startTime");
+    document.getElementById("reqendtime").innerHTML += localStorage.getItem("endTime");
     document.getElementById("reqperks").innerHTML += localStorage.getItem("additionalPerks");
     document.getElementById("reqdestination").innerHTML += localStorage.getItem("requesterLocation");
     document.getElementById("reqnumber").innerHTML += localStorage.getItem("userPhone");
@@ -383,7 +386,7 @@ function getdatejob() {
         document.getElementById("datetojob").innerHTML = "You may start on <br>" + sessionStorage.getItem("jobDate") + ".";
     }
     else {
-        document.getElementById("daystojob").innerHTML = "The job starts Today! " + sessionStorage.getItem("jobDate");
+        document.getElementById("daystojob").innerHTML = "The job starts Today!";
         document.getElementById("datetojob").innerHTML = "The job is set to start at: " + sessionStorage.getItem("jobTime");
         document.getElementById("startjobcanceljob").innerHTML += "<button onclick='gotoETA()' id='start'>Start Job</button><br>"
     }
@@ -397,7 +400,8 @@ function checkjobtime() {
     var docID = localStorage.getItem("docID");
 
     firebase.firestore().collection("bookJobs").doc(docID).get().then(function(doc) {
-        var jobDate = doc.data().jobDate;
+        var x = new Date(doc.data().jobDate);
+        var jobDate = x.toLocaleDateString('en-GB');
         var startTime = doc.data().startTime;
 
         var todaydate = new Date();
@@ -413,22 +417,26 @@ function checkjobtime() {
         sessionStorage.setItem("jobDate", jobDate);
         sessionStorage.setItem("jobTime", startTime);
 
-        firebase.firestore().collection("bookJobs").doc(docID).set({
+        firebase.firestore().collection("userProfile").doc(user.uid).get().then(function(doc) {
+            var helperName = doc.data().userName;
+            firebase.firestore().collection("bookJobs").doc(docID).set({
 
-            jobClaimed: "true",
-            jobActive: "No",
-            helperID: user.uid
-
-        }, {merge: true})
-        .then(function() {
-
-            window.location = '/pages/startJob.html';
-
-        })
-        .catch(function(error) {
-
-            console.error("Error writing document: ", error);
+                jobClaimed: "true",
+                jobActive: "No",
+                helperID: user.uid,
+                helperName: helperName
     
+            }, {merge: true})
+            .then(function() {
+    
+                window.location = '/pages/startJob.html';
+    
+            })
+            .catch(function(error) {
+    
+                console.error("Error writing document: ", error);
+        
+            });
         });
     });
 }
@@ -461,10 +469,9 @@ function gotoETA() {
 //called from helperETApage
 function jobClaimed() {
 
-    document.getElementById("reqAddress").innerHTML = localStorage.getItem("requesterLocation");
-    document.getElementById("reqName").innerHTML = localStorage.getItem("userName");
-    document.getElementById("reqContact").innerHTML = localStorage.getItem("userPhone");
-    document.getElementById("username").innerHTML = localStorage.getItem("userName");
+    
+
+    var docID = localStorage.getItem("docID");
 
     //var user = firebase.auth().currentUser;
     firebase.auth().onAuthStateChanged(function(user) {
@@ -488,6 +495,36 @@ function jobClaimed() {
                 });
                 
             });
+
+            firebase.firestore().collection('bookJobs').where("helperID", "==", uid).onSnapshot(function(querySnapshot) {
+                
+                querySnapshot.forEach(function(doc) {
+
+                    document.getElementById("reqAddress").innerHTML = doc.data().requesterLocation;
+                    document.getElementById("reqName").innerHTML = doc.data().userName;
+                    document.getElementById("reqContact").innerHTML = doc.data().userPhone;
+                    document.getElementById("username").innerHTML = doc.data().userName;
+                });
+                
+            });
+
+            if (navigator.geolocation) {
+
+                navigator.geolocation.watchPosition(function(position) {
+
+                    firebase.firestore().collection('bookJobs').doc(docID).set({
+
+                        helcurrentLat: position.coords.latitude,
+                        helcurrentLon: position.coords.longitude,
+                        helcurrentSpeed: position.coords.speed
+                    }, {merge: true})
+                    .then(function() {
+                        console.log(position.coords.latitude);
+                        console.log(position.coords.longitude);
+                        console.log(position.coords.speed);
+                    });
+                });
+            }
 
         }
 
@@ -660,44 +697,89 @@ function sendMessage() {
 
 }
 //display message
-document.getElementById("helperchat").addEventListener("click", function(){
+if(document.getElementById("helperchat")) {
 
-    var user = firebase.auth().currentUser;
+    document.getElementById("helperchat").addEventListener("click", function(){
 
-    if (user) {
-        var uid = user.uid;
-        firebase.firestore().collection('userProfile').doc(uid).get().then(function(doc) {
-            var myName = doc.data().userName;
-
-            // listen for incoming messages
-            firebase.database().ref("messages").on("child_added", function (snapshot) {
-                var html = "";
-                
-                // show delete button if message is sent by me
-                if (snapshot.val().sender == myName) {
-                    // give each message a unique ID
-                    html += "<li id='message-" + snapshot.key + "' class='sender'>";
-                    html += snapshot.val().message;
-                    html += "<button data-id='" + snapshot.key + "' onclick='deleteMessage(this);'>";
-                        html += "Delete";
-                    html += "</button>";
-                    html += "</li>";
-                }
-                else {
-                    // give each message a unique ID
-                    html += "<li id='message-" + snapshot.key + "'>";
-                    html += snapshot.val().message;
-                    html += "</li>";
-                }
-                
-                
-        
-                document.getElementById("messages").innerHTML += html;
+        var user = firebase.auth().currentUser;
+    
+        if (user) {
+            var uid = user.uid;
+            firebase.firestore().collection('userProfile').doc(uid).get().then(function(doc) {
+                var myName = doc.data().userName;
+    
+                // listen for incoming messages
+                firebase.database().ref("messages").on("child_added", function (snapshot) {
+                    var html = "";
+                    
+                    // show delete button if message is sent by me
+                    if (snapshot.val().sender == myName) {
+                        // give each message a unique ID
+                        html += "<li id='message-" + snapshot.key + "' class='sender'>";
+                        html += snapshot.val().message;
+                        html += "<button data-id='" + snapshot.key + "' onclick='deleteMessage(this);'>";
+                            html += "Delete";
+                        html += "</button>";
+                        html += "</li>";
+                    }
+                    else {
+                        // give each message a unique ID
+                        html += "<li id='message-" + snapshot.key + "'>";
+                        html += snapshot.val().message;
+                        html += "</li>";
+                    }
+                    
+                    
+            
+                    document.getElementById("messages").innerHTML += html;
+                });
             });
-        });
-    }
+        }
+    
+    });
+}
+else if(document.getElementById("requesterchat")) {
+    
+    document.getElementById("requesterchat").addEventListener("click", function(){
 
-});
+        var user = firebase.auth().currentUser;
+    
+        if (user) {
+            var uid = user.uid;
+            firebase.firestore().collection('userProfile').doc(uid).get().then(function(doc) {
+                var myName = doc.data().userName;
+    
+                // listen for incoming messages
+                firebase.database().ref("messages").on("child_added", function (snapshot) {
+                    var html = "";
+                    
+                    // show delete button if message is sent by me
+                    if (snapshot.val().sender == myName) {
+                        // give each message a unique ID
+                        html += "<li id='message-" + snapshot.key + "' class='sender'>";
+                        html += snapshot.val().message;
+                        html += "<button data-id='" + snapshot.key + "' onclick='deleteMessage(this);'>";
+                            html += "Delete";
+                        html += "</button>";
+                        html += "</li>";
+                    }
+                    else {
+                        // give each message a unique ID
+                        html += "<li id='message-" + snapshot.key + "'>";
+                        html += snapshot.val().message;
+                        html += "</li>";
+                    }
+                    
+                    
+            
+                    document.getElementById("messages").innerHTML += html;
+                });
+            });
+        }
+    
+    });
+}
+
 
 
 //delete message
@@ -736,9 +818,9 @@ function gotosessionifhave() {
                     }
                 });
             });
-
-            
-
+        }
+        else {
+            window.location = '/pages/login.html';
         }
 
     });
@@ -765,6 +847,73 @@ function tracking() {
                     }
                 });
             });
+
+            firebase.firestore().collection("bookJobs").where("userId", "==", uid).onSnapshot(function(querySnapshot) {
+
+                querySnapshot.forEach(function(doc) {
+                    document.getElementById('username').innerHTML = doc.data().helperName;
+                    document.getElementById('helname').innerHTML = doc.data().helperName;
+                });
+            });
+
+            if (navigator.geolocation) {
+
+                navigator.geolocation.watchPosition(function(position) {
+
+                    var reqcurrentLat = position.coords.latitude;
+                    var reqcurrentLon = position.coords.longitude;
+
+                    firebase.firestore().collection("bookJobs").where("userId", "==", uid).onSnapshot(function(querySnapshot) {
+
+                        querySnapshot.forEach(function(doc) {
+
+                            var helLat = parseInt(doc.data().helcurrentLat);
+                            var helLon = parseInt(doc.data().helcurrentLon);
+                            
+
+                            if (doc.data().helcurrentSpeed == null){
+                                var helSpeed = 0;
+                            }
+                            if (doc.data().helcurrentSpeed != null){
+                                var helSpeed = parseInt(doc.data().helcurrentSpeed);
+                            }
+    
+                            var R = 6371; // m
+                            var dLat = (helLat - reqcurrentLat) * Math.PI / 180;
+                            var dLon = (helLon - reqcurrentLon) * Math.PI / 180; 
+                            var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+                                    Math.cos(reqcurrentLat * Math.PI / 180) * Math.cos(helLat * Math.PI / 180) * 
+                                    Math.sin(dLon / 2) * Math.sin(dLon / 2); 
+                            var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a)); 
+                            var d = R * c;
+
+                            if (helSpeed == 0) {
+                                var eta = d;
+                            }
+                            else {
+                                var eta = d / helSpeed;
+                            }
+                            
+                            console.log(helSpeed);
+                            console.log(d);
+                            console.log(eta);
+                            document.getElementById("tracktime").innerHTML = "ETA: " + Math.round(eta / 60) + " mins";
+
+                        });
+                        Number.prototype.toRad = function() {
+                            return this * Math.PI / 180;
+                        }
+                        
+                        
+                    });
+
+                    
+                });
+                
+            }
+            else {
+                alert('Geolocation is not supported for this Browser/OS version yet.');
+            }
 
             
 
@@ -839,72 +988,211 @@ function confirmhelperarrived() {
 function displayactivity() {
     var jobHistory = document.getElementById('jobHistory');
     var ongoingJob = document.getElementById('ongoingJob');
-    var user = firebase.auth().currentUser;
-    var uid = user.uid;
 
-    firebase.firestore().collection("userProfile").doc(uid).get().then(function(doc) {
-        var userType = doc.data().userType;
+    firebase.auth().onAuthStateChanged(function(user) {
 
-        if (user && userType == "Helper") {
-            if (ongoingJob) {
+        if(user) {
+            var uid = user.uid;
+            console.log(uid);
+            
+            firebase.firestore().collection("userProfile").doc(uid).get().then(function(doc) {
+                var userType = doc.data().userType;
+                console.log(userType);
+                if (userType == "Requester") {
+                    if (ongoingJob) {
+            
+                        firebase.firestore().collection("bookJobs").where("jobClaimed", "==", "true").where("userId", "==", uid).onSnapshot(function(querySnapshot) {
+                            querySnapshot.forEach(function(doc) {
+
+                                var todaydate = new Date();
+                                var userdate = new Date(doc.data().jobDate);
+                                var docID = doc.id;
+                                console.log(todaydate);
+                                console.log(userdate);
+                                console.log(docID);
+
+                                //var userTime = new Date(doc.data().startTime);
+                                //var timedistance = userTime.getTime() - todaydate.getTime();
+                                //var hours = Math.floor((timedistance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                                //var minutes = Math.floor((timedistance % (1000 * 60 * 60)) / (1000 * 60));
+                                
+                                if (doc.data().jobActive && doc.data().jobActive == "Yes") {
+
+                                    var status = "Awaiting for Helper to claim the job";
+                                }
+                                
+                                if (doc.data().jobClaimed && doc.data().jobClaimed == "true") {
+
+                                    var status = "Job Claimed";
+
+                                }
+                                if (doc.data().HelperOTW && doc.data().HelperOTW == "true") {
+
+                                    var status = "Helper is On-the-Way";
+
+                                }
+                                if (doc.data().HelperArrived && doc.data().HelperArrived == "Yes") {
+
+                                    var status = "Helper has arrived";
+
+                                }
+
+                                console.log(status);
+
+                                // To calculate the time difference of two dates 
+                                var Difference_In_Time = userdate.getTime() - todaydate.getTime(); 
+                                    
+                                // To calculate the no. of days between two dates 
+                                var Difference_In_Days = Math.round(Difference_In_Time / (1000 * 3600 * 24));
+                                console.log(Difference_In_Days);
+                                if (Difference_In_Days == 0) {
+                                    
+                                    dateJob = 'Today';
+                                }
+                                else {
+                                    dateJob = Difference_In_Days + " day(s)";
+                                }
+
+                                ongoingJob.innerHTML += "<div class='list-jobs' onclick='continuejob(\""+docID+"\")'><h3>" + status + "</h3><hr><h3>" + doc.data().jobRequested + "</h3><h5>Job Details: </h5><p>" + 
+                                doc.data().jobDetails + "</p><h5>Claimed by </h5><p>" + doc.data().helperName + "</p><h5>Requester: </h5><p>" + doc.data().userName + "</p><h5>Job Starts in: </h5><p>" + dateJob + "</p></div>";
+                            });
+                        });
+                    }
+                    if (jobHistory) {
+
+                        firebase.firestore().collection("historyJobs").where("requesterID", "==", uid).onSnapshot(function(querySnapshot) {
+                            querySnapshot.forEach(function(doc) {
+
+                                jobHistory.innerHTML += "<div class='list-jobs'><h3>RM " + doc.data().jobTotalPaid + ".00</h3><hr><h3>" + doc.data().jobRequested + "</h3><h5>Job Details: </h5><p>" + 
+                                doc.data().jobDetails + "</p><h5>Claimed by </h5><p>" + doc.data().helperName + "</p><h5>Requester: </h5><p>" + doc.data().requesterName + "</p><h5>Job Booked on: </h5><p>" + 
+                                doc.data().jobBookedOn.toDate().toLocaleDateString('en-GB') + "</p><h5>Job ID</h5><p>" + doc.id + "</p></div>";
+                            });
+                        });
+                    }
+                }
+                if (userType == "Helper") {
+                    if (ongoingJob) {
+                        firebase.firestore().collection("bookJobs").where("jobClaimed", "==", "true").where("helperID", "==", uid).onSnapshot(function(querySnapshot) {
+                            querySnapshot.forEach(function(doc) {
+                                var todaydate = new Date();
+                                var userdate = new Date(doc.data().jobDate);
+                                var docID = doc.id;
+                                console.log(todaydate);
+                                console.log(userdate);
+                                console.log(docID);
+
+                                if (doc.data().jobClaimed && doc.data().jobClaimed == "true") {
+
+                                    var status = "Job Claimed";
+
+                                }
+                                if (doc.data().HelperOTW && doc.data().HelperOTW == "true") {
+
+                                    var status = "On-the-Way to Location";
+
+                                }
+
+                                // To calculate the time difference of two dates 
+                                var Difference_In_Time = userdate.getTime() - todaydate.getTime(); 
+                                    
+                                // To calculate the no. of days between two dates 
+                                var Difference_In_Days = Math.round(Difference_In_Time / (1000 * 3600 * 24));
+                                console.log(Difference_In_Days);
+                                if (Difference_In_Days == 0) {
+                                    
+                                    dateJob = 'Today';
+                                }
+                                else {
+                                    dateJob = Difference_In_Days + " day(s)";
+                                }
+
+                                ongoingJob.innerHTML += "<div class='list-jobs' onclick='continuejob(\""+docID+"\")'><h3>" + status + "</h3><hr><h3>" + doc.data().jobRequested + "</h3><h5>Job Details: </h5><p>" + 
+                                doc.data().jobDetails + "</p><h5>Claimed by </h5><p>" + doc.data().helperName + "</p><h5>Requester: </h5><p>" + doc.data().userName + "</p><h5>Job Starts in: </h5><p>" + dateJob + "</p></div>";
+                            });
+                        });
+                    }
+                    if (jobHistory) {
+
+                        firebase.firestore().collection("historyJobs").where("helperID", "==", uid).onSnapshot(function(querySnapshot) {
+                            querySnapshot.forEach(function(doc) {
+
+                                jobHistory.innerHTML += "<div class='list-jobs'><h3>RM " + doc.data().jobTotalPaid + ".00</h3><hr><h3>" + doc.data().jobRequested + "</h3><h5>Job Details: </h5><p>" + 
+                                doc.data().jobDetails + "</p><h5>Volunteered</h5><p>" + doc.data().helperWaived + "</p><h5>Claimed by </h5><p>" + doc.data().helperName + "</p><h5>Requester: </h5><p>" + doc.data().requesterName + "</p><h5>Job Booked on: </h5><p>" + 
+                                doc.data().jobBookedOn.toDate().toLocaleDateString('en-GB') + "</p><h5>Job ID</h5><p>" + doc.id + "</p></div>";
+                            });
+                        });
+                    }
+                }
+                
+            });
+        }
+    });
     
-                firebase.firestore().collection("bookJobs").where("jobClaimed", "==", "true").where("helperID", "==", uid).onSnapshot(function(querySnapshot) {
-                    querySnapshot.forEach(function(doc) {
+}
 
-                        var todaydate = new Date();
-                        var userdate = new Date(doc.data().jobDate);
-                        var docID = doc.id;
-                        
+//called from above
+function continuejob(documentID) {
+
+    firebase.auth().onAuthStateChanged(function(user) {
+
+        if(user) {
+            var uid = user.uid;
+            console.log(uid);
+            
+            firebase.firestore().collection("userProfile").doc(uid).get().then(function(doc) {
+                var userType = doc.data().userType;
+                console.log(userType);
+                if (userType == "Requester") {
+
+                    var docid = documentID;
+                    //depend on status continue where last task
+                    firebase.firestore().collection("bookJobs").doc(docid).onSnapshot(function(doc) {
                         if (doc.data().jobActive && doc.data().jobActive == "Yes") {
-
-                            var status = "Awaiting for Helper to claim the job";
+                
+                            alert("Awaiting for Helper to claim the job");
                         }
                         
                         if (doc.data().jobClaimed && doc.data().jobClaimed == "true") {
-
-                            var status = "Job Claimed";
-
+                
+                            alert("Job Claimed");
+                
                         }
                         if (doc.data().HelperOTW && doc.data().HelperOTW == "true") {
-
-                            var status = "Helper is On-the-Way";
-
+                
+                            window.location = '/pages/ETApage.html';
+                
                         }
-                        //add if (helperarrived)
-                        //add if (helperconfirmhere)
-                        //add if (sessionstarted)
-
-                        // To calculate the time difference of two dates 
-                        var Difference_In_Time = userdate.getTime() - todaydate.getTime(); 
-                            
-                        // To calculate the no. of days between two dates 
-                        var Difference_In_Days = Math.round(Difference_In_Time / (1000 * 3600 * 24));
-                        console.log(Difference_In_Days);
-                        if (Difference_In_Days == 0) {
-                            var userTime = new Date(doc.data().startTime);
-                            var timedistance = userTime.getTime() - todaydate.getTime();
-                            var hours = Math.floor((timedistance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                            var minutes = Math.floor((timedistance % (1000 * 60 * 60)) / (1000 * 60));
-                            dateJob = 'Today';
+                        if (doc.data().HelperArrived && doc.data().HelperArrived == "Yes") {
+                
+                            window.location = '/pages/confirmation-arrived.html';
+                
                         }
-                        else {
-                            dateJob = Difference_In_Days + " day(s)";
-                        }
-
-                        ongoingJob.innerHTML += "<div class='list-jobs' onclick='continuejob(\""+docID+"\")'><h3>" + status + "</h3><hr><h3>" + doc.data().jobRequested + "</h3><h5>Job Details: </h5><p>" + 
-                        doc.data().jobDetails + "</p><h5>Requester: </h5><p>" + doc.data().userName + "</p><h5>Job Starts in: </h5><p>" + dateJob + ", " + hours + "h " + minutes + "m " + "</p></div>";
                     });
-                });
-            }    
-        }
-        else if (user && userType == "Requester") {
+                }
+                if (userType == "Helper") {
 
+                    var docid = documentID;
+                    //depend on status continue where last task
+                    firebase.firestore().collection("bookJobs").doc(docid).onSnapshot(function(doc) {
+                        
+                        if (doc.data().jobClaimed && doc.data().jobClaimed == "true") {
+                
+                            window.location = '/pages/startJob.html';
+                
+                        }
+                        if (doc.data().HelperOTW && doc.data().HelperOTW == "true") {
+                
+                            window.location = '/pages/helperETApage.html';
+                
+                        }
+                        
+                    });
+                }
+            });
         }
     });
-}
 
-function continuejob(documentID) {
-    //depend on status continue where last task
+    
 }
 
 //called from sessionHelper
@@ -921,7 +1209,7 @@ function displaySessiondetails() {
                 var reqName = doc.data().requesterName;
                 var reqContact = doc.data().requesterPhone;
                 var reqAddress = doc.data().requesterLocation;
-                var jobDate = doc.data().jobDate;
+                var jobDate = new Date(doc.data().jobDate).toLocaleDateString('en-GB');
                 var startTime = doc.data().startTime;
                 var endTime = doc.data().endTime;
                 var reqEmergency = doc.data().requesterEmergency;
@@ -996,7 +1284,7 @@ function displaySessiondetails() {
                         //pass data similar in endsessionHelper function
                         //go to sessionHelperReceipt
                     } 
-                }, 3000);
+                }, 1000);
 
                 //check if requester reported the helper.
                 setInterval(function() {
@@ -1025,7 +1313,7 @@ function displaySessiondetails() {
                             
                         });
                     }
-                }, 1000);
+                }, 3000);
                 
 
             });
@@ -1118,6 +1406,8 @@ function displaySessionRequester() {
                 var activejobID = doc.id;
                 var bookjobID = doc.data().bookjobID;
 
+                var datex = new Date(doc.data().jobDate).toLocaleDateString('en-GB');
+
                 localStorage.setItem("bookjobID", bookjobID);
                 localStorage.setItem("activejobID", activejobID);
                 localStorage.setItem("helID", helID);
@@ -1128,7 +1418,7 @@ function displaySessionRequester() {
                 document.getElementById("helname").innerHTML = helName;
                 document.getElementById("heldisability").innerHTML = helDisability;
                 document.getElementById("helcontact").innerHTML = helContact;
-                document.getElementById("reqdatetime").innerHTML = jobDate + ", " + startTime + " - " + endTime;
+                document.getElementById("reqdatetime").innerHTML = datex + ", " + startTime + " - " + endTime;
                 document.getElementById("helemergency").innerHTML = helEmergency;
     
                     
@@ -1229,7 +1519,7 @@ function displayReqReceipt() {
                 var jobdetail = doc.data().jobDetails;
                 var sessionstarttime = doc.data().sessionStartTime.toDate();
                 var sessionendtime = doc.data().sessionEndTime.toDate();
-                var jobdate = doc.data().jobDate;
+                var jobdate = new Date(doc.data().jobDate).toLocaleDateString('en-GB');
                 var starttime = doc.data().startTime;
                 var endtime = doc.data().endTime;
                 var helname = doc.data().helperName;
@@ -1249,6 +1539,8 @@ function displayReqReceipt() {
                 var reqid = doc.data().requesterID;
                 var helid = doc.data().helperID;
                 var activejobID = doc.id;
+                var helperWaived = doc.data().helperWaived;
+                
 
                 //delete the documents when session ends
                 if (doc.data().requesterPaid == "true" && doc.data().helperReceivePayment == "true") {
@@ -1271,7 +1563,8 @@ function displayReqReceipt() {
                         requesterName: reqname,
                         requesterEmail: reqemail,
                         requesterPhone: reqphone,
-                        requesterID: reqid
+                        requesterID: reqid,
+                        helperWaived: helperWaived
 
                     })
                     .then(function() {
@@ -1310,7 +1603,7 @@ function displayReqReceipt() {
                 var mindiff = Math.abs(hmin - fmin);
         
                 var duration = hourdiff + " hour(s) " + mindiff + " minute(s)";
-                var dateandtime = jobdate + ", " + starttime + " - " + endtime;
+                //var dateandtime = jobdate + ", " + starttime + " - " + endtime;
         
                 console.log(duration);
                 
@@ -1349,7 +1642,7 @@ function displayHelReceipt() {
                 var jobdetail = doc.data().jobDetails;
                 var sessionstarttime = doc.data().sessionStartTime.toDate();
                 var sessionendtime = doc.data().sessionEndTime.toDate();
-                var jobdate = doc.data().jobDate;
+                var jobdate = new Date(doc.data().jobDate).toLocaleDateString('en-GB');
                 var starttime = doc.data().startTime;
                 var endtime = doc.data().endTime;
                 var reqname = doc.data().requesterName;
@@ -1357,6 +1650,8 @@ function displayHelReceipt() {
                 var addpay = doc.data().additionalPayment;
                 var bookjobID = doc.data().bookjobID;
                 var activejobID = doc.id;
+
+                
         
                 console.log(sessionstarttime);
                 console.log(sessionendtime);
@@ -1417,7 +1712,8 @@ function receivedPayment(value) {
                 firebase.firestore().collection("activeJobs").doc(helqid).set({
 
                     helperReceivePayment: "true",
-                    requesterPaid: "true"
+                    requesterPaid: "true",
+                    helperWaived: "no"
 
                 }, {merge: true})
                 .then(function() {
@@ -1425,7 +1721,8 @@ function receivedPayment(value) {
                     firebase.firestore().collection("bookJobs").doc(bookjobID).set({
                         
                         helperReceivePayment: "true",
-                        requesterPaid: "true"
+                        requesterPaid: "true",
+                        helperWaived: "no"
 
                     }, {merge: true})
                     .then(function() {
@@ -1446,7 +1743,8 @@ function receivedPayment(value) {
                 firebase.firestore().collection("activeJobs").doc(helqid).set({
 
                     helperReceivePayment: "no",
-                    requesterPaid: "no"
+                    requesterPaid: "no",
+                    helperWaived: "no"
 
                 }, {merge: true})
                 .then(function() {
@@ -1454,7 +1752,8 @@ function receivedPayment(value) {
                     firebase.firestore().collection("bookJobs").doc(bookjobID).set({
                         
                         helperReceivePayment: "no",
-                        requesterPaid: "no"
+                        requesterPaid: "no",
+                        helperWaived: "no"
 
                     }, {merge: true})
                     .then(function() {
@@ -1464,9 +1763,75 @@ function receivedPayment(value) {
                     });
                 });
             }
-            
+            else if (value == 'waive') {
+                var helqid = user.uid;
+                console.log(helqid);
+                var bookjobID = localStorage.getItem("bookjobID");
+                console.log(bookjobID);
+
+                firebase.firestore().collection("activeJobs").doc(helqid).set({
+
+                    helperReceivePayment: "true",
+                    requesterPaid: "true",
+                    helperWaived: "true"
+
+                }, {merge: true})
+                .then(function() {
+
+                    firebase.firestore().collection("bookJobs").doc(bookjobID).set({
+                        
+                        helperReceivePayment: "true",
+                        requesterPaid: "true",
+                        helperWaived: "true"
+
+                    }, {merge: true})
+                    .then(function() {
+
+                        window.location = "/pages/activity.html";
+
+                    });
+                });
+            }
         }
     });
     
 }
 
+function whichHome() {
+    firebase.auth().onAuthStateChanged(function(user) {
+
+        if(user) {
+            var uid = user.uid;
+            firebase.firestore().collection("userProfile").doc(uid).get().then(function(doc) {
+                
+                if(doc.data().userType == "Requester") {
+                    window.location = "/pages/homepage.html";
+                }
+                if(doc.data().userType == "Helper") {
+                    window.location = "/pages/homepage-helper.html";
+                }
+            });
+        }
+        else {
+            alert("error");
+            window.location = "/pages/login.html";
+        }
+    });
+}
+
+function contact() {
+
+    var email = document.getElementById("eml").value;
+    var name = document.getElementById("name").value;
+    var message = document.getElementById("message").value;
+
+    firebase.firestore().collection("contactForms").doc().set({
+        email: email,
+        name: name,
+        message: message
+    })
+    .then(function() {
+        alert("message sent! we will reply back in 3 business days.");
+        window.location = "/pages/landing.html";
+    });
+}

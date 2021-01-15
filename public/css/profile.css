@@ -6,10 +6,6 @@ body {
   background-color: #D8E2DC;
 }
 
-.container {
-  text-align: center;
-}
-
 .hide-mobile {
   display: none;
 }
@@ -43,6 +39,11 @@ header .menu {
 
 .text-display {
   margin-top: 35%;
+}
+
+main .collapsebox {
+  text-align: center;
+  padding-bottom: 30px;
 }
 
 main .card {
@@ -107,6 +108,20 @@ main .content {
   -webkit-transition: max-height 0.2s ease-out;
   transition: max-height 0.2s ease-out;
   background-color: #f1f1f1;
+}
+
+main .content h5 {
+  font-size: 16px;
+  text-align: left;
+  padding-left: 10%;
+}
+
+main .content p {
+  font-size: 17px;
+  text-align: left;
+  padding-left: 10%;
+  margin-top: -20px;
+  padding-bottom: 10px;
 }
 
 nav ul {

@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reset Password | Anees</title>
     <link rel="stylesheet" href="/css/forgotPass.css">
+    <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-firestore.js"></script>
 </head>
 <body>
     <div class="container">
@@ -30,10 +34,10 @@
                 <h1>Forgot your password?</h1>
                 <p>Enter your email and we will send you a link to reset your password.</p>
 
-                <label for="resetPsw"><b>Email Address</b></label>
-                <input type="text" placeholder="Enter Email" name="resetPsw" required>
-                <button type="submit">Reset password</button>
-                <a href="/pages/login.html">Cancel</a>
+                <label for="eml"><b>Email Address</b></label>
+                <input type="text" placeholder="Enter Email" name="resetPsw" id="eml" required>
+                <button type="submit" onclick="forgotPass()">Reset password</button>
+                <a href="#">Cancel</a>
             </form>
         </main>
 
@@ -67,6 +71,8 @@
         });
 
     </script>
+
+    <script src="/js/auth.js"></script>
     
 </body>
 </html>

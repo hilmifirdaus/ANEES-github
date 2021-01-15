@@ -6,6 +6,7 @@
     <title>Anees</title>
     <link rel="stylesheet" href="/css/ETApage.css">
     <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-database.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-analytics.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-firestore.js"></script>
@@ -20,7 +21,7 @@
         <header>
             <img src="/images/anees_logo.png" alt="anees logo" class="logo">
 
-            <nav>
+            <!--<nav>
                 <a href="#" class="hide-desktop">
                     <img src="/images/menu.png" alt="toggle menu button" class="menu" id="menu">
                 </a>
@@ -33,16 +34,17 @@
                     <li><a href="/pages/profile.html">Profile</a></li>
                     <li><a href="#">Notification</a></li>
                 </ul>
-            </nav>
+            </nav>-->
         </header>
 
         <main>
             <div class="bg-card">
                 <h1>Tracking</h1>
-                <h3>ETA: 6 minutes</h3>
+                <h3 id="tracktime"></h3>
+                <h5 id="helname"></h5>
                 <img src="/images/Walking.gif" alt="walking gif">
-                <a href="#" class="chat" id="requesterchat">Chat</a>
-                <a href="/pages/homepage.html" class="cancel">Cancel</a>
+                <button type="button" class="chat" id="requesterchat">Chat</button>
+                <!--<a href="#" class="chat" id="requesterchat">Chat</a>-->
             </div>
         </main>
 

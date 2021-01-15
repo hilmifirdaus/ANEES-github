@@ -36,22 +36,23 @@
                         <h1 style="text-align: center;">Contact Us</h1>
 
                         <p>Email</p>
-                        <input type="text" id="jobDetails" name="jobDetails" placeholder="Your email">
+                        <input type="text" id="eml" name="eml" placeholder="Your email">
 
                         <br>
 
                         <p>Name</p>
-                        <input type="text" id="jobDetails" name="jobDetails" placeholder="Your name">
+                        <input type="text" id="name" name="name" placeholder="Your name">
 
                         <br>
 
                         <p>Subject</p>
-                        <input type="text" id="jobDetails" name="jobDetails" placeholder="Feel free to drop us message">
+                        <input type="text" id="message" name="message" placeholder="Feel free to drop us message">
 
                         <br>
-
-                <button type="button" class="submit" id="submit" onclick="submitBooking()">Submit</button>
-                <button type="button" class="cancel">Cancel</button>
+                    </div>
+                </div>    
+                <button type="button" class="submit" id="submit" onclick="contact()">Submit</button>
+                <button type="button" class="cancel" onclick="x()">Cancel</button>
 
             </form>
         </main>
@@ -82,6 +83,12 @@
         function changeradio() {
             var specificAge = document.getElementById('specificAge');
             specificAge.value = document.getElementById('inputspecificAge').value;
+        }
+    </script>
+
+    <script>
+        function x() {
+            window.location = "/pages/landing.html";
         }
     </script>
 

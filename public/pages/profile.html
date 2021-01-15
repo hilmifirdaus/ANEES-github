@@ -11,7 +11,7 @@
     <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-firestore.js"></script>
 </head>
 
-<body>
+<body onload="displayProfile();">
     <div class="container">
         <header>
             <img src="/images/anees_logo.png" alt="anees_logo" class="logo">
@@ -23,10 +23,9 @@
                     <li id="exit" class="exit-btn hide-desktop">
                         <img src="/images/exit.png" alt="toggle exit button">
                     </li>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Activity</a></li>
-                    <li><a href="#">Notification</a></li>
-                    <li><a href="/pages/landing.html">Logout</a></li>
+                    <li><a href="#" onclick="whichHome()">Home</a></li>
+                    <li><a href="/pages/activity.html">Activity</a></li>
+                    <li><a href="/pages/login.html">Logout</a></li>
                 </ul>
             </nav>
         </header>
@@ -35,27 +34,33 @@
             <div class="card">
                 <div class="container-profile">
                     <img src="/images/profile-image.png" alt="profile-image" class="profile">
-                    <h2>Hazirah Haris</h2>
+                    <h2 id="username"></h2>
                     <p style="text-align: center;">
                         <a class="editprofile" onclick="checkwhichprofile()"> <strong>Edit Profile</strong></a>
                     </p>
                     
                     <hr style="width: 100%; text-align: center; margin-left: 0;">
+
+                    <div class="collapsebox">
+
+                        <button type="button" class="collapsible">Account Details</button>
+                        <div class="content" id="acctDetails">
+
+                        </div>
+
+                        <button type="button" class="collapsible">Personal Details</button>
+                        <div class="content" id="personalDetails">
+                            
+                        </div>
+
+                        <button type="button" class="collapsible">Others</button>
+                        <div class="content" id="others">
+                            
+                        </div>
+
+                    </div>
                 
-                    <button type="button" class="collapsible">Account Details</button>
-                    <div class="content">
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis provident dicta eos totam quisquam animi voluptatum? Dolorum adipisci deserunt atque corrupti itaque iure, excepturi alias perspiciatis, sint quaerat, beatae cum.</p>
-                    </div>
-
-                    <button type="button" class="collapsible">Personal Details</button>
-                    <div class="content">
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis provident dicta eos totam quisquam animi voluptatum? Dolorum adipisci deserunt atque corrupti itaque iure, excepturi alias perspiciatis, sint quaerat, beatae cum.</p>
-                    </div>
-
-                    <button type="button" class="collapsible">Others</button>
-                    <div class="content">
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis provident dicta eos totam quisquam animi voluptatum? Dolorum adipisci deserunt atque corrupti itaque iure, excepturi alias perspiciatis, sint quaerat, beatae cum.</p>
-                    </div>
+                    
 
                 </div>
             </div>

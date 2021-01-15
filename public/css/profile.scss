@@ -17,9 +17,7 @@ body {
     background-color: color(bgc);
 }
 
-.container {
-    text-align: center;
-}
+
 
 .hide-mobile {
     display: none;
@@ -53,6 +51,12 @@ header {
 }
 
 main {
+
+        .collapsebox {
+            text-align: center;
+            padding-bottom: 30px;
+        }
+
         .card {
         background: white;
         width: 90%;
@@ -113,8 +117,23 @@ main {
         overflow: hidden;
         transition: max-height 0.2s ease-out;
         background-color: #f1f1f1;
+        //text-align: left;
+
+            h5 {
+                font-size: 16px;
+                text-align: left;
+                padding-left: 10%;
+            }
+
+            p {
+                font-size: 17px;
+                text-align: left;
+                padding-left: 10%;
+                margin-top: -20px;
+                padding-bottom: 10px;
+            }
         } 
-    }
+}
 
 nav ul {
     position: fixed;

@@ -47,7 +47,7 @@ function login() {
                         else {
                             window.location = '/pages/homepage-helper.html';
                             console.log("succesfully sign in a Helper");
-                            alert("Welcome " + userName + "!");
+                            //alert("Welcome " + userName + "!");
                         }
                         
                     }
@@ -60,7 +60,7 @@ function login() {
                         else {
                             window.location = '/pages/homepage.html';
                             console.log("succesfully sign in a Requester");
-                            alert("Welcome " + userName + "!");
+                            //alert("Welcome " + userName + "!");
                         }
             
                     }
@@ -134,6 +134,22 @@ function signUp() {
         window.alert("Error :" + errorMessage);
     });
 
+}
+
+function forgotPass() {
+    var auth = firebase.auth();
+    var emailAddress = document.getElementById("eml").value;
+
+    auth.sendPasswordResetEmail(emailAddress).then(function() {
+        // Email sent.
+        alert("Email has been sent to you. Please check your email and follow the steps.")
+    }).catch(function(error) {
+        // An error happened.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+
+        window.alert("Error :" + errorMessage);
+    });
 }
 
 
@@ -470,7 +486,7 @@ function updateProfile() {
                     .then(function() {
                         console.log("Document successfully written!");
                         alert("You can check your updated profile in the Profile page!");
-                        window.location = '/pages/homepage.html';
+                        window.location = '/pages/homepage-helper.html';
                     });
 
                 }
@@ -509,6 +525,66 @@ function updateProfile() {
         else {
             window.location = '/pages/login.html';
             console.log("oh no something's wrong");
+        }
+    });
+}
+
+function displayProfile() {
+
+    firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+
+            var uid = user.uid;
+
+            db.collection('userProfile').doc(uid).get().then(function(doc) {
+                var userType = doc.data().userType;
+        
+                if (userType == 'Helper') {
+
+                    var picName = doc.data().picName;
+                    var picNumber = doc.data().picNumber;
+                    var picRelationship = doc.data().picRelationship;
+                    var timesignup = doc.data().timesignup.toDate().toLocaleDateString('en-GB');
+                    var training = doc.data().training;
+                    var userBankHolderName = doc.data().userBankHolderName;
+                    var userBankName = doc.data().userBankName;
+                    var userBankNo = doc.data().userBankNo;
+                    var userDOB = new Date(doc.data().userDOB).toLocaleDateString('en-GB');
+                    var userDisability = doc.data().userDisability;
+                    var userEmail = doc.data().userEmail;
+                    var userGender = doc.data().userGender;
+                    var userHousecity = doc.data().userHousecity;
+                    var userHousenum = doc.data().userHousenum;
+                    var userHousepost = doc.data().userHousepost;
+                    var userHousestreet = doc.data().userHousestreet;
+                    var userId = doc.data().userId;
+                    var userName = doc.data().userName;
+                    var userNational = doc.data().userNational;
+                    var userOccupation = doc.data().userOccupation;
+                    var userPhone = doc.data().userPhone;
+                    var userTransport = doc.data().userTransport;
+                    var workLocation = doc.data().workLocation;
+
+                    document.getElementById("username").innerHTML = userName;
+
+                    document.getElementById("acctDetails").innerHTML += "<h5>User ID</h5><p>" + 
+                    userId + "</p><h5>Signed up on</h5><p>" + timesignup + "</p><h5>Undergo Training</h5><p>" + 
+                    training + "</p><h5>Transportation Mode</h5><p>" + userTransport + "</p><h5>Work Location</h5><p>" + 
+                    workLocation + "</p>";
+
+                    document.getElementById("others").innerHTML += "<h5>Bank Account Holder Name</h5><p>" + 
+                    userBankHolderName + "</p><h5>Bank</h5><p>" + userBankName + "</p><h5>Bank Account Number</h5><p>" + 
+                    userBankNo + "</p><h5>Emergency Contact Name</h5><p>" + picName + "</p><h5>Emergency Contact Number</h5><p>" + 
+                    picNumber + "</p><h5>Emergency Contact Relationship</h5><p>" + picRelationship + "</p><h5>Home Address</h5><p>" + 
+                    userHousenum + ", " + userHousestreet + ", " + userHousecity + ", " + userHousepost + "</p>";
+
+                    document.getElementById("personalDetails").innerHTML += "<h5>Username</h5><p>" + 
+                    userName + "</p><h5>Email</h5><p>" + userEmail + "</p><h5>Contact</h5><p>" + 
+                    userPhone + "</p><h5>Gender</h5><p>" + userGender + "</p><h5>Birthday</h5><p>" + 
+                    userDOB + "</p><h5>Disability</h5><p>" + userDisability + "</p><h5>Occupation</h5><p>" + 
+                    userOccupation + "</p><h5>National</h5><p>" + userNational + "</p>";
+                }
+            });
         }
     });
 }

@@ -185,6 +185,25 @@ main .bg-card .container .receiptfoot .no {
   cursor: pointer;
 }
 
+main .bg-card .container .receiptfoot .waive {
+  display: block;
+  padding-top: 17px;
+  padding-bottom: 17px;
+  width: 81%;
+  border-radius: 50px;
+  border: none;
+  margin: 20px auto 20px auto;
+  background-color: #10b425;
+  color: black;
+  font-size: 17px;
+  font-weight: bold;
+  text-decoration: none;
+  -webkit-box-shadow: 0px 3px 19px -9px rgba(0, 0, 0, 0.56);
+          box-shadow: 0px 3px 19px -9px rgba(0, 0, 0, 0.56);
+  text-align: center;
+  cursor: pointer;
+}
+
 main .bg-card .container hr {
   border: 1px solid grey;
   width: 94%;
@@ -271,6 +290,13 @@ main .bg-card .container hr {
     font-size: 20px;
     cursor: pointer;
   }
+  main .bg-card .container .receiptfoot .waive {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    width: 60%;
+    font-size: 20px;
+    cursor: pointer;
+  }
   main .bg-card .container hr {
     border: 1px solid grey;
     width: 94%;
@@ -316,6 +342,12 @@ main .bg-card .container hr {
     font-size: 22px;
   }
   main .bg-card .container .receiptfoot .no {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    width: 70%;
+    font-size: 22px;
+  }
+  main .bg-card .container .receiptfoot .waive {
     padding-top: 20px;
     padding-bottom: 20px;
     width: 70%;

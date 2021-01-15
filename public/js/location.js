@@ -1,5 +1,5 @@
 //apikey expires after some time so need to create new account and create new api
-var platform = new H.service.Platform({
+/*var platform = new H.service.Platform({
     'apikey': 'dfNAeW51k1SRWxk81CPxbIdQ-hMTp3izshLJwUrj9rY'
 });
 
@@ -30,4 +30,23 @@ function getLocation() {
     } else {
         console.error("Geolocation is not supported by this browser!");
     }
+}*/
+
+
+function getLocation() {
+    var x = document.getElementById("location").value;
+
+    if (navigator.geolocation) {
+
+        navigator.geolocation.watchPosition(showPosition);
+        
+    }
+    else {
+        alert('Geolocation is not supported for this Browser/OS version yet.');
+    }
+}
+
+function showPosition(position) {
+    
+    document.getElementById("location").value = position.coords.latitiude + ", " + position.coords.longitude;
 }
