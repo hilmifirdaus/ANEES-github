@@ -535,7 +535,7 @@ function displayProfile() {
         if (user) {
 
             var uid = user.uid;
-
+            console.log(uid);
             db.collection('userProfile').doc(uid).get().then(function(doc) {
                 var userType = doc.data().userType;
         
@@ -583,6 +583,54 @@ function displayProfile() {
                     userPhone + "</p><h5>Gender</h5><p>" + userGender + "</p><h5>Birthday</h5><p>" + 
                     userDOB + "</p><h5>Disability</h5><p>" + userDisability + "</p><h5>Occupation</h5><p>" + 
                     userOccupation + "</p><h5>National</h5><p>" + userNational + "</p>";
+
+                    document.getElementById("whichHome").addEventListener("click", function() {
+                        window.location = '/pages/homepage-helper.html';
+                    });
+                }
+                if (userType = 'Requester') {
+
+                    var picName = doc.data().picName;
+                    var picNumber = doc.data().picNumber;
+                    var picRelationship = doc.data().picRelationship;
+                    var timesignup = doc.data().timesignup.toDate().toLocaleDateString('en-GB');
+                    //var training = doc.data().training;
+                    //var userBankHolderName = doc.data().userBankHolderName;
+                    //var userBankName = doc.data().userBankName;
+                    //var userBankNo = doc.data().userBankNo;
+                    var userDOB = new Date(doc.data().userDOB).toLocaleDateString('en-GB');
+                    var userDisability = doc.data().userDisability;
+                    var userEmail = doc.data().userEmail;
+                    var userGender = doc.data().userGender;
+                    //var userHousecity = doc.data().userHousecity;
+                    //var userHousenum = doc.data().userHousenum;
+                    //var userHousepost = doc.data().userHousepost;
+                    //var userHousestreet = doc.data().userHousestreet;
+                    var userId = doc.data().userId;
+                    var userName = doc.data().userName;
+                    var userNational = doc.data().userNational;
+                    //var userOccupation = doc.data().userOccupation;
+                    var userPhone = doc.data().userPhone;
+                    //var userTransport = doc.data().userTransport;
+                    //var workLocation = doc.data().workLocation;
+
+                    document.getElementById("username").innerHTML = userName;
+
+                    document.getElementById("acctDetails").innerHTML += "<h5>User ID</h5><p>" + 
+                    userId + "</p><h5>Signed up on</h5><p>" + timesignup + "</p>";
+
+                    document.getElementById("others").innerHTML += "<h5>Emergency Contact Name</h5><p>" + picName + "</p><h5>Emergency Contact Number</h5><p>" + 
+                    picNumber + "</p><h5>Emergency Contact Relationship</h5><p>" + picRelationship + "</p>";
+
+                    document.getElementById("personalDetails").innerHTML += "<h5>Username</h5><p>" + 
+                    userName + "</p><h5>Email</h5><p>" + userEmail + "</p><h5>Contact</h5><p>" + 
+                    userPhone + "</p><h5>Gender</h5><p>" + userGender + "</p><h5>Birthday</h5><p>" + 
+                    userDOB + "</p><h5>Disability</h5><p>" + userDisability + "</p><h5>National</h5><p>" + userNational + "</p>";
+
+                    document.getElementById("whichHome").addEventListener("click", function() {
+                        window.location = '/pages/homepage.html';
+                    });
+
                 }
             });
         }
